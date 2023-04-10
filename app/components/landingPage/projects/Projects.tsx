@@ -6,59 +6,74 @@ import {
   InputGroup,
   InputLeftElement,
   Tag,
+  calc,
+  Flex,
+  Heading,
+  Highlight,
+  useControllableState,
+  Button,
+  HStack,
+  Wrap,
 } from "@chakra-ui/react";
 import { PlusSquareIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
+import { projects, ProjectProps } from "./data";
+import ProjectCard from "./ProjectCard";
 
 const tags = [
   "React",
   "React Native",
-  "Node",
+  "NodeJs",
   "Express",
   "MongoDB",
   "TypeScript",
   "JavaScript",
-  "HTML",
-  "CSS",
   "Bootstrap",
-  "M.UI",
-  "Chakra",
-  "Semantic",
-  "Framer",
+  "Chakra UI",
+  "Semantic UI",
+  "Framer Motion",
   "GraphQL",
   "AWS",
-  "Heroku",
-  "Next.js",
+  "Amplify",
+  "NextJs",
+  "API calls",
 ];
 interface TagListProps {
   id: string;
   name: string;
-  // checked: boolean;
   index: number;
 }
 
 const Projects = () => {
   const [tagList, setTagList] = useState<TagListProps[]>([]);
   const [tagNames, setTagNames] = useState<string[]>(tags);
+  const [results, setResults] = useState<ProjectProps[]>([]);
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Solid~~~~~~~~
   const handleOnClickSolid = (e: any) => {
     const newArr = [...tagList];
+    const newResults = [...results];
     const tagNameIndex: number = Number(e.currentTarget.dataset.index);
-
-    // tagList[tagNameIndex].checked = false;
-
     const name = tagList[tagNameIndex].name;
     const tagNameOldIndex = tagList[tagNameIndex].index;
 
     tagNames.splice(tagNameOldIndex, 1, name);
     newArr.splice(tagNameIndex, 1);
+
     setTagList(() => [...newArr]);
-
     setTagNames(() => [...tagNames]);
-    // setTagList(() => (...tagList, tagList[tagNameIndex]?.checked = false));
-  };
+    ///==================================================FilteredResults=====
 
+    const filteredResults = newResults.filter(
+      (result) =>
+        !result.tags.some((tag) => tag.name.includes(e.target.innerText))
+    );
+    setResults(() => [...filteredResults]);
+  };
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Outlined~~~~~~
   const handleOnClickOutlined = (e: any) => {
-    // console.log("e.target", e.target);
+    const newArrProject = [...projects];
     const tagNameIndex: number = Number(e.currentTarget.dataset.index);
 
     setTagList((prev) => [
@@ -69,36 +84,55 @@ const Projects = () => {
         }`,
         name: e.target.innerText,
         index: tagNameIndex,
-        // checked: true,
       },
     ]);
-
     tagNames[tagNameIndex] = "";
     setTagNames(() => [...tagNames]);
-    // setTagNames(() => tagNames.filter((tag) => tag !== e.target.innerText));
-  };
+    ///==============================================FilteredResults=====
 
-  console.log("tagList", tagList, " tags: ", tagNames);
+    const filteredResults = newArrProject.filter((project) =>
+      project.tags.some((tag) => tag.name.includes(e.target.innerText))
+    );
+
+    setResults((prev) => [...prev, ...filteredResults]);
+  };
+  console.log("results", results);
 
   return (
     <section
       id="projects"
-      className="bg-blue-400 shadow-lg "
-      style={{ border: "2px cyan solid" }}
+      className="bg-blue-400 shadow-lg mt-10 rounded-t-3xl"
+      style={{
+        border: "2px cyan solid",
+      }}
     >
-      {/* <Center> */}
-      <Box w="70%" mb={10}>
+      {/* <Box h={`${100 + heigthRes * 10}%`}> */}
+      <Flex justify={"center"} align={"flex-end"}>
+        <Heading>
+          <Highlight
+            query={["02.", "built ..."]}
+            styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
+          >
+            02. What I've built ...
+          </Highlight>
+        </Heading>
+        <Box w="10rem" border={"1px solid white"} h={0} />
+      </Flex>
+      <Box w="70%" as={Wrap}>
         {tagNames.map((tag, index: number) =>
           tag !== "" ? (
             <Tag
+              // as={Button}
               key={index}
               data-index={`${index}`}
               size="lg"
               colorScheme="teal"
               variant="outline"
+              border={"0.8px solid"}
               m={1}
               onClick={handleOnClickOutlined}
               cursor="pointer"
+              boxShadow={"xs"}
             >
               {tag}
             </Tag>
@@ -112,10 +146,8 @@ const Projects = () => {
           )
         )}
       </Box>
-
       <Box
-        // as="textarea"
-        border="2px solid"
+        border="2px solid "
         borderRadius={5}
         w="70%"
         h="fit-content"
@@ -126,16 +158,17 @@ const Projects = () => {
         alignItems={"flex-start"}
         justifyContent={"flex-start"}
         // pl={15}
+        boxShadow={"lg"}
       >
-        {/* <> */}
         <InputGroup>
           <InputLeftElement
             borderRight={"1px white solid"}
-            h="full"
+            // h={tagList.length > 0 ? "full" : "0px"}
+            h={"full"}
             // minH="50px"
             children={
-              <AbsoluteCenter>
-                <PlusSquareIcon h="full" minH="50px" />
+              <AbsoluteCenter h="full">
+                <PlusSquareIcon />
               </AbsoluteCenter>
             }
           />
@@ -148,7 +181,6 @@ const Projects = () => {
             boxSizing="border-box"
           >
             {tagList.map((tag, index) => (
-              // tag.checked ? (
               <Tag
                 key={tag.id}
                 data-index={`${index}`}
@@ -159,6 +191,8 @@ const Projects = () => {
                 display="flex"
                 w="fit-content"
                 mr={2}
+                mb={2}
+                boxShadow={"xs"}
                 onClick={handleOnClickSolid}
               >
                 {tag.name}
@@ -166,6 +200,44 @@ const Projects = () => {
             ))}
           </Box>
         </InputGroup>
+      </Box>
+      <Box
+        as={Flex}
+        border={"1px solid yellow"}
+        overflowX="scroll"
+        w="70%"
+        // h={250}
+        // h="fit-content"
+        // h="fill"
+        // pb={100}
+        // zIndex={1000}
+      >
+        {results &&
+          results.map((project, index) => (
+            <Box
+              key={index}
+              border={"2px solid olive"}
+              // display=
+              minW={"90%"}
+              display="flex"
+              alignItems={"center"}
+              // w="fit-content"
+              // h={250}
+              // h="fit-content"
+              // p={2}
+              m={2}
+              boxShadow={"lg"}
+              // className="w-96 h-auto"
+            >
+              <ProjectCard
+                name={project.name}
+                links={project.links}
+                tags={project.tags}
+                content={project.content}
+                img={project.img}
+              />
+            </Box>
+          ))}
       </Box>
     </section>
   );

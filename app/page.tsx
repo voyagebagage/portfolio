@@ -10,7 +10,7 @@ import HeroHeader from "./components/HeroHeader/HeroHeader";
 import Ticker from "./components/landingPage/ticker/Ticker";
 import { motion } from "framer-motion";
 import WorkExperience from "./components/landingPage/WorkExperience";
-import Projects from "./components/landingPage/Projects";
+import Projects from "./components/landingPage/projects/Projects";
 import About from "./components/landingPage/About";
 
 export default function Home() {
@@ -33,9 +33,6 @@ export default function Home() {
   );
 }
 
-{
-  /* <h1 className="text-3xl font-bold underline">hi </h1> */
-}
 {
   /* <div className="w-full">
   <HeroHeader showSpinningBox={showSpinningBox} />

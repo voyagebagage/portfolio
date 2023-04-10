@@ -1,6 +1,6 @@
-import * as SiIcons from "react-icons/si";
 import * as GrIcons from "react-icons/gr";
 import * as DiIcons from "react-icons/di";
+import * as SiIcons from "react-icons/si";
 import * as TbIcons from "react-icons/tb";
 import * as BsIcons from "react-icons/bs";
 
@@ -34,7 +34,7 @@ export const stacks = [
     name: "NodeJs",
     color: "#60DBFA",
     category: "hero+stack",
-    level: "Good ",
+    level: "Good",
     content: "What I use for my backend",
     project: "example",
   },

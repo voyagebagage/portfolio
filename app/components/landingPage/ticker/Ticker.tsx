@@ -139,6 +139,7 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
       <motion.div
         className="scroller"
         style={{ x }}
+
         // drag="x"
         // dragElastic={0.1}
         // dragMomentum={false}
@@ -231,6 +232,7 @@ export default function Ticker() {
           zIndex={1}
           // textTransform="uppercase"
           className="mySection"
+          // _hover={{ color: "white", stroke: "blue" }}
           // border="2px solid yellow"
         >
           {/* <div style={{ border: "1px solid green" }}> */}
