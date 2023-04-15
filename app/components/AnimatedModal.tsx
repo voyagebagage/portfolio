@@ -38,7 +38,7 @@ const AnimatedModal = ({ setShowSpinningBox }: any) => {
 
   useEffect(() => {
     onOpen();
-  }, []);
+  });
 
   // const overlayVariants = {
   //   open: { bg: "teal" },
@@ -179,7 +179,7 @@ const AnimatedModal = ({ setShowSpinningBox }: any) => {
                           />
 
                           <InputGroup>
-                            <InputLeftAddon children="https://" />
+                            <InputLeftAddon>https://</InputLeftAddon>
                             <Input
                               variant="flushed"
                               placeholder="Website"
