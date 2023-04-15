@@ -153,7 +153,7 @@ const WorkExperience = () => {
                 >
                   <Image
                     src={"/NinjaLogoSquare.png"}
-                    alt={"fdsfs"}
+                    alt={"fd1sfs"}
                     width={100}
                     height={100}
                     priority={true}
