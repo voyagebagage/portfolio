@@ -164,12 +164,11 @@ const Projects = () => {
             // h={tagList.length > 0 ? "full" : "0px"}
             h={"full"}
             // minH="50px"
-            children={
-              <AbsoluteCenter h="full">
-                <PlusSquareIcon />
-              </AbsoluteCenter>
-            }
-          />
+          >
+            <AbsoluteCenter h="full">
+              <PlusSquareIcon />
+            </AbsoluteCenter>
+          </InputLeftElement>
           <Box
             ml={12}
             display="flex"
