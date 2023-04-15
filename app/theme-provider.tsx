@@ -2,8 +2,12 @@
 import "./globals.css";
 import { CacheProvider } from "@chakra-ui/next-js";
 import useForm from "./customHooks/useForm";
-import { ChakraProvider } from "@chakra-ui/react";
-
+import {
+  ChakraProvider,
+  ColorModeScript,
+  createLocalStorageManager,
+} from "@chakra-ui/react";
+import customTheme from "./styles/theme";
 import PortfolioTheme from "./theme/PortfolioTheme";
 import Header from "./components/layout/Header";
 import Footer from "./components/landingPage/Footer";
@@ -11,6 +15,8 @@ import { useState } from "react";
 import ThemeProviderContext from "./context/ThemeProviderContext.tsx";
 import SocialLinks from "./components/layout/SocialLinks";
 import EmailDisplay from "./components/layout/EmailDisplay";
+
+const manager = createLocalStorageManager("my-key");
 
 export default function ThemeProvider({
   children,
@@ -28,7 +34,12 @@ export default function ThemeProvider({
   };
   return (
     <CacheProvider>
-      <ChakraProvider>
+      <ChakraProvider
+        resetCSS
+        theme={customTheme}
+        // colorModeManager={manager}
+        // useSystemColorMode={true}
+      >
         <ThemeProviderContext.Provider value={contextValue}>
           <SocialLinks />
           <EmailDisplay />

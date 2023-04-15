@@ -96,16 +96,10 @@ const Projects = () => {
 
     setResults((prev) => [...prev, ...filteredResults]);
   };
-  console.log("results", results);
+  // console.log("results", results);
 
   return (
-    <section
-      id="projects"
-      className="bg-blue-400 shadow-lg mt-10 rounded-t-3xl"
-      style={{
-        border: "2px cyan solid",
-      }}
-    >
+    <section id="projects" className="shadow-lg mt-10 rounded-t-3xl">
       {/* <Box h={`${100 + heigthRes * 10}%`}> */}
       <Flex justify={"center"} align={"flex-end"}>
         <Heading>
@@ -116,7 +110,11 @@ const Projects = () => {
             02. What I've built ...
           </Highlight>
         </Heading>
-        <Box w="10rem" border={"1px solid white"} h={0} />
+        <Box
+          w="10rem"
+          // border={"1px solid white"}
+          h={0}
+        />
       </Flex>
       <Box w="70%" as={Wrap}>
         {tagNames.map((tag, index: number) =>
@@ -128,7 +126,7 @@ const Projects = () => {
               size="lg"
               colorScheme="teal"
               variant="outline"
-              border={"0.8px solid"}
+              // border={"0.8px solid"}
               m={1}
               onClick={handleOnClickOutlined}
               cursor="pointer"
@@ -201,9 +199,10 @@ const Projects = () => {
           </Box>
         </InputGroup>
       </Box>
+      {/* ///========================================Carousel================== */}
       <Box
         as={Flex}
-        border={"1px solid yellow"}
+        // border={"1px solid yellow"}
         overflowX="scroll"
         w="70%"
         // h={250}
@@ -211,21 +210,27 @@ const Projects = () => {
         // h="fill"
         // pb={100}
         // zIndex={1000}
+        // bg="blue.300"
+        // p={10}
+        // className="bg-blue-300"
       >
         {results &&
           results.map((project, index) => (
             <Box
               key={index}
-              border={"2px solid olive"}
+              borderRadius="10px"
+              // border={"2px solid olive"}
               // display=
               minW={"90%"}
+              w="fit-content"
               display="flex"
               alignItems={"center"}
               // w="fit-content"
               // h={250}
               // h="fit-content"
               // p={2}
-              m={2}
+              m={4}
+              // my={4}
               boxShadow={"lg"}
               // className="w-96 h-auto"
             >

@@ -14,11 +14,17 @@ export default function Feature({
   ...rest
 }: FeatureProps) {
   return (
-    <Box pt={5} pr={5} pl={3} shadow="md" borderWidth="1px" {...rest}>
-      <Heading fontSize="xl" noOfLines={1} letterSpacing={2}>
+    <Box pt={5} pr={5} pl={3} {...rest}>
+      <Heading fontSize="xl" noOfLines={1} letterSpacing={1.4}>
         {title}
       </Heading>
-      <Text mt={3} textAlign={"justify"} noOfLines={6}>
+      <Text
+        mt={3}
+        textAlign={"justify"}
+        noOfLines={6}
+        w="100%"
+        // lineHeight="short"
+      >
         {desc}
       </Text>
       {children}

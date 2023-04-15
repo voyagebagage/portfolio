@@ -216,7 +216,7 @@ export default function Ticker() {
 
   return (
     <>
-      <Box position={"relative"} className="bg-blue-300">
+      <Box position={"relative"} bg="default">
         {/* <section className="mySection"></section> */}
         <Box
           position="relative"
@@ -250,7 +250,7 @@ export default function Ticker() {
           right={0}
           height="100%"
           width="100%"
-          boxShadow="inset 100px 0px 8px -10px rgba(8, 8, 8, 0.981), inset -100px 0px 8px -10px rgba(9, 9, 9, 0.981)"
+          boxShadow="inset 100px 0px 8px -10px rgba(48,55,61,0.981), inset -100px 0px 8px -10px rgba(48,55,61, 0.981)"
           pointerEvents="none"
           zIndex={2}
         />

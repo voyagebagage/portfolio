@@ -1,15 +1,5 @@
 // components/SocialLinks.tsx
-import {
-  Box,
-  Link,
-  VStack,
-  Icon,
-  Text,
-  Spacer,
-  Stack,
-  Button,
-  IconButton,
-} from "@chakra-ui/react";
+import { Box, VStack, Icon, Text } from "@chakra-ui/react";
 import {
   FaGithub,
   FaLinkedin,
@@ -19,7 +9,7 @@ import {
   FaTelegram,
   FaTelegramPlane,
 } from "react-icons/fa";
-import { AnimateSharedLayout, motion } from "framer-motion";
+// import { AnimateSharedLayout, motion } from "framer-motion";
 import { useState } from "react";
 import MIconButton from "../MIconButton";
 
@@ -31,7 +21,7 @@ const variants = {
 const EmailDisplay = () => {
   const [isSelected, setIsSelected] = useState(false);
   const toggleOpen = () => setIsSelected(!isSelected);
-  console.log(isSelected);
+  // console.log(isSelected);
   return (
     <VStack
       spacing={4}

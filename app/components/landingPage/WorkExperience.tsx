@@ -26,14 +26,6 @@ import {
   AbsoluteCenter,
 } from "@chakra-ui/react";
 import { TriangleDownIcon } from "@chakra-ui/icons";
-// import ninjaGroup from "../../assest/img/ninjaGroup.png";
-import ninjaGroup from "/Users/sedatif2/Desktop/portfolio-chakra-framer-next-13/app/assest/img/ninjaGroup.png";
-import { ChakraNextImage } from "../ChakraNextImage";
-// import "../../assest/img/ninjaGroup.png";
-// import ninjaGroup from "/public/ninjaGroup.png";
-// import getConfig from "next/config";
-// const { publicRuntimeConfig } = getConfig();
-// const ninjaGroup = `${publicRuntimeConfig.staticFolder}/ninjaGroup.jpg`;
 
 const WorkExperience = () => {
   const [imageSize, setSmageSize] = useState({
@@ -42,13 +34,13 @@ const WorkExperience = () => {
   });
   useEffect(() => {
     window.addEventListener("resize", () => {
-      console.log(window.innerHeight, window.innerWidth);
+      // console.log(window.innerHeight, window.innerWidth);
     });
   }, []);
   return (
     <section
       id="work"
-      className="bg-gray-400 shadow-md "
+      className="shadow-md "
       // style={{ border: "2px yellow solid" }}
     >
       <Flex justify={"center"} align={"flex-end"}>
@@ -135,7 +127,7 @@ const WorkExperience = () => {
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
                   33vw"
-                  loading="lazy"
+                  priority={true}
                   style={{
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
                     objectFit: "cover",
@@ -164,7 +156,7 @@ const WorkExperience = () => {
                     alt={"fdsfs"}
                     width={100}
                     height={100}
-                    loading="lazy"
+                    priority={true}
                     style={{
                       objectFit: "contain",
                       display: "flex",
@@ -185,6 +177,7 @@ const WorkExperience = () => {
                     ml={-3}
                     lineHeight={1.4}
                     letterSpacing="wider"
+                    textShadow="-0.7px 0 black, 0 0.7px black, 0.7px 0 black, 0 -0.7px black"
                     // opacity={0.8}
                     // textAlign={"end"}
                   >
@@ -255,7 +248,7 @@ const WorkExperience = () => {
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
                   33vw"
-                  loading="lazy"
+                  priority={true}
                   style={{
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
                     objectFit: "cover",
@@ -284,7 +277,7 @@ const WorkExperience = () => {
                     alt={"fdsfs"}
                     width={100}
                     height={100}
-                    loading="lazy"
+                    priority={true}
                     style={{
                       objectFit: "contain",
                       display: "flex",
@@ -375,7 +368,7 @@ const WorkExperience = () => {
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
                   33vw"
-                  loading="lazy"
+                  priority={true}
                   style={{
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
                     objectFit: "cover",
@@ -404,7 +397,8 @@ const WorkExperience = () => {
                     alt={"fdsfs"}
                     width={100}
                     height={100}
-                    loading="lazy"
+                    // priority={false}
+                    priority={true}
                     style={{
                       objectFit: "contain",
                       display: "flex",

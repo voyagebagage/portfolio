@@ -58,7 +58,7 @@ const TickerStackCard = ({
       >
         <PopoverTrigger>
           <Card
-            _hover={{ bg: "blue.400", color: "white" }}
+            _hover={{ bg: "teal.300", color: "white" }}
             borderWidth="1px"
             borderRadius="lg"
             borderColor="gray.200"

@@ -10,7 +10,7 @@ interface ChakraNextImageProps extends ImageProps {
   fill: true | false;
 }
 
-export const ChakraNextImage = ({
+const ChakraNextImage = ({
   src,
   alt,
   height,
@@ -30,7 +30,7 @@ export const ChakraNextImage = ({
     </Box>
   );
 };
-
+export default ChakraNextImage;
 // import * as React from "react";
 // import { chakra, Box, Image, useBreakpointValue } from "@chakra-ui/react";
 // import NextImage from "next/image";

@@ -32,7 +32,7 @@ export const projects = [
     ],
   },
   {
-    name: "Gamification Dashboard",
+    name: "Dashboard Gamification",
     links: ["https://github.com/voyagebagage/dashboard-gamification-demo"],
     img: "",
     content:

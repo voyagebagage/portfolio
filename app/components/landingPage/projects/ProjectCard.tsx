@@ -20,28 +20,32 @@ import * as VscIcons from "react-icons/vsc";
 const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
   const [textFullWitdh, setTextFullWitdh] = useBoolean(false);
   const [imgFullWitdh, setImgFullWitdh] = useBoolean(false);
-  const ref = useRef(null);
+  const ref = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState(0);
 
   useLayoutEffect(() => {
-    setWidth(ref.current?.offsetWidth);
+    setWidth(ref.current?.offsetWidth ?? 0);
+    setHeight(ref.current?.offsetHeight ?? 0);
   }, []);
   console.log("width", width);
   console.log("ref.current?.offsetWidth");
 
   return (
     <>
-      <HStack ref={ref}>
-        {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~left col */}
+      <HStack ref={ref} bg="blue.500" w="100%" borderRadius={"10px"}>
+        {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~left col */}
         {!imgFullWitdh && (
           <VStack
             w="100%"
             minW={textFullWitdh ? "100%" : "52%"}
             alignItems="flex-start"
             justifyContent="space-between"
-            border={"pink solid 1px"}
-            h={250}
+            p={2}
+            mb={1}
+            h={275}
             display="flex"
+            // border={"pink solid 1px"}
           >
             <Feature
               // pt={0}
@@ -57,12 +61,13 @@ const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
               spacing={1}
               w="100%"
               justifyContent="space-between"
-              alignItems={"flex-end"}
-              border={"1px solid green"}
+              alignItems={"center"}
+              // border={"1px solid brown"}
+              // mr={-2}
               // h="40px"
-              style={{ marginBottom: "-1px" }}
+              // style={{ marginLeft: "-2px", marginBottom: "-1px" }}
             >
-              <Box as={HStack} spacing={2} w="100%">
+              <Box as={HStack} spacing={2} w="100%" ml={1}>
                 {tags &&
                   tags.map((tag, i) => (
                     <Box key={i}>
@@ -73,7 +78,7 @@ const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
                         // h={"full"}
                         // w="full"
                         // bg="gray.400"
-                        borderRadius={"3px"}
+                        // borderRadius={"3px"}
                       >
                         <span style={{ display: "flex" }}>
                           <Icon as={tag.icon} boxSize="1.35rem" />
@@ -100,27 +105,36 @@ const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
           </VStack>
         )}
 
-        {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~right col */}
+        {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~right col */}
         {!textFullWitdh ? (
-          <VStack w={"100%"} minW={"48%"} maxW="100%">
+          <VStack
+            w={"100%"}
+            minW={"48%"}
+            bg="brown"
+            borderRadius={"0 10px 10px 0"}
+          >
             <Box
               w={"100%"}
               minW={imgFullWitdh ? width : "100%"}
-              // minHeight={"100%"}
-              // h={`${calc(100 / 3.8)}%`}
-              h={250}
-              p={0}
-              m={0}
-              border="1px solid red"
-              // className="h-40"
+              h={height}
               position="relative"
               onClick={setImgFullWitdh.toggle}
+              bg="gray.400"
+              p={0}
+              m={0}
+              borderRadius={"0 10px 10px 0"}
+              className="aspect-auto"
+              // minW={width}
+              // minHeight={"100%"}
+              // h={`${calc(100 / 4.8)}%`}
+              // border="1px solid red"
               // display="flex"
             >
               <Image
                 src={"/ninjaGroupMod.png"}
                 alt={"fdjsfs"}
                 fill
+                style={{ borderRadius: "0 10px 10px 0" }}
                 // sizes="(max-width: 768px) 100vw,
                 // (max-width: 1200px) 50vw,
                 // 33vw"

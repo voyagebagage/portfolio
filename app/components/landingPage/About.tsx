@@ -6,7 +6,7 @@ const About = () => {
   return (
     <div id="about" className="-mt-7 z-100">
       <Center>
-        <IconButton aria-label="intro" w="60%" h="100%" p={4} bg="orange.300">
+        <IconButton aria-label="intro" w="60%" h="100%" p={4} bg="transparent">
           <Text letterSpacing={2} textAlign={"center"}>
             Hi, I&apos;m Oli, web and mobile developer based in Thailand
           </Text>

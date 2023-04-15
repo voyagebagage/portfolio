@@ -18,7 +18,7 @@ export default function Home() {
   // Access the exampleProp from the context
   const contextProps = themeProviderContext;
   const showSpinningBox = themeProviderContext?.showSpinningBox;
-  console.log("HERE HERE HERE", contextProps, showSpinningBox);
+  // console.log("HERE HERE HERE", contextProps, showSpinningBox);
 
   return (
     <>

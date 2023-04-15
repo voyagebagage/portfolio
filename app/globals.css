@@ -89,7 +89,7 @@ body {
   /* height: 100vh; */
 }
 
-body {
+/* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -97,7 +97,7 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
+} */
 
 a {
   color: inherit;
@@ -127,8 +127,8 @@ html {
   /* scroll-snap-type: y mandatory; */
 }
 ::-webkit-scrollbar {
-  height: 5px;
-  width: 5px;
+  height: 0px;
+  width: 0px;
   background: "transparent";
 }
 
@@ -169,12 +169,14 @@ html {
 }
 #projects {
   height: 100vh;
+  background-color: #373d30;
 }
 #work {
   height: 100vh;
 }
 #contact {
   height: 100vh;
+  background-color: #3d3037;
 }
 .parallax {
   /* THAT MIGHT NEED TO BE BACK ONLY THE MARGIN WAS OFF CHANGED THAT ONE BECAUSE I'm USING BOXes FROM CHAKRA UI*/
