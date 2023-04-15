@@ -144,7 +144,7 @@ const AnimatedModal = ({ setShowSpinningBox }: any) => {
                         onClick={() => handleClick("step2A", "HR")}
                         mr={3}
                       >
-                        I'm HR
+                        I&apos;m HR
                       </Button>
                       <Button
                         onClick={() => handleClick("step2B", "want a website")}

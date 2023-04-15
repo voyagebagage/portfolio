@@ -107,7 +107,7 @@ const Projects = () => {
             query={["02.", "built ..."]}
             styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
           >
-            02. What I've built ...
+            02. What I&apos;ve built ...
           </Highlight>
         </Heading>
         <Box
