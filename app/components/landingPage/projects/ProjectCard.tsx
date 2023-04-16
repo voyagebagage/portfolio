@@ -13,6 +13,8 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useLayoutEffect, useRef, useState } from "react";
+import useElementSize from "../../../customHooks/useElementSize";
+
 import Feature from "../../Feature";
 import { ProjectProps } from "./data";
 import * as VscIcons from "react-icons/vsc";
@@ -20,16 +22,18 @@ import * as VscIcons from "react-icons/vsc";
 const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
   const [textFullWitdh, setTextFullWitdh] = useBoolean(false);
   const [imgFullWitdh, setImgFullWitdh] = useBoolean(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [width, height, ref] = useElementSize();
 
-  useLayoutEffect(() => {
-    setWidth(ref.current?.offsetWidth ?? 0);
-    setHeight(ref.current?.offsetHeight ?? 0);
-  }, []);
-  console.log("width", width);
-  console.log("ref.current?.offsetWidth");
+  // const ref = useRef<HTMLDivElement>(null);
+  // const [width, setWidth] = useState(0);
+  // const [height, setHeight] = useState(0);
+
+  // useLayoutEffect(() => {
+  //   setWidth(ref.current?.offsetWidth ?? 0);
+  //   setHeight(ref.current?.offsetHeight ?? 0);
+  // }, []);
+  // console.log("width", width);
+  // console.log("ref.current?.offsetWidth");
 
   return (
     <>

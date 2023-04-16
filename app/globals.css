@@ -167,9 +167,12 @@ html {
   position: sticky;
   top: 0;
 }
+
 #projects {
   height: 100vh;
-  background-color: #373d30;
+  /* background-color: #373d30; */
+  /* background-color: #29c7ac; */
+  background-color: #303d3d;
 }
 #work {
   height: 100vh;

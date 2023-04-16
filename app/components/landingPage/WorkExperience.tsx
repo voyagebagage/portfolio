@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+import useElementSize from "../../customHooks/useElementSize";
 import Image from "next/image";
 import * as BiIcons from "react-icons/bi";
-
+// import '../../customHooks/useElementSize'
 import {
   Box,
   calc,
@@ -28,15 +29,8 @@ import {
 import { TriangleDownIcon } from "@chakra-ui/icons";
 
 const WorkExperience = () => {
-  const [imageSize, setSmageSize] = useState({
-    width: 1,
-    height: 1,
-  });
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      // console.log(window.innerHeight, window.innerWidth);
-    });
-  }, []);
+  const [width, height, ref] = useElementSize();
+
   return (
     <section
       id="work"
@@ -115,10 +109,12 @@ const WorkExperience = () => {
                 w="full"
                 px={0}
                 pb={0}
-                pt="1"
+                // pt="1"
                 h={`${calc(100 / 3.8)}%`}
+                // border={"0.1px solid"}
                 // className="h-1/4"
                 position="relative"
+                // ref={heightRef}
               >
                 <Image
                   src={"/ninjaGroupMod.png"}
@@ -132,50 +128,53 @@ const WorkExperience = () => {
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
                     objectFit: "cover",
                     borderRadius: "0 10px 0 0",
+                    // marginTop: 10,
                     // objectPosition: "left",
                   }}
                 />
                 <Box
-                  // border={"1px solid white"}
+                  // border={"1px solid cyan"}
                   px={0}
                   pb={0}
-                  // pt={}
+                  // pt={1}
                   w={"full"}
-                  h="95%"
+                  h="100%"
                   position="relative"
                   // objectPosition="center"
-                  // h={`${calc(100 / 1.8)}%`}
+                  // h={`${calc(100 / 3.8)}%`}
                   // className="h-1/3"
                   display={"flex"}
-                  flex={1}
+                  // flex={1}
                   justifyContent="space-start"
                   alignItems="center"
+                  gap={5}
+                  ref={ref}
                 >
                   <Image
                     src={"/NinjaLogoSquare.png"}
                     alt={"fd1sfs"}
                     width={100}
-                    height={100}
-                    priority={true}
+                    height={height}
+                    // priority={true}
                     style={{
                       objectFit: "contain",
                       display: "flex",
                       borderRadius: "50%",
-                      border: "0.3px solid white",
-                      // left: -10,
-                      scale: "0.6",
-                      marginLeft: "-1rem",
-                      // padding: "-1rem",
+                      border: "0.1px solid",
+                      marginLeft: "0.7rem",
+                      // padding: "1rem",
+                      marginTop: 5,
+                      marginBottom: 5,
                     }}
-                    className="w-1/4 h-auto"
                   />
                   <Heading
                     // border={"1px solid yellow"}
                     as="h3"
                     size={"lg"}
                     display="flex"
-                    ml={-3}
-                    lineHeight={1.4}
+                    pt={3}
+                    // ml={-3}
+                    lineHeight={1.8}
                     letterSpacing="wider"
                     textShadow="-0.7px 0 black, 0 0.7px black, 0.7px 0 black, 0 -0.7px black"
                     // opacity={0.8}
