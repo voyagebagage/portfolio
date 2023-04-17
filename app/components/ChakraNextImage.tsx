@@ -10,6 +10,8 @@ export const ChakraNextImage = chakra(
   ({
     src,
     alt,
+    // height,
+    // width,
     imageObjectFit,
     imageBorderRadius,
     ...rest
@@ -19,6 +21,8 @@ export const ChakraNextImage = chakra(
         <Image
           src={src}
           alt={alt}
+          // height={height}
+          // width={width}
           fill
           // {...rest}
           style={{ objectFit: imageObjectFit, borderRadius: imageBorderRadius }}

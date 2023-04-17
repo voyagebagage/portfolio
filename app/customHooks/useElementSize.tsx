@@ -1,6 +1,8 @@
 import { useRef, useState, useLayoutEffect } from "react";
 
-const useElementSize = (): [
+const useElementSize = (
+  heightOffset?: number
+): [
   number,
   number,
   React.RefObject<HTMLDivElement>,
@@ -23,7 +25,10 @@ const useElementSize = (): [
       }
       if (ref.current) {
         setWidth(ref.current.offsetWidth || 0);
-        setHeight(ref.current.offsetHeight || 0);
+        const offset = heightOffset || 0;
+        const offsetHeight = ref.current.offsetHeight || 0;
+        const adjustedHeight = offsetHeight + offsetHeight * offset;
+        setHeight(adjustedHeight);
       }
     };
 

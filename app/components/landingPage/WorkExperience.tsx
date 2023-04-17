@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import useElementSize from "../../customHooks/useElementSize";
 import Image from "next/image";
 import * as BiIcons from "react-icons/bi";
@@ -25,22 +25,39 @@ import {
   HStack,
   Stack,
   AbsoluteCenter,
+  Square,
 } from "@chakra-ui/react";
 import { TriangleDownIcon } from "@chakra-ui/icons";
-import { ChakraNextImage } from "../ChakraNextImage";
+import { BoxForNextImage, ChakraNextImage } from "../ChakraNextImage";
 
 const WorkExperience = () => {
-  const [width, height, ref] = useElementSize();
+  const [width, height, ref] = useElementSize(-0.2);
   const [adjustedHeight, setAdjustedHeight] = useState<number>(0);
-  console.log("height", height);
-  useEffect(() => {
+  //make a function to transform height in rem
+  function remCalc(height: number) {
+    const rem = 16;
+    const coeff = 0.8;
+    const remHeight = Math.floor((height * coeff) / rem);
+    return remHeight;
+  }
+
+  const myHeight = remCalc(height);
+
+  console.log(
+    "height",
+    height,
+    "myHeight",
+    myHeight,
+    "adjustedHeight",
+    adjustedHeight
+  );
+  useLayoutEffect(() => {
     // console.log("height", height);
     const adjustHeight = () => {
-      const coeff = 0.75;
-      setAdjustedHeight(height * coeff);
+      setAdjustedHeight(myHeight);
     };
     adjustHeight();
-  }, [height]);
+  }, []);
 
   return (
     <section
@@ -145,8 +162,7 @@ const WorkExperience = () => {
                   }}
                 />
                 <Box
-                  border={"1px solid cyan"}
-                  // px={0}
+                  // border={"1px solid cyan"}
                   pb={0}
                   w={"full"}
                   h="100%"
@@ -154,61 +170,38 @@ const WorkExperience = () => {
                   display={"flex"}
                   justifyContent="space-start"
                   alignItems="center"
-                  gap={5}
+                  gap={3}
                   ref={ref}
                 >
-                  {/* <Image
-                    src={"/ninjaLogoSquare.png"}
-                    alt={"fd1sfs"}
-                    width={100}
-                    height={height}
-                    // priority={true}
-                    style={{
-                      objectFit: "contain",
-                      display: "flex",
-                      borderRadius: "50%",
-                      border: "0.1px solid",
-                      marginLeft: "0.7rem",
-                      // padding: "1rem",
-                      marginTop: 5,
-                      marginBottom: 5,
-                    }}
-                  /> */}
-                  <ChakraNextImage
-                    // border={"1px solid cyan"}
-                    src={"/ninjaLogoSquare.png"}
-                    alt={"workedExperience_ninjaPartnerLogo"}
-                    sizes="(max-width: 768px) 100vw,
-                    (max-width: 1200px) 50vw,
-                    33vw"
-                    w={100}
-                    h={adjustedHeight}
-                    border="0.1px solid"
-                    borderRadius={"50%"}
-                    objectFit={"contain"}
-                    // loading="lazy"
-                    // imageBorderRadius="90%"
-                    // imageObjectFit={"contain"}
+                  <Square
+                    position="relative"
+                    size={"11vh"}
+                    // h={"85%"}
+                    my={4}
                     ml={"0.7rem"}
-                    mt={5}
-                    mb={5}
-                    priority={true}
-                    // style={{
-                    //   // objectFit: "contain",
-                    //   // display: "flex",
-                    //   border: "0.1px solid",
-                    //   marginLeft: "0.7rem",
-                    //   // borderRadius: "50%",
-                    //   // marginTop: 5,
-                    //   // marginBottom: 5,
-                    // }}
-                  />
+                  >
+                    <ChakraNextImage
+                      src={"/ninjaLogoSquare.png"}
+                      alt={"workedExperience_ninjaPartnerLogo"}
+                      sizes="(max-width: 768px) 100vw,
+                      (max-width: 1200px) 50vw,
+                      33vw"
+                      w={"100%"}
+                      h={"100%"}
+                      border="0.1px solid"
+                      borderRadius={"50%"}
+                      objectFit={"contain"}
+                      // imageBorderRadius="50%"
+                      // imageObjectFit={"contain"}
+                      priority={true}
+                    />
+                  </Square>
                   <Heading
                     // border={"1px solid yellow"}
                     as="h3"
                     size={"lg"}
                     display="flex"
-                    pt={3}
+                    pt={2}
                     // ml={-3}
                     lineHeight={1.8}
                     letterSpacing="wider"
@@ -271,10 +264,12 @@ const WorkExperience = () => {
                 w="full"
                 px={0}
                 pb={0}
-                pt="1"
-                h={`${calc(100 / 3.8)}%`}
+                // pt="1"
+                h={`${100 / 3.8}%`}
+                // border={"0.1px solid"}
                 // className="h-1/4"
                 position="relative"
+                // ref={heightRef}
               >
                 <Image
                   src={"/ninjaGroupMod.png"}
@@ -284,55 +279,60 @@ const WorkExperience = () => {
                   (max-width: 1200px) 50vw,
                   33vw"
                   priority={true}
+                  // ref={ref}
                   style={{
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
                     objectFit: "cover",
                     borderRadius: "0 10px 0 0",
+                    // marginTop: 10,
                     // objectPosition: "left",
                   }}
                 />
                 <Box
-                  // border={"1px solid white"}
-                  px={0}
+                  // border={"1px solid cyan"}
                   pb={0}
-                  // pt={}
                   w={"full"}
-                  h="95%"
+                  h="100%"
                   position="relative"
-                  // objectPosition="center"
-                  // h={`${calc(100 / 1.8)}%`}
-                  // className="h-1/3"
                   display={"flex"}
-                  flex={1}
                   justifyContent="space-start"
                   alignItems="center"
+                  gap={3}
+                  ref={ref}
                 >
-                  <Image
-                    src={"/ninjaLogoSquare.png"}
-                    alt={"workedExperience_FreeLanceLogo"}
-                    width={100}
-                    height={100}
-                    priority={true}
-                    style={{
-                      objectFit: "contain",
-                      display: "flex",
-                      borderRadius: "50%",
-                      border: "0.3px solid white",
-                      // left: -10,
-                      scale: "0.76",
-                      // marginLeft: "0.7rem",
-                      // padding: "-1rem",
-                    }}
-                    className="w-1/4 h-auto"
-                  />
+                  <Square
+                    position="relative"
+                    size={"11vh"}
+                    // h={"85%"}
+                    my={4}
+                    ml={"0.7rem"}
+                  >
+                    <ChakraNextImage
+                      src={"/ninjaLogoSquare.png"}
+                      alt={"workedExperience_FreeLanceLogo"}
+                      sizes="(max-width: 768px) 100vw,
+                      (max-width: 1200px) 50vw,
+                      33vw"
+                      w={"100%"}
+                      h={"100%"}
+                      border="0.1px solid"
+                      borderRadius={"50%"}
+                      objectFit={"contain"}
+                      // imageBorderRadius="50%"
+                      // imageObjectFit={"contain"}
+                      priority={true}
+                    />
+                  </Square>
                   <Heading
                     // border={"1px solid yellow"}
                     as="h3"
                     size={"lg"}
                     display="flex"
-                    ml={-3}
-                    lineHeight={1.4}
+                    pt={2}
+                    // ml={-3}
+                    lineHeight={1.8}
                     letterSpacing="wider"
+                    textShadow="-0.7px 0 black, 0 0.7px black, 0.7px 0 black, 0 -0.7px black"
                     // opacity={0.8}
                     // textAlign={"end"}
                   >
@@ -391,69 +391,75 @@ const WorkExperience = () => {
                 w="full"
                 px={0}
                 pb={0}
-                pt="1"
-                h={`${calc(100 / 3.8)}%`}
+                // pt="1"
+                h={`${100 / 3.8}%`}
+                // border={"0.1px solid"}
                 // className="h-1/4"
                 position="relative"
+                // ref={heightRef}
               >
                 <Image
                   src={"/ninjaGroupMod.png"}
-                  alt={"workedExperience_OwnProjectGroup"}
+                  alt={"workedExperience_FreeLanceGroup"}
                   fill
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
                   33vw"
                   priority={true}
+                  // ref={ref}
                   style={{
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
                     objectFit: "cover",
                     borderRadius: "0 10px 0 0",
+                    // marginTop: 10,
                     // objectPosition: "left",
                   }}
                 />
                 <Box
-                  // border={"1px solid white"}
-                  px={0}
+                  // border={"1px solid cyan"}
                   pb={0}
-                  // pt={}
                   w={"full"}
-                  h="95%"
+                  h="100%"
                   position="relative"
-                  // objectPosition="center"
-                  // h={`${calc(100 / 1.8)}%`}
-                  // className="h-1/3"
                   display={"flex"}
-                  flex={1}
                   justifyContent="space-start"
                   alignItems="center"
+                  gap={3}
+                  ref={ref}
                 >
-                  <Image
-                    src={"/ninjaLogoSquare.png"}
-                    alt={"workedExperience_OwnProjectLogo"}
-                    width={100}
-                    height={100}
-                    // priority={false}
-                    priority={true}
-                    style={{
-                      objectFit: "contain",
-                      display: "flex",
-                      borderRadius: "50%",
-                      border: "0.3px solid white",
-                      // left: -10,
-                      scale: "0.6",
-                      marginLeft: "-1rem",
-                      // padding: "-1rem",
-                    }}
-                    className="w-1/4 h-auto"
-                  />
+                  <Square
+                    position="relative"
+                    size={"11vh"}
+                    // h={"85%"}
+                    my={4}
+                    ml={"0.7rem"}
+                  >
+                    <ChakraNextImage
+                      src={"/ninjaLogoSquare.png"}
+                      alt={"workedExperience_FreeLanceLogo"}
+                      sizes="(max-width: 768px) 100vw,
+                      (max-width: 1200px) 50vw,
+                      33vw"
+                      w={"100%"}
+                      h={"100%"}
+                      border="0.1px solid"
+                      borderRadius={"50%"}
+                      objectFit={"contain"}
+                      // imageBorderRadius="50%"
+                      // imageObjectFit={"contain"}
+                      priority={true}
+                    />
+                  </Square>
                   <Heading
                     // border={"1px solid yellow"}
                     as="h3"
                     size={"lg"}
                     display="flex"
-                    ml={-3}
-                    lineHeight={1.4}
+                    pt={2}
+                    // ml={-3}
+                    lineHeight={1.8}
                     letterSpacing="wider"
+                    textShadow="-0.7px 0 black, 0 0.7px black, 0.7px 0 black, 0 -0.7px black"
                     // opacity={0.8}
                     // textAlign={"end"}
                   >
