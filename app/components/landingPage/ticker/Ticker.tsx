@@ -31,7 +31,7 @@ import { wrap } from "@motionone/utils";
 import TickerStackCard from "././TickerStackCard";
 import { stacks } from "./data";
 import About from "../About";
-
+import ProfileHeader from "../profileHeader/ProfileHeader";
 // interface ParallaxProps {
 //   children: string;
 //   baseVelocity: number;
@@ -216,6 +216,7 @@ export default function Ticker() {
 
   return (
     <>
+      <ProfileHeader />
       <Box position={"relative"} bg="default">
         {/* <section className="mySection"></section> */}
         <Box

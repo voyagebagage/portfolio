@@ -8,7 +8,6 @@ import {
   createLocalStorageManager,
 } from "@chakra-ui/react";
 import customTheme from "./styles/theme";
-import PortfolioTheme from "./theme/PortfolioTheme";
 import Header from "./components/layout/Header";
 import Footer from "./components/landingPage/Footer";
 import { useState } from "react";

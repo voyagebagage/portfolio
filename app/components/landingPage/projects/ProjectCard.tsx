@@ -24,17 +24,6 @@ const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
   const [imgFullWitdh, setImgFullWitdh] = useBoolean(false);
   const [width, height, ref] = useElementSize();
 
-  // const ref = useRef<HTMLDivElement>(null);
-  // const [width, setWidth] = useState(0);
-  // const [height, setHeight] = useState(0);
-
-  // useLayoutEffect(() => {
-  //   setWidth(ref.current?.offsetWidth ?? 0);
-  //   setHeight(ref.current?.offsetHeight ?? 0);
-  // }, []);
-  // console.log("width", width);
-  // console.log("ref.current?.offsetWidth");
-
   return (
     <>
       <HStack ref={ref} bg="blue.500" w="100%" borderRadius={"10px"}>
