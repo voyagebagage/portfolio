@@ -31,7 +31,16 @@ import { ChakraNextImage } from "../ChakraNextImage";
 
 const WorkExperience = () => {
   const [width, height, ref] = useElementSize();
+  const [adjustedHeight, setAdjustedHeight] = useState<number>(0);
   console.log("height", height);
+  useEffect(() => {
+    // console.log("height", height);
+    const adjustHeight = () => {
+      const coeff = 0.75;
+      setAdjustedHeight(height * coeff);
+    };
+    adjustHeight();
+  }, [height]);
 
   return (
     <section
@@ -120,7 +129,7 @@ const WorkExperience = () => {
               >
                 <Image
                   src={"/ninjaGroupMod.png"}
-                  alt={"fdsfs"}
+                  alt={"workedExperience_ninjaPartnerGroup"}
                   fill
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
@@ -168,21 +177,22 @@ const WorkExperience = () => {
                   <ChakraNextImage
                     // border={"1px solid cyan"}
                     src={"/NinjaLogoSquare.png"}
-                    alt={"fd1sfs"}
-                    // sizes="(max-width: 768px) 100vw,
-                    // (max-width: 1200px) 50vw,
-                    // 33vw"
+                    alt={"workedExperience_ninjaPartnerLogo"}
+                    sizes="(max-width: 768px) 100vw,
+                    (max-width: 1200px) 50vw,
+                    33vw"
                     w={100}
-                    h={height * 0.75}
+                    h={adjustedHeight}
                     border="0.1px solid"
                     borderRadius={"50%"}
                     objectFit={"contain"}
+                    loading="lazy"
                     // imageBorderRadius="90%"
                     // imageObjectFit={"contain"}
                     ml={"0.7rem"}
                     mt={5}
                     mb={5}
-                    priority={true}
+                    // priority={true}
                     // style={{
                     //   // objectFit: "contain",
                     //   // display: "flex",
@@ -268,7 +278,7 @@ const WorkExperience = () => {
               >
                 <Image
                   src={"/ninjaGroupMod.png"}
-                  alt={"fdsfs"}
+                  alt={"workedExperience_FreeLanceGroup"}
                   fill
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
@@ -299,7 +309,7 @@ const WorkExperience = () => {
                 >
                   <Image
                     src={"/NinjaLogoSquare.png"}
-                    alt={"fdsfs"}
+                    alt={"workedExperience_FreeLanceLogo"}
                     width={100}
                     height={100}
                     priority={true}
@@ -388,7 +398,7 @@ const WorkExperience = () => {
               >
                 <Image
                   src={"/ninjaGroupMod.png"}
-                  alt={"fdsfs"}
+                  alt={"workedExperience_OwnProjectGroup"}
                   fill
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
@@ -419,7 +429,7 @@ const WorkExperience = () => {
                 >
                   <Image
                     src={"/NinjaLogoSquare.png"}
-                    alt={"fdsfs"}
+                    alt={"workedExperience_OwnProjectLogo"}
                     width={100}
                     height={100}
                     // priority={false}
