@@ -2,13 +2,6 @@ import * as React from "react";
 import { Box, BoxProps, chakra } from "@chakra-ui/react";
 import Image, { ImageProps as NextImageProps } from "next/image";
 
-export const BoxForNextImage = ({ ...rest }: BoxProps) => {
-  return (
-    <Box position="relative" overflow="hidden" {...rest}>
-      {rest.children}
-    </Box>
-  );
-};
 interface ChakraNextImageProps {
   imageBorderRadius?: string;
   imageObjectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
@@ -34,3 +27,11 @@ export const ChakraNextImage = chakra(
     );
   }
 );
+
+export const BoxForNextImage = ({ ...rest }: BoxProps) => {
+  return (
+    <Box position="relative" overflow="hidden" {...rest}>
+      {rest.children}
+    </Box>
+  );
+};

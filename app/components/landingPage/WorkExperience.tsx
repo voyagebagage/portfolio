@@ -158,7 +158,7 @@ const WorkExperience = () => {
                   ref={ref}
                 >
                   {/* <Image
-                    src={"/NinjaLogoSquare.png"}
+                    src={"/ninjaLogoSquare.png"}
                     alt={"fd1sfs"}
                     width={100}
                     height={height}
@@ -176,7 +176,7 @@ const WorkExperience = () => {
                   /> */}
                   <ChakraNextImage
                     // border={"1px solid cyan"}
-                    src={"/NinjaLogoSquare.png"}
+                    src={"/ninjaLogoSquare.png"}
                     alt={"workedExperience_ninjaPartnerLogo"}
                     sizes="(max-width: 768px) 100vw,
                     (max-width: 1200px) 50vw,
@@ -186,13 +186,13 @@ const WorkExperience = () => {
                     border="0.1px solid"
                     borderRadius={"50%"}
                     objectFit={"contain"}
-                    loading="lazy"
+                    // loading="lazy"
                     // imageBorderRadius="90%"
                     // imageObjectFit={"contain"}
                     ml={"0.7rem"}
                     mt={5}
                     mb={5}
-                    // priority={true}
+                    priority={true}
                     // style={{
                     //   // objectFit: "contain",
                     //   // display: "flex",
@@ -308,7 +308,7 @@ const WorkExperience = () => {
                   alignItems="center"
                 >
                   <Image
-                    src={"/NinjaLogoSquare.png"}
+                    src={"/ninjaLogoSquare.png"}
                     alt={"workedExperience_FreeLanceLogo"}
                     width={100}
                     height={100}
@@ -428,7 +428,7 @@ const WorkExperience = () => {
                   alignItems="center"
                 >
                   <Image
-                    src={"/NinjaLogoSquare.png"}
+                    src={"/ninjaLogoSquare.png"}
                     alt={"workedExperience_OwnProjectLogo"}
                     width={100}
                     height={100}
