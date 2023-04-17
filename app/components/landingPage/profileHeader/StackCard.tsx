@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 
 import { items } from "./data";
-import { BoxForNextImage } from "./NextImage";
+import { BoxForNextImage, ChakraNextImage } from "../../ChakraNextImage";
 import Image from "next/image";
 
 interface StackCardProps {
@@ -82,18 +82,15 @@ function StackCard({ index, setIndex }: StackCardProps) {
             borderRadius={100}
             transition={transition}
           >
-            <BoxForNextImage
+            <ChakraNextImage
+              src={`${items[index]?.IconName || items[0]?.IconName}`}
+              alt="ducon"
+              boxSize={298}
               borderRadius="full"
               flexShrink={0}
               boxShadow={"lg"}
-            >
-              <Image
-                src={`${items[index]?.IconName || items[0]?.IconName}`}
-                alt="ducon"
-                width={298}
-                height={298}
-              />
-            </BoxForNextImage>
+              // objectFit="contain"
+            />
           </StackMotionCard>
         </AnimatePresence>
       </Flex>

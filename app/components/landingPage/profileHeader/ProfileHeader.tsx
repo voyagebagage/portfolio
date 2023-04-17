@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 
 // import ProfilePic from "../../../assets/ProfilePic.jpg";
-import { BoxForNextImage } from "./NextImage";
+import { BoxForNextImage, ChakraNextImage } from "../../ChakraNextImage";
 import { items } from "./data";
 // import '../../../assets/ProfilePic.jpg'
 import { motion } from "framer-motion";
@@ -171,7 +171,10 @@ function ProfileHeader() {
           display="flex"
           w="40%"
         >
-          <BoxForNextImage
+          <ChakraNextImage
+            src={"/ProfilePic.jpg"}
+            alt={"ProfilePic"}
+            boxSize={isSmallerThan600 ? 320 : 340}
             mr={"8%"}
             borderRadius="full"
             flexShrink={0}
@@ -182,14 +185,7 @@ function ProfileHeader() {
             border={isSmallerThan600 && isDark ? "10px solid" : "4px solid"}
             borderColor={isSmallerThan600 ? "modeDarkBg" : "primary"}
             _hover={{ boxShadow: isSmallerThan600 ? "lg" : "dark-lg" }}
-          >
-            <Image
-              src={"/ProfilePic.jpg"}
-              alt={"ProfilePic"}
-              height={isSmallerThan600 ? 320 : 340}
-              width={isSmallerThan600 ? 320 : 340}
-            />
-          </BoxForNextImage>
+          />
           <TriangleLogo />
         </Box>
       </Flex>

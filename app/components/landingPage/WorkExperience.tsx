@@ -27,9 +27,11 @@ import {
   AbsoluteCenter,
 } from "@chakra-ui/react";
 import { TriangleDownIcon } from "@chakra-ui/icons";
+import { ChakraNextImage } from "../ChakraNextImage";
 
 const WorkExperience = () => {
   const [width, height, ref] = useElementSize();
+  console.log("height", height);
 
   return (
     <section
@@ -94,7 +96,7 @@ const WorkExperience = () => {
           <Tab border={0}>Boot Camp</Tab>
         </TabList>
         <TabPanels>
-          {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Ninja Partners */}
+          {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Ninja Partners */}
           <TabPanel
             w="full"
             h="100%"
@@ -110,7 +112,7 @@ const WorkExperience = () => {
                 px={0}
                 pb={0}
                 // pt="1"
-                h={`${calc(100 / 3.8)}%`}
+                h={`${100 / 3.8}%`}
                 // border={"0.1px solid"}
                 // className="h-1/4"
                 position="relative"
@@ -124,6 +126,7 @@ const WorkExperience = () => {
                   (max-width: 1200px) 50vw,
                   33vw"
                   priority={true}
+                  // ref={ref}
                   style={{
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
                     objectFit: "cover",
@@ -133,24 +136,19 @@ const WorkExperience = () => {
                   }}
                 />
                 <Box
-                  // border={"1px solid cyan"}
-                  px={0}
+                  border={"1px solid cyan"}
+                  // px={0}
                   pb={0}
-                  // pt={1}
                   w={"full"}
                   h="100%"
                   position="relative"
-                  // objectPosition="center"
-                  // h={`${calc(100 / 3.8)}%`}
-                  // className="h-1/3"
                   display={"flex"}
-                  // flex={1}
                   justifyContent="space-start"
                   alignItems="center"
                   gap={5}
                   ref={ref}
                 >
-                  <Image
+                  {/* <Image
                     src={"/NinjaLogoSquare.png"}
                     alt={"fd1sfs"}
                     width={100}
@@ -166,6 +164,34 @@ const WorkExperience = () => {
                       marginTop: 5,
                       marginBottom: 5,
                     }}
+                  /> */}
+                  <ChakraNextImage
+                    // border={"1px solid cyan"}
+                    src={"/NinjaLogoSquare.png"}
+                    alt={"fd1sfs"}
+                    // sizes="(max-width: 768px) 100vw,
+                    // (max-width: 1200px) 50vw,
+                    // 33vw"
+                    w={100}
+                    h={height * 0.75}
+                    border="0.1px solid"
+                    borderRadius={"50%"}
+                    objectFit={"contain"}
+                    // imageBorderRadius="90%"
+                    // imageObjectFit={"contain"}
+                    ml={"0.7rem"}
+                    mt={5}
+                    mb={5}
+                    priority={true}
+                    // style={{
+                    //   // objectFit: "contain",
+                    //   // display: "flex",
+                    //   border: "0.1px solid",
+                    //   marginLeft: "0.7rem",
+                    //   // borderRadius: "50%",
+                    //   // marginTop: 5,
+                    //   // marginBottom: 5,
+                    // }}
                   />
                   <Heading
                     // border={"1px solid yellow"}
@@ -283,8 +309,8 @@ const WorkExperience = () => {
                       borderRadius: "50%",
                       border: "0.3px solid white",
                       // left: -10,
-                      scale: "0.6",
-                      marginLeft: "-1rem",
+                      scale: "0.76",
+                      // marginLeft: "0.7rem",
                       // padding: "-1rem",
                     }}
                     className="w-1/4 h-auto"
