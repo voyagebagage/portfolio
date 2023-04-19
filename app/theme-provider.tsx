@@ -8,10 +8,10 @@ import {
   createLocalStorageManager,
 } from "@chakra-ui/react";
 import customTheme from "./styles/theme";
-import Header from "./components/layout/Header";
+import Header from "./components/layout/header/Header";
 import Footer from "./components/landingPage/Footer";
 import { useState } from "react";
-import ThemeProviderContext from "./context/ThemeProviderContext.tsx";
+import ThemeProviderContext from "./context/ThemeProviderContext";
 import SocialLinks from "./components/layout/SocialLinks";
 import EmailDisplay from "./components/layout/EmailDisplay";
 
@@ -24,12 +24,15 @@ export default function ThemeProvider({
 }) {
   //------------------------
   const [showSpinningBox, setShowSpinningBox] = useState<boolean>(true);
+  const [index, setIndex] = useState<number>(0);
   const { formState } = useForm();
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const contextValue = {
     exampleProp: "This is an example prop",
     showSpinningBox,
     setShowSpinningBox,
+    index,
+    setIndex,
   };
   return (
     <CacheProvider>
@@ -45,7 +48,7 @@ export default function ThemeProvider({
           {/* <div className="absolute">
             <AnimatedModal setShowSpinningBox={setShowSpinningBox} />
           </div> */}
-          <Header visitingName={formState.name || "No name"} />
+          <Header visitingName={formState.name || ""} index={index} />
           {children}
           <Footer />
         </ThemeProviderContext.Provider>

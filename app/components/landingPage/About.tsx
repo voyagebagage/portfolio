@@ -4,7 +4,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div id="about" className="-mt-7 z-100">
+    <section id="about" className="-mt-7 z-100">
       <Center>
         <IconButton aria-label="intro" w="60%" h="100%" p={4} bg="transparent">
           <Text letterSpacing={2} textAlign={"center"}>
@@ -23,7 +23,7 @@ const About = () => {
           More
         </IconButton>
       </Center>
-    </div>
+    </section>
   );
 };
 

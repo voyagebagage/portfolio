@@ -1,18 +1,6 @@
 // import "./styles.css";
 import React, { useRef, useState } from "react";
-import {
-  Box,
-  Center,
-  Heading,
-  Icon,
-  IconButton,
-  Popover,
-  PopoverBody,
-  PopoverContent,
-  PopoverTrigger,
-  Portal,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, Icon } from "@chakra-ui/react";
 
 import {
   motion,
@@ -32,6 +20,7 @@ import TickerStackCard from "././TickerStackCard";
 import { stacks } from "./data";
 import About from "../About";
 import ProfileHeader from "../profileHeader/ProfileHeader";
+import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
 // interface ParallaxProps {
 //   children: string;
 //   baseVelocity: number;
@@ -168,11 +157,11 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
   );
 }
 
-export default function Ticker() {
-  const tickerStackCards = stacks.map((stack, index) => {
+export default function Ticker({ index, setIndex }: ThemeProviderContextProps) {
+  const tickerStackCards = stacks.map((stack, indexStackCard) => {
     if (stack?.category !== "UI") {
       return (
-        <React.Fragment key={`${stack.tickerName}-${index}`}>
+        <React.Fragment key={`${stack.tickerName}-${indexStackCard}`}>
           <TickerStackCard
             title={stack.tickerName || ""}
             content={stack.content || ""}
@@ -192,10 +181,10 @@ export default function Ticker() {
       }
     }
   });
-  const tickerUICards = stacks.map((stack, index) => {
+  const tickerUICards = stacks.map((stack, indexUiCard) => {
     if (stack?.category === "UI") {
       return (
-        <React.Fragment key={`${stack.tickerName}-${index}`}>
+        <React.Fragment key={`${stack.tickerName}-${indexUiCard}`}>
           <TickerStackCard
             title={stack.tickerName || ""}
             content={stack.content || ""}
@@ -216,16 +205,15 @@ export default function Ticker() {
 
   return (
     <>
-      <ProfileHeader />
-      <Box position={"relative"} bg="default">
+      <Box position={"relative"} bg="default" h="100%">
         {/* <section className="mySection"></section> */}
         <Box
           position="relative"
           scrollSnapAlign={"start"}
-          height="100vh"
+          // height="100vh"
           w="100vw"
-          pt={"65vh"}
-          mb="30px"
+          pt={"10vh"}
+          // mb="30px"
           display="flex"
           flexDirection="column"
           alignItems="center"
@@ -234,15 +222,11 @@ export default function Ticker() {
           // textTransform="uppercase"
           className="mySection"
           // _hover={{ color: "white", stroke: "blue" }}
-          // border="2px solid yellow"
+          border="2px solid yellow"
         >
-          {/* <div style={{ border: "1px solid green" }}> */}
+          <ProfileHeader index={index} setIndex={setIndex} />
           <ParallaxCard baseVelocity={-0.6}>{tickerStackCards}</ParallaxCard>
-          {/* </div> */}
-          {/* <div></div> */}
-
           <ParallaxCard baseVelocity={0.5}>{tickerUICards}</ParallaxCard>
-          {/* <About /> */}
         </Box>
         <Box
           position="absolute"

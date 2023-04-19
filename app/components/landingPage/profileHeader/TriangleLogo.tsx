@@ -11,6 +11,7 @@ export const TriangleLogo = () => (
     size={260}
     bg="transparent"
     zIndex={-1}
+    // border="1px solid purple"
   >
     <Stack>
       <ArrowTriangle

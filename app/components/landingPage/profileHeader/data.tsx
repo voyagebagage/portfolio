@@ -16,9 +16,9 @@ export const items = [
     name: "GraphQl",
     color: "#B054AE",
   },
-  { IconName: "/mongodb.png", color: "#59AA51" },
-  { IconName: "/AWSLogo.png", color: "#F2982C" },
-  { IconName: "/nextRoundBlue.png", color: "#74D4CF" },
+  { IconName: "/mongodb.png", name: " ", color: "#59AA51" },
+  { IconName: "/AWSLogo.png", name: " ", color: "#F2982C" },
+  { IconName: "/nextRoundBlue.png", name: " ", color: "#74D4CF" },
   {
     IconName: "/reactMotion2.png",
     name: "Framer Motion",

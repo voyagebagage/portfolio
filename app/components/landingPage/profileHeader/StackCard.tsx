@@ -10,17 +10,18 @@ import {
 import { items } from "./data";
 import { BoxForNextImage, ChakraNextImage } from "../../ChakraNextImage";
 import Image from "next/image";
+import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
 
-interface StackCardProps {
-  index: number;
-  setIndex: React.Dispatch<React.SetStateAction<number>>;
-  // transition?: Transition;
-}
+// interface StackCardProps {
+//   index: number;
+//   setIndex: React.Dispatch<React.SetStateAction<number>>;
+//   // transition?: Transition;
+// }
 interface StackMotionCardProps
   extends PropsOf<typeof motion.div>,
     MotionProps {}
 
-function StackCard({ index, setIndex }: StackCardProps) {
+function StackCard({ index, setIndex }: ThemeProviderContextProps) {
   const StackMotionCard: ChakraComponent<"div", StackMotionCardProps> = chakra(
     motion.div
   );
@@ -66,34 +67,33 @@ function StackCard({ index, setIndex }: StackCardProps) {
   };
 
   return (
-    <Flex w="40%" direction={"column"} align="center" justify={"center"}>
-      <Flex
-        boxSize={"xs"}
-        borderRadius={40}
-        align="center"
-        justify={"center"}
-        width="full"
-      >
-        <AnimatePresence>
-          <StackMotionCard
-            boxSize={320}
-            layout
-            // layoutId={index}
-            borderRadius={100}
-            transition={transition}
-          >
-            <ChakraNextImage
-              src={`${items[index]?.IconName || items[0]?.IconName}`}
-              alt="ducon"
-              boxSize={298}
-              borderRadius="full"
-              flexShrink={0}
-              boxShadow={"lg"}
-              // objectFit="contain"
-            />
-          </StackMotionCard>
-        </AnimatePresence>
-      </Flex>
+    <Flex
+      w="40%"
+      direction={"column"}
+      align="center"
+      justify={"center"}
+      border="5px solid pink"
+      boxSize={"xs"}
+    >
+      <AnimatePresence>
+        <StackMotionCard
+          boxSize={320}
+          layout
+          // layoutId={index}
+          borderRadius={100}
+          transition={transition}
+        >
+          <ChakraNextImage
+            src={`${items[index]?.IconName || items[0]?.IconName}`}
+            alt="ducon"
+            boxSize={298}
+            borderRadius="full"
+            flexShrink={0}
+            boxShadow={"lg"}
+            // objectFit="contain"
+          />
+        </StackMotionCard>
+      </AnimatePresence>
     </Flex>
   );
 }

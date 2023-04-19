@@ -151,7 +151,7 @@ const WorkExperience = () => {
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
                   33vw"
-                  priority={true}
+                  // priority={true}
                   // ref={ref}
                   style={{
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
@@ -175,7 +175,7 @@ const WorkExperience = () => {
                 >
                   <Square
                     position="relative"
-                    size={"11vh"}
+                    size={"10vh"}
                     // h={"85%"}
                     my={4}
                     ml={"0.7rem"}
@@ -193,7 +193,7 @@ const WorkExperience = () => {
                       objectFit={"contain"}
                       // imageBorderRadius="50%"
                       // imageObjectFit={"contain"}
-                      priority={true}
+                      // priority={true}
                     />
                   </Square>
                   <Heading
@@ -278,7 +278,7 @@ const WorkExperience = () => {
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
                   33vw"
-                  priority={true}
+                  // priority={true}
                   // ref={ref}
                   style={{
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
@@ -320,7 +320,7 @@ const WorkExperience = () => {
                       objectFit={"contain"}
                       // imageBorderRadius="50%"
                       // imageObjectFit={"contain"}
-                      priority={true}
+                      // priority={true}
                     />
                   </Square>
                   <Heading

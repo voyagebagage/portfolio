@@ -1,14 +1,25 @@
 "use client";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import { Flex, useDisclosure, Box } from "@chakra-ui/react";
+import {
+  Flex,
+  useDisclosure,
+  Box,
+  Text,
+  HStack,
+  Center,
+} from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import React from "react";
+import { TriangleLogoSmall } from "./TriangleLogoSmall";
+import { items } from "../../landingPage/profileHeader/data";
+
 type props = {
   visitingName: String;
+  index: number;
 };
 
-const Header = ({ visitingName }: props) => {
+const Header = ({ visitingName, index }: props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [prevScrollPos, setPrevScrollPos] = useState(0);
 
@@ -56,7 +67,7 @@ const Header = ({ visitingName }: props) => {
       variants={variants}
       transition={transition}
       className="flex flex-row items-center justify-between px-10"
-      py={4}
+      py={1}
       boxShadow={isOpen ? "sm" : ""}
       position={isOpen ? "fixed" : "relative"}
       // px={8}
@@ -73,8 +84,23 @@ const Header = ({ visitingName }: props) => {
         
        
       > */}
-      <div>Logo</div>
-      <div>{visitingName && <div>welcome {visitingName}</div>}</div>
+      <Flex>
+        <TriangleLogoSmall />
+        {/* <Text className="text-xl" alignSelf="center">
+          idevandyou
+        </Text> */}
+      </Flex>
+      <Text
+        noOfLines={1}
+        fontSize="xl"
+        fontWeight="bold"
+        bgGradient={`linear(to-r, ${
+          items[index]?.color || items[0]?.color
+        },#4ff3cc)`}
+        bgClip="text"
+      >
+        Welcome {visitingName && visitingName}
+      </Text>
       <div className="flex justify-around gap-8">
         <AnchorLink href="/">Top</AnchorLink>
         <AnchorLink href="#about">00. About</AnchorLink>
