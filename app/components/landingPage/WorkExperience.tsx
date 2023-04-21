@@ -26,10 +26,40 @@ import {
   Stack,
   AbsoluteCenter,
   Square,
+  UnorderedList,
+  List,
+  ListItem,
+  ListIcon,
 } from "@chakra-ui/react";
-import { TriangleDownIcon } from "@chakra-ui/icons";
+import { ExternalLinkIcon, TriangleDownIcon } from "@chakra-ui/icons";
 import { BoxForNextImage, ChakraNextImage } from "../ChakraNextImage";
+import * as BsIcons from "react-icons/bs";
 
+type Props = {
+  myList: string[];
+  icon?: any;
+  noIcon?: boolean;
+};
+const SimpleList = ({ myList, icon, noIcon }: Props) => (
+  <UnorderedList>
+    <List>
+      {myList.map((item, idx) => (
+        <ListItem
+          key={idx}
+          textColor={item.includes("I'm not") ? "tertiary" : "currentColor"}
+          mt={item.startsWith("important") ? 1 : "current"}
+          fontWeight={item.startsWith("important") ? "semibold" : "current"}
+        >
+          <HStack mb="0.15rem">
+            <ListIcon as={icon || BiIcons.BiRightArrow} color="#64FFDA" />
+            {/* <ListIcon as={icon || BsIcons.BsPatchCheckFill} color="#64FFDA" /> */}
+            <Text>{item}</Text>
+          </HStack>
+        </ListItem>
+      ))}
+    </List>
+  </UnorderedList>
+);
 const WorkExperience = () => {
   const [width, height, ref] = useElementSize(-0.2);
   const [adjustedHeight, setAdjustedHeight] = useState<number>(0);
@@ -43,14 +73,6 @@ const WorkExperience = () => {
 
   const myHeight = remCalc(height);
 
-  console.log(
-    "height",
-    height,
-    "myHeight",
-    myHeight,
-    "adjustedHeight",
-    adjustedHeight
-  );
   useLayoutEffect(() => {
     // console.log("height", height);
     const adjustHeight = () => {
@@ -62,8 +84,13 @@ const WorkExperience = () => {
   return (
     <section
       id="work"
-      className="shadow-md "
-      // style={{ border: "2px yellow solid" }}
+      className="shadow-md bg-cyan-500 pt-10 pb-10"
+      style={{
+        width: "85%",
+        margin: "auto",
+        borderRadius: "40px 40px 0px 0px",
+        // borderTop: "2px solid",
+      }}
     >
       <Flex justify={"center"} align={"flex-end"}>
         <Heading>
@@ -85,6 +112,7 @@ const WorkExperience = () => {
         // border={"4px solid blue"}
         pb={0}
         borderBottom={0}
+        bg={"#30373D"}
         // boxShadow="2xl"
         boxShadow="dark-lg"
         borderRadius={"10px 10px 0 0"}
@@ -92,10 +120,7 @@ const WorkExperience = () => {
       >
         <TabList border={0}>
           <Tab
-            // _hover={{ border: 0 }}
-            // _active={{ border: 0, boxShadow: "inner " }}
-            // _focus={{ border: 0, boxShadow: "inner" }}
-            // _visited={{ border: 0 }}
+            _focus={{ border: 0, color: "#64FFDA", boxShadow: "inner" }}
             _selected={{ border: 0 }}
             borderRadius={"10px 10px 0 0"}
           >
@@ -104,22 +129,21 @@ const WorkExperience = () => {
           <Tab
             _hover={{ border: 0 }}
             _active={{ border: 0, boxShadow: "inner " }}
-            _focus={{ border: 0, boxShadow: "inner" }}
             _visited={{ border: 0 }}
-            _selected={{ border: 0 }}
-          >
-            FreeLance
-          </Tab>
-          <Tab
-            _hover={{ border: 0 }}
-            _active={{ border: 0, boxShadow: "inner " }}
-            _focus={{ border: 0, boxShadow: "inner" }}
-            _visited={{ border: 0 }}
+            _focus={{ border: 0, color: "#64FFDA", boxShadow: "inner" }}
             _selected={{ border: 0 }}
           >
             Own Projects
           </Tab>
-          <Tab border={0}>Boot Camp</Tab>
+          <Tab
+            _hover={{ border: 0 }}
+            _active={{ border: 0, boxShadow: "inner " }}
+            _focus={{ border: 0, color: "#64FFDA", boxShadow: "inner" }}
+            _visited={{ border: 0 }}
+            _selected={{ border: 0 }}
+          >
+            Boot Camp
+          </Tab>
         </TabList>
         <TabPanels>
           {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Ninja Partners */}
@@ -250,7 +274,7 @@ const WorkExperience = () => {
               </Box>
             </VStack>
           </TabPanel>
-          {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ FreeLance */}
+          {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Own Projects */}
           <TabPanel
             w="full"
             h="100%"
@@ -273,7 +297,7 @@ const WorkExperience = () => {
               >
                 <Image
                   src={"/ninjaGroupMod.png"}
-                  alt={"workedExperience_FreeLanceGroup"}
+                  alt={"workedExperience_ninjaPartnerGroup"}
                   fill
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
@@ -302,20 +326,20 @@ const WorkExperience = () => {
                 >
                   <Square
                     position="relative"
-                    size={"11vh"}
+                    size={"10vh"}
                     // h={"85%"}
                     my={4}
                     ml={"0.7rem"}
                   >
                     <ChakraNextImage
-                      src={"/ninjaLogoSquare.png"}
-                      alt={"workedExperience_FreeLanceLogo"}
+                      src={"/qr.png"}
+                      alt={"workedExperience_qrLogo"}
                       sizes="(max-width: 768px) 100vw,
                       (max-width: 1200px) 50vw,
                       33vw"
                       w={"100%"}
                       h={"100%"}
-                      border="0.1px solid"
+                      // border="0.1px solid"
                       borderRadius={"50%"}
                       objectFit={"contain"}
                       // imageBorderRadius="50%"
@@ -336,7 +360,7 @@ const WorkExperience = () => {
                     // opacity={0.8}
                     // textAlign={"end"}
                   >
-                    Full Stack Developer
+                    Projects
                   </Heading>
                   {/* </Flex> */}
                   {/* </Flex> */}
@@ -377,7 +401,6 @@ const WorkExperience = () => {
               </Box>
             </VStack>
           </TabPanel>
-          {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Own Projects */}
           <TabPanel
             w="full"
             h="100%"
@@ -385,6 +408,7 @@ const WorkExperience = () => {
             pt={0}
             pr={0}
             pl={0}
+            boxShadow="xl"
           >
             <VStack h="100%">
               <Box
@@ -400,12 +424,12 @@ const WorkExperience = () => {
               >
                 <Image
                   src={"/ninjaGroupMod.png"}
-                  alt={"workedExperience_FreeLanceGroup"}
+                  alt={"workedExperience_ninjaPartnerGroup"}
                   fill
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
                   33vw"
-                  priority={true}
+                  // priority={true}
                   // ref={ref}
                   style={{
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
@@ -417,6 +441,7 @@ const WorkExperience = () => {
                 />
                 <Box
                   // border={"1px solid cyan"}
+                  // as={HStack}
                   pb={0}
                   w={"full"}
                   h="100%"
@@ -427,19 +452,20 @@ const WorkExperience = () => {
                   gap={3}
                   ref={ref}
                 >
+                  {" "}
                   <Square
                     position="relative"
-                    size={"11vh"}
+                    size={"10vh"}
                     // h={"85%"}
                     my={4}
                     ml={"0.7rem"}
                   >
                     <ChakraNextImage
-                      src={"/ninjaLogoSquare.png"}
-                      alt={"workedExperience_FreeLanceLogo"}
+                      src={"/logo-le-reacteur-2.png"}
+                      alt={"workedExperience_reacteurLogo"}
                       sizes="(max-width: 768px) 100vw,
-                      (max-width: 1200px) 50vw,
-                      33vw"
+                  (max-width: 1200px) 50vw,
+                  33vw"
                       w={"100%"}
                       h={"100%"}
                       border="0.1px solid"
@@ -447,7 +473,7 @@ const WorkExperience = () => {
                       objectFit={"contain"}
                       // imageBorderRadius="50%"
                       // imageObjectFit={"contain"}
-                      priority={true}
+                      // priority={true}
                     />
                   </Square>
                   <Heading
@@ -463,43 +489,48 @@ const WorkExperience = () => {
                     // opacity={0.8}
                     // textAlign={"end"}
                   >
-                    Full Stack Developer
+                    Le Réacteur
                   </Heading>
-                  {/* </Flex> */}
-                  {/* </Flex> */}
+                  <IconButton
+                    aria-label="icon-reacteur"
+                    icon={<ExternalLinkIcon />}
+                  />
                 </Box>
               </Box>
               <Box
-                border={"1px solid white"}
+                // border={"1px solid white"}
                 w="full"
                 h={`${calc(100 / 5)}%`}
                 display="flex"
                 alignItems={"center"}
               >
-                <Heading size="md">
-                  oct 2021 - feb 2022 / oct 2022- dec 2022
+                <Heading size="md" pl="6">
+                  mar - july 2021
                 </Heading>
               </Box>
               <Box
                 pb={0}
-                border={"1px solid white"}
+                pl={1}
+                // border={"1px solid white"}
                 w="full"
                 h={"full"}
                 // flexDirection="row"
               >
-                <Container py="2">
-                  <HStack mb="0.15rem">
-                    <Icon as={BiIcons.BiRightArrow} color="whatsapp.700" />
-                    <Text> Developing a full stack web application</Text>
-                  </HStack>
-                  <HStack mb="0.15rem">
-                    <Icon as={BiIcons.BiRightArrow} color="whatsapp.700" />
-                    <Text> Developing a full stack web application</Text>
-                  </HStack>
-                  <HStack mb="0.15rem">
-                    <Icon as={BiIcons.BiRightArrow} color="whatsapp.700" />
-                    <Text> Developing a full stack web application</Text>
-                  </HStack>
+                <Container>
+                  <SimpleList
+                    // border="1px solid"
+                    // icon={BsIcons.BsPatchCheckFill}
+                    myList={[
+                      "Convert a design to a website or mobile app",
+                      "Create servers, APIs and secure data ",
+                      "Manage complex database systems",
+                      "Use advanced geolocation tools",
+                      "Authenticate users, manage online payment",
+                      "Create a content upload system on a server",
+                      "Automate tasks (scraping with Puppeteer) ",
+                      "Deploy the creations to a host",
+                    ]}
+                  />
                 </Container>
               </Box>
             </VStack>

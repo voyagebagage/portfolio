@@ -149,10 +149,10 @@ html {
   position: relative;
   /* background-color: cyan; */
 }
+
 .cards section {
   /* opacity: 0.8; */
-
-  width: 100vw;
+  /* width: 100vw; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -163,6 +163,7 @@ html {
   right: "50%";
   /* scroll-snap-align: start; */
 }
+
 .cards .ticker-section {
   position: sticky;
   top: 0;
@@ -170,20 +171,36 @@ html {
 
 #about {
   height: 100vh;
-  background-color: #3d3030;
+  /* align-items: flex-start; */
+  background-color: #30373d;
+  /* background-color: #303d3d; */
+  /* background-color: #2f373d; */
+  /* background-color: #5bd6de; */
 }
 #projects {
   height: 100vh;
-  /* background-color: #373d30; */
+  width: 100vw;
+  /* align-items: center; */
+  /* background-color: #3d3630; */
+  background-color: #3d3031;
   /* background-color: #29c7ac; */
-  background-color: #303d3d;
 }
 #work {
   height: 100vh;
+  width: 100vw;
+  /* align-items: center; */
+  /* background-color: #303d3d; */
+  /* background-color: #28d0a9; */
+  /* background-color: #2d6e73; */
+  background-color: #384047;
+  /* background-color: #759c91; */
 }
 #contact {
   height: 100vh;
-  background-color: #3d3037;
+  width: 100vw;
+  background-color: #2f373d;
+  /* align-items: center; */
+  /* background-color: #3d3037; */
 }
 .parallax {
   /* THAT MIGHT NEED TO BE BACK ONLY THE MARGIN WAS OFF CHANGED THAT ONE BECAUSE I'm USING BOXes FROM CHAKRA UI*/
@@ -207,7 +224,7 @@ html {
   white-space: nowrap;
   /* display: flex; */
   flex-wrap: nowrap;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   /* padding-top: 20px; */
 }
 

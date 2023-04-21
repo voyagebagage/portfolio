@@ -2,10 +2,12 @@ import { EmailIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
+  Container,
   Flex,
   Heading,
   Highlight,
   Input,
+  Text,
   Textarea,
 } from "@chakra-ui/react";
 import React from "react";
@@ -23,7 +25,20 @@ const Contact = () => {
           </Highlight>
         </Heading>
         <Box w="10rem" border={"1px solid white"} h={0} />
-      </Flex>
+      </Flex>{" "}
+      <Text
+        as="kbd"
+        fontSize={"md"}
+        color="#64ffda"
+        // ml={-150}
+      >
+        What&apos;s next ?
+      </Text>
+      <Container textAlign={"center"}>
+        Although I’m not currently looking for any new opportunities, my inbox
+        is always open. Whether you have a question or just want to say hi, I’ll
+        try my best to get back to you!
+      </Container>
       <Box display={"flex"} flexDirection="column" boxSize={"sm"}>
         <Input
           placeholder="Your name"

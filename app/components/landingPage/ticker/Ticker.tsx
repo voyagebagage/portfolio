@@ -1,6 +1,15 @@
 // import "./styles.css";
 import React, { useRef, useState } from "react";
-import { Box, Flex, Icon } from "@chakra-ui/react";
+import {
+  Box,
+  ButtonGroup,
+  Center,
+  Flex,
+  Icon,
+  IconButton,
+  Text,
+  useBoolean,
+} from "@chakra-ui/react";
 
 import {
   motion,
@@ -21,6 +30,9 @@ import { stacks } from "./data";
 import About from "../About";
 import ProfileHeader from "../profileHeader/ProfileHeader";
 import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
+import { ArrowRightIcon } from "@chakra-ui/icons";
+import { IconButtonStyles } from "@/app/styles/components/IconButtonStyles";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 // interface ParallaxProps {
 //   children: string;
 //   baseVelocity: number;
@@ -40,7 +52,7 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
   const [isHovered, setIsHovered] = useState(false);
-  const [wrap2ndArgument, setWrap2ndArgument] = useState<number>(21);
+  const [wrap2ndArgument, setWrap2ndArgument] = useState<number>(-45);
   const smoothVelocity = useSpring(scrollVelocity, {
     damping: 500,
     stiffness: 40,
@@ -61,7 +73,6 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
   const limitDrag = (offset: number) => {
     const minDrag = -100; // minimum drag limit
     const maxDrag = 100; // maximum drag limit
-
     return clamp(minDrag, offset, maxDrag);
   };
 
@@ -69,7 +80,7 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
   const x = useTransform(
     [baseX, dragX] as unknown as MotionValue<[number, number]>,
     ([base, drag]: [number, number]) => {
-      return `${wrap(1, -wrap2ndArgument, base) + drag}%`;
+      return `${wrap(wrap2ndArgument, -20, base) + drag}%`;
     }
   );
   const handleDragEnd = (event: any, info: any) => {
@@ -140,7 +151,7 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
         {children}
         {children}
         {children}
-        {children}
+
         {/* {stacks.map((stack, index) => {
           // setWrap2ndArgument(21);
           if (stack?.category === "UI") {
@@ -156,12 +167,32 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
     </div>
   );
 }
+// type setSwitchAbout = {
+//   on: () => void;
+//   off: () => void;
+//   toggle: () => void;
+// };
 
-export default function Ticker({ index, setIndex }: ThemeProviderContextProps) {
+export default function Ticker({
+  index,
+  setIndex,
+  setSwitchAbout,
+  switchAbout,
+}: ThemeProviderContextProps & {
+  switchAbout: boolean;
+  setSwitchAbout: {
+    on: () => void;
+    off: () => void;
+    toggle: () => void;
+  };
+}) {
   const tickerStackCards = stacks.map((stack, indexStackCard) => {
     if (stack?.category !== "UI") {
       return (
-        <React.Fragment key={`${stack.tickerName}-${indexStackCard}`}>
+        <div
+          key={`${stack.tickerName}-${indexStackCard}`}
+          // style={{ border: "2px solid orange" }}
+        >
           <TickerStackCard
             title={stack.tickerName || ""}
             content={stack.content || ""}
@@ -175,7 +206,7 @@ export default function Ticker({ index, setIndex }: ThemeProviderContextProps) {
               />
             }
           />
-        </React.Fragment>
+        </div>
       );
       {
       }
@@ -184,7 +215,10 @@ export default function Ticker({ index, setIndex }: ThemeProviderContextProps) {
   const tickerUICards = stacks.map((stack, indexUiCard) => {
     if (stack?.category === "UI") {
       return (
-        <React.Fragment key={`${stack.tickerName}-${indexUiCard}`}>
+        <div
+          key={`${stack.tickerName}-${indexUiCard}`}
+          // style={{ border: "2px solid orange" }}
+        >
           <TickerStackCard
             title={stack.tickerName || ""}
             content={stack.content || ""}
@@ -198,53 +232,90 @@ export default function Ticker({ index, setIndex }: ThemeProviderContextProps) {
               />
             }
           />
-        </React.Fragment>
+        </div>
       );
     }
   });
 
   return (
-    <>
-      <Box position={"relative"} bg="default" h="100%">
-        {/* <section className="mySection"></section> */}
-        <Box
-          position="relative"
-          scrollSnapAlign={"start"}
-          // height="100vh"
-          w="100vw"
-          pt={"10vh"}
-          // mb="30px"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          zIndex={1}
-          // textTransform="uppercase"
-          className="mySection"
-          // _hover={{ color: "white", stroke: "blue" }}
-          border="2px solid yellow"
-        >
-          <ProfileHeader index={index} setIndex={setIndex} />
-          <ParallaxCard baseVelocity={-0.6}>{tickerStackCards}</ParallaxCard>
-          <ParallaxCard baseVelocity={0.5}>{tickerUICards}</ParallaxCard>
-        </Box>
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          height="100%"
-          width="100%"
-          boxShadow="inset 100px 0px 8px -10px rgba(48,55,61,0.981), inset -100px 0px 8px -10px rgba(48,55,61, 0.981)"
-          pointerEvents="none"
-          zIndex={2}
-        />
+    <section>
+      {/* <Box position={"relative"} bg="default" h="100%" border="2px solid blue"> */}
+      {/* <section className="mySection"></section> */}
+      <Box
+        position="relative"
+        scrollSnapAlign={"start"}
+        height="100vh"
+        w="100vw"
+        // pt={"10vh"}
+        // mb="30px"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        gap="0.6rem"
+        zIndex={1}
+        // textTransform="uppercase"
+        className="mySection"
+        // _hover={{ color: "white", stroke: "blue" }}
+        // border="2px solid yellow"
+      >
+        <ProfileHeader index={index} setIndex={setIndex} />
+        <ParallaxCard baseVelocity={-0.6}>
+          {tickerStackCards}
+          {tickerStackCards}
+        </ParallaxCard>
+        <ParallaxCard baseVelocity={0.5}>
+          {tickerUICards}
+          {tickerUICards}
+        </ParallaxCard>
+        {!switchAbout && (
+          <Box
+            //  ml={"-5rem"}
+            w="80%"
+            mt={"1%"}
+          >
+            <Center>
+              <ButtonGroup onClick={setSwitchAbout.on}>
+                <AnchorLink href="#about">
+                  <IconButton
+                    aria-label="intro"
+                    p={4}
+                    bg="rgba(255, 255, 255, 0.16)"
+                  >
+                    <Text letterSpacing={2} textAlign={"center"}>
+                      Hi, I&apos;m Oli, web and mobile developer based in
+                      Thailand
+                    </Text>
+                  </IconButton>
+                  <IconButton
+                    aria-label="more-about"
+                    transform={"rotate(90deg)"}
+                    icon={<Icon as={ArrowRightIcon} />}
+                    bg="rgba(255, 255, 255, 0.16)"
+                  />
+                </AnchorLink>
+              </ButtonGroup>
+            </Center>
+          </Box>
+        )}
       </Box>
+      <Box
+        position="absolute"
+        top={0}
+        left={0}
+        right={0}
+        height="100%"
+        width="100%"
+        boxShadow="inset 100px 0px 8px -10px rgba(48,55,61,0.981), inset -100px 0px 8px -10px rgba(48,55,61, 0.981)"
+        pointerEvents="none"
+        zIndex={2}
+      />
+      {/* </Box> */}
 
       {/* <ParallaxCard baseVelocity={-0.09}>{tickerUICards}</ParallaxCard> */}
       {/* <section className="mySection">
         <ParallaxCard baseVelocity={-1}>{tickerStackCards}</ParallaxCard>
       </section> */}
-    </>
+    </section>
   );
 }

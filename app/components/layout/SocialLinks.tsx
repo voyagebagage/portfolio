@@ -20,7 +20,7 @@ const SocialLinks = () => {
       px="3rem"
       zIndex={20}
     >
-      <Link href="https://github.com/yourusername" isExternal>
+      <Link href="https://github.com/voyagebagage" isExternal>
         <MIconButton
           aria-label="github"
           // variant={"ghost"}
@@ -30,7 +30,7 @@ const SocialLinks = () => {
           boxSize={6}
         />
       </Link>
-      <Link href="https://linkedin.com/in/yourusername" isExternal>
+      <Link href="https://www.linkedin.com/in/oliv-dev" isExternal>
         <MIconButton
           aria-label="FaLinkedin"
           // variant={"ghost"}
@@ -40,7 +40,7 @@ const SocialLinks = () => {
           boxSize={6}
         />
       </Link>
-      <Link href="https://twitter.com/yourusername" isExternal>
+      <Link href="https://www.instagram.com/voyage_bagage/" isExternal>
         <MIconButton
           aria-label="FaInstagram"
           // variant={"ghost"}
@@ -50,7 +50,7 @@ const SocialLinks = () => {
           boxSize={6}
         />
       </Link>
-      <Link href="mailto:youremail@example.com" isExternal>
+      <Link href="https://www.youtube.com/@VoyageBagage" isExternal>
         <MIconButton
           aria-label="FaYoutube"
           // variant={"ghost"}

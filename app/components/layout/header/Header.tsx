@@ -7,6 +7,7 @@ import {
   Text,
   HStack,
   Center,
+  Highlight,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -20,32 +21,31 @@ type props = {
 };
 
 const Header = ({ visitingName, index }: props) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  // const { isOpen, onOpen, onClose } = useDisclosure();
+  // const [prevScrollPos, setPrevScrollPos] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset;
-      const scrollOffset = 10;
-      const scrollThreshold = 5;
-      if (currentScrollPos === 0) {
-        // If we're at the top of the page, always show the header
-        onOpen();
-      } else if (prevScrollPos > currentScrollPos && !isOpen) {
-        onOpen();
-      } else if (prevScrollPos < currentScrollPos - scrollOffset && isOpen) {
-        onClose();
-      }
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const currentScrollPos = window.pageYOffset;
+  //     const scrollOffset = 10;
+  //     const scrollThreshold = 5;
+  //     if (currentScrollPos === 0) {
+  //       // If we're at the top of the page, always show the header
+  //       onOpen();
+  //     } else if (prevScrollPos > currentScrollPos && !isOpen) {
+  //       onOpen();
+  //     } else if (prevScrollPos < currentScrollPos - scrollOffset && isOpen) {
+  //       onClose();
+  //     }
+  //     setPrevScrollPos(currentScrollPos);
+  //   };
 
-      setPrevScrollPos(currentScrollPos);
-    };
+  //   window.addEventListener("scroll", handleScroll);
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [prevScrollPos, isOpen, onOpen, onClose]);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, [prevScrollPos, isOpen, onOpen, onClose]);
 
   const variants = {
     hidden: {
@@ -62,18 +62,22 @@ const Header = ({ visitingName, index }: props) => {
   };
   return (
     <Box
-      as={motion.div}
-      animate={isOpen ? "visible" : "hidden"}
-      variants={variants}
-      transition={transition}
+      // as={motion.div}
+      // animate={isOpen ? "visible" : "hidden"}
+      // variants={variants}
+      // transition={transition}
       className="flex flex-row items-center justify-between px-10"
-      py={1}
-      boxShadow={isOpen ? "sm" : ""}
-      position={isOpen ? "fixed" : "relative"}
-      // px={8}
-      top={0}
-      left={0}
-      right={0}
+      // py={1}
+      // boxShadow={isOpen ? "sm" : ""}
+      // position={isOpen ? "fixed" : "relative"}
+      px={4000}
+      // top={0}
+      // left={0}
+      // right={0}
+      w="100%"
+      // align="center"
+      position="fixed"
+      css={{ backdropFilter: "blur(15px)" }}
       zIndex={99009}
     >
       {/* <Flex
@@ -102,11 +106,35 @@ const Header = ({ visitingName, index }: props) => {
         Welcome {visitingName && visitingName}
       </Text>
       <div className="flex justify-around gap-8">
-        <AnchorLink href="/">Top</AnchorLink>
-        <AnchorLink href="#about">00. About</AnchorLink>
-        <AnchorLink href="#work">01. Work</AnchorLink>
-        <AnchorLink href={"#projects"}>02. Projects</AnchorLink>
-        <AnchorLink href="#contact">03. Contact</AnchorLink>
+        {/* <AnchorLink href="/">Top</AnchorLink> */}
+        <Box _hover={{ color: "#64FFDA" }}>
+          <AnchorLink href="#about">
+            <Highlight query="00." styles={{ color: "#64FFDA" }}>
+              00. About
+            </Highlight>
+          </AnchorLink>
+        </Box>
+        <Box _hover={{ color: "#64FFDA" }}>
+          <AnchorLink href="#work">
+            <Highlight query="01." styles={{ color: "#64FFDA" }}>
+              01. Work
+            </Highlight>
+          </AnchorLink>
+        </Box>
+        <Box _hover={{ color: "#64FFDA" }}>
+          <AnchorLink href={"#projects"}>
+            <Highlight query="02." styles={{ color: "#64FFDA" }}>
+              02. Projects
+            </Highlight>
+          </AnchorLink>
+        </Box>
+        <Box _hover={{ color: "#64FFDA" }}>
+          <AnchorLink href="#contact">
+            <Highlight query="03." styles={{ color: "#64FFDA" }}>
+              03. Contact
+            </Highlight>
+          </AnchorLink>
+        </Box>
       </div>
       {/* </Flex> */}
     </Box>

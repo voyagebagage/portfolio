@@ -1,10 +1,11 @@
 // 1. Import the extendTheme function
-import { extendTheme, Heading } from "@chakra-ui/react";
+import { extendTheme } from "@chakra-ui/react";
 import { theme as chakraTheme } from "@chakra-ui/react";
 import { mode } from "@chakra-ui/theme-tools";
-// import { ButtonStyles as Button } from "./components/ButtonStyles";
-// import { IconButtonStyles as IconButton } from "./components/IconButtonStyles";
+
 import { StyleFunctionProps } from "@chakra-ui/theme-tools";
+import { ButtonStyles as Button } from "./components/ButtonStyles";
+import { IconButtonStyles as IconButton } from "./components/IconButtonStyles";
 
 const fonts = {
   ...chakraTheme.fonts,
@@ -20,7 +21,8 @@ const colors = {
   // primaryDark: "#40CFC8",
   // primary: "#7AF2C4",
   // primary: "#5CE1E6",
-  primary: { default: "#445ea7", _dark: "#29c7ac" },
+  // primary: { default: "#445ea7", _dark: "#29c7ac" },
+  primary: { default: "#29c7ac" },
   // primaryDark: "#4FF3C3",
 
   // primaryDark: "#4A919E",
@@ -33,12 +35,13 @@ const colors = {
   // secondaryDark: "",
   tertiary: "#FF0080",
   fave4: "#F8BE65",
+  // #5BD6DE
   // fave4: "#f77f7f",
   // fave4: "#e86848",
   modeLightBg: "#4FF3C3",
-  // modeDarkBg: "#30373D",
-  modeDarkBg: { _light: "#4ff3cc", default: "#30373D" },
-
+  modeDarkBg: "#30373D",
+  // modeDarkBg: { _light: "#4ff3cc", default: "#30373D" },
+  // #2F373D
   modeDarkText: "#bff9e8",
 };
 const overrides = {
@@ -57,7 +60,7 @@ const overrides = {
       },
       // ":root": {
       //   "--chakra-colors-primary": mode("#7C82FB", "#94d3ac")(props),
-      // "--chakra-colors-primary-500": mode("#5F63FC", "#29c7ac")(props),
+      //   "--chakra-colors-primary-500": mode("#5F63FC", "#29c7ac")(props),
       // },
     }),
   },
@@ -65,6 +68,7 @@ const overrides = {
     normal: 300,
     medium: 600,
     bold: 700,
+    extraBold: 900,
   },
   fontSizes: {
     xs: "12px",
@@ -76,6 +80,7 @@ const overrides = {
     "3xl": "28px",
     "4xl": "48px",
     "5xl": "64px",
+    "6xl": "84px",
   },
   semanticTokens: {
     colors,

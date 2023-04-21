@@ -1,5 +1,11 @@
 import React, { useEffect } from "react";
-import { chakra, ChakraComponent, Flex, PropsOf } from "@chakra-ui/react";
+import {
+  chakra,
+  ChakraComponent,
+  Flex,
+  Heading,
+  PropsOf,
+} from "@chakra-ui/react";
 import {
   motion,
   AnimatePresence,
@@ -71,8 +77,8 @@ function StackCard({ index, setIndex }: ThemeProviderContextProps) {
       w="40%"
       direction={"column"}
       align="center"
-      justify={"center"}
-      border="5px solid pink"
+      justify={"start"}
+      // border="5px solid pink"
       boxSize={"xs"}
     >
       <AnimatePresence>
@@ -92,6 +98,27 @@ function StackCard({ index, setIndex }: ThemeProviderContextProps) {
             boxShadow={"lg"}
             // objectFit="contain"
           />
+          {/* {(items[index]?.name || items[0]?.name) && (
+            <Heading
+              opacity={0.3}
+              ml={-4}
+              mt={-10}
+              as="h2"
+              pos={"absolute"}
+              display={"flex"}
+              color={items[index]?.color}
+              textAlign="center"
+              alignSelf={"center"}
+              fontSize="6xl"
+              fontWeight={"extraBold"}
+            >
+              {items[index]?.name
+                ? items[index]?.name
+                : items[index]?.name === items[0]?.name
+                ? items[0]?.name
+                : null}
+            </Heading>
+          )} */}
         </StackMotionCard>
       </AnimatePresence>
     </Flex>

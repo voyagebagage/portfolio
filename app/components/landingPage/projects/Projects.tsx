@@ -14,6 +14,7 @@ import {
   Button,
   HStack,
   Wrap,
+  Text,
 } from "@chakra-ui/react";
 import { PlusSquareIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
@@ -26,17 +27,17 @@ const tags = [
   "NodeJs",
   "Express",
   "MongoDB",
-  "TypeScript",
-  "JavaScript",
+  "NextJs",
+  "AWS",
+  "GraphQL",
+  "Amplify",
   "Bootstrap",
   "Chakra UI",
   "Semantic UI",
-  "Framer Motion",
-  "GraphQL",
-  "AWS",
-  "Amplify",
-  "NextJs",
   "API calls",
+  "Framer Motion",
+  "Typescript",
+  "Javascript",
 ];
 interface TagListProps {
   id: string;
@@ -116,7 +117,18 @@ const Projects = () => {
           h={0}
         />
       </Flex>
-      <Box w="70%" as={Wrap}>
+      {/* <HStack gap={5} w="70%"> */}
+      <Text
+        as="kbd"
+        fontSize={"xl"}
+        color="#64ffda"
+        borderColor="#64ffda"
+        mb={-2}
+        // ml={-150}
+      >
+        Pick:
+      </Text>
+      <Box w="70%" as={Wrap} mt={-4}>
         {tagNames.map((tag, index: number) =>
           tag !== "" ? (
             <Tag
@@ -124,9 +136,9 @@ const Projects = () => {
               key={index}
               data-index={`${index}`}
               size="lg"
-              colorScheme="teal"
+              color="#CAFFF5"
               variant="outline"
-              // border={"0.8px solid"}
+              border={"0.8px solid #64FFDA"}
               m={1}
               onClick={handleOnClickOutlined}
               cursor="pointer"
@@ -144,6 +156,7 @@ const Projects = () => {
           )
         )}
       </Box>
+      {/* </HStack> */}
       <Box
         border="2px solid "
         borderRadius={5}
@@ -151,7 +164,7 @@ const Projects = () => {
         h="fit-content"
         minH="50px"
         className=""
-        pt={2}
+        pt={1}
         display="flex"
         alignItems={"flex-start"}
         justifyContent={"flex-start"}
@@ -205,7 +218,7 @@ const Projects = () => {
         overflowX="scroll"
         w="70%"
         // h={250}
-        // h="fit-content"
+        h={275}
         // h="fill"
         // pb={100}
         // zIndex={1000}

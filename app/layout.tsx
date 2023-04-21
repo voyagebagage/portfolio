@@ -2,6 +2,8 @@ import { ColorModeScript } from "@chakra-ui/react";
 import "./globals.css";
 import ThemeProvider from "./theme-provider";
 import customTheme from "./styles/theme";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default function RootLayout({
   children,
@@ -12,7 +14,9 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <Suspense fallback={<Loading />}>
+          <ThemeProvider>{children}</ThemeProvider>
+        </Suspense>
       </body>
     </html>
   );

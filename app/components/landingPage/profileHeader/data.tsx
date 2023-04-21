@@ -8,7 +8,12 @@ import GraphQLLogo from "../../../assets/GraphQLLogo.png";
 export const items = [
   {
     IconName: "/reactLogo.png",
-    name: "React Native",
+    name: "React",
+    color: "#60DBFA",
+  },
+  {
+    IconName: "/reactLogo.png",
+    name: "Native",
     color: "#60DBFA",
   },
   {
@@ -16,12 +21,12 @@ export const items = [
     name: "GraphQl",
     color: "#B054AE",
   },
-  { IconName: "/mongodb.png", name: " ", color: "#59AA51" },
-  { IconName: "/AWSLogo.png", name: " ", color: "#F2982C" },
-  { IconName: "/nextRoundBlue.png", name: " ", color: "#74D4CF" },
+  { IconName: "/mongodb.png", name: "MongoDB", color: "#59AA51" },
+  { IconName: "/AWSLogo.png", name: "AWS", color: "#F2982C" },
+  { IconName: "/nextRoundBlue.png", name: "Next", color: "#74D4CF" },
   {
     IconName: "/reactMotion2.png",
-    name: "Framer Motion",
+    name: "F.Motion",
     color: "#7354C4",
   },
 ];
