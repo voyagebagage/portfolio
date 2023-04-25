@@ -3,6 +3,7 @@ import "./globals.css";
 import { CacheProvider } from "@chakra-ui/next-js";
 import useForm from "./customHooks/useForm";
 import {
+  Button,
   ChakraProvider,
   ColorModeScript,
   createLocalStorageManager,
@@ -14,6 +15,8 @@ import { useState } from "react";
 import ThemeProviderContext from "./context/ThemeProviderContext";
 import SocialLinks from "./components/layout/SocialLinks";
 import EmailDisplay from "./components/layout/EmailDisplay";
+import { ChevronUpIcon } from "@chakra-ui/icons";
+import { Box, useDisclosure } from "@chakra-ui/react";
 
 const manager = createLocalStorageManager("my-key");
 
@@ -34,6 +37,7 @@ export default function ThemeProvider({
     index,
     setIndex,
   };
+
   return (
     <CacheProvider>
       <ChakraProvider
@@ -49,6 +53,7 @@ export default function ThemeProvider({
             <AnimatedModal setShowSpinningBox={setShowSpinningBox} />
           </div> */}
           <Header visitingName={formState.name || ""} index={index} />
+          {/* <FloatingButton /> */}
           {children}
           <Footer />
         </ThemeProviderContext.Provider>

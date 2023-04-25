@@ -79,6 +79,9 @@ const Header = ({ visitingName, index }: props) => {
       position="fixed"
       css={{ backdropFilter: "blur(15px)" }}
       zIndex={99009}
+      maxH="8.3vh"
+      // borderBottom={"1px solid #64FFDA"}
+      // maxH="8.3%"
     >
       {/* <Flex
         as="nav"

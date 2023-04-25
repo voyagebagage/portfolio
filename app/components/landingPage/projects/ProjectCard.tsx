@@ -26,7 +26,7 @@ const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
 
   return (
     <>
-      <HStack ref={ref} bg="blue.500" w="100%" borderRadius={"10px"}>
+      <HStack ref={ref} bg="#66887f" w="100%" borderRadius={"10px"}>
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~left col */}
         {!imgFullWitdh && (
           <VStack

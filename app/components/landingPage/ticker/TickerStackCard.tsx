@@ -58,25 +58,24 @@ const TickerStackCard = ({
       >
         <PopoverTrigger>
           <Card
-            _hover={{ bg: "teal.3`00", color: "white" }}
-            borderWidth="1px"
+            // as={Square}
+            _hover={{ bg: "teal.300", color: "#8fbaae" }}
+            borderWidth="0.1px"
             borderRadius="lg"
-            borderColor="gray.200"
+            // borderColor="transparent"
             bg="transparent"
-            color={"gray.500"}
-            // p={2}
-            pl={1}
-            pr={1}
-            paddingY={3}
+            color={"gray.600"}
             mr={4}
-            minWidth="80px"
-            h="80px"
-            // w="100px"
+            minWidth="75px"
+            h="75px"
+            boxShadow={"lg"}
+            // w="65px"
             // key={key}
             // display={"flex"}
             boxSizing="border-box"
             // zIndex={0}
           >
+            {/* {icon} */}
             {/* <VStack spacing={"5px"}> */}
             <AbsoluteCenter>{icon}</AbsoluteCenter>
             {/* </VStack> */}

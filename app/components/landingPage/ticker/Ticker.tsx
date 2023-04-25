@@ -1,14 +1,12 @@
 // import "./styles.css";
 import React, { useRef, useState } from "react";
 import {
+  AbsoluteCenter,
   Box,
-  ButtonGroup,
+  Button,
   Center,
-  Flex,
   Icon,
-  IconButton,
   Text,
-  useBoolean,
 } from "@chakra-ui/react";
 
 import {
@@ -80,7 +78,7 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
   const x = useTransform(
     [baseX, dragX] as unknown as MotionValue<[number, number]>,
     ([base, drag]: [number, number]) => {
-      return `${wrap(wrap2ndArgument, -20, base) + drag}%`;
+      return `${wrap(-20, wrap2ndArgument, base) + drag}%`;
     }
   );
   const handleDragEnd = (event: any, info: any) => {
@@ -173,19 +171,18 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
 //   toggle: () => void;
 // };
 
-export default function Ticker({
-  index,
-  setIndex,
-  setSwitchAbout,
-  switchAbout,
-}: ThemeProviderContextProps & {
+interface TickerProps extends ThemeProviderContextProps {
   switchAbout: boolean;
   setSwitchAbout: {
     on: () => void;
     off: () => void;
     toggle: () => void;
   };
-}) {
+}
+const Ticker: React.ForwardRefRenderFunction<HTMLDivElement, TickerProps> = (
+  { index, setIndex, setSwitchAbout, switchAbout },
+  ref
+) => {
   const tickerStackCards = stacks.map((stack, indexStackCard) => {
     if (stack?.category !== "UI") {
       return (
@@ -200,10 +197,12 @@ export default function Ticker({
             project={stack.project || ""}
             orientation={"top"}
             icon={
-              <Icon
-                as={stack.reactIcon[0]}
-                boxSize={stack.tickerName ? "1.5rem" : "2.35rem"}
-              />
+              <Center>
+                <Icon
+                  as={stack.reactIcon[0]}
+                  boxSize={stack.tickerName ? "1.5rem" : "2.35rem"}
+                />
+              </Center>
             }
           />
         </div>
@@ -226,10 +225,12 @@ export default function Ticker({
             project={stack.project || ""}
             orientation={"bottom"}
             icon={
-              <Icon
-                as={stack.reactIcon[0]}
-                boxSize={stack.tickerName ? "1.5rem" : "2.35rem"}
-              />
+              <Center>
+                <Icon
+                  as={stack.reactIcon[0]}
+                  boxSize={stack.tickerName ? "1.5rem" : "2.35rem"}
+                />
+              </Center>
             }
           />
         </div>
@@ -239,78 +240,72 @@ export default function Ticker({
 
   return (
     <section>
-      {/* <Box position={"relative"} bg="default" h="100%" border="2px solid blue"> */}
-      {/* <section className="mySection"></section> */}
-      <Box
-        position="relative"
-        scrollSnapAlign={"start"}
-        height="100vh"
-        w="100vw"
-        // pt={"10vh"}
-        // mb="30px"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        gap="0.6rem"
-        zIndex={1}
-        // textTransform="uppercase"
-        className="mySection"
-        // _hover={{ color: "white", stroke: "blue" }}
-        // border="2px solid yellow"
-      >
-        <ProfileHeader index={index} setIndex={setIndex} />
-        <ParallaxCard baseVelocity={-0.6}>
-          {tickerStackCards}
-          {tickerStackCards}
-        </ParallaxCard>
-        <ParallaxCard baseVelocity={0.5}>
-          {tickerUICards}
-          {tickerUICards}
-        </ParallaxCard>
-        {!switchAbout && (
-          <Box
-            //  ml={"-5rem"}
-            w="80%"
-            mt={"1%"}
-          >
+      <Box position={"relative"} bg="default" h="100%">
+        {/* <section className="mySection"></section> */}
+        <Box
+          mt="3.5vh"
+          position="relative"
+          // scrollSnapAlign={"start"}
+          height="100vh"
+          w="100vw"
+          // pt={"10vh"}
+          // mb="30px"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          gap="0.6rem"
+          zIndex={1}
+          // textTransform="uppercase"
+          className="mySection"
+          // _hover={{ color: "white", stroke: "blue" }}
+          // border="2px solid yellow"
+        >
+          <ProfileHeader index={index} setIndex={setIndex} />
+          <ParallaxCard baseVelocity={-0.6}>{tickerStackCards}</ParallaxCard>
+          <ParallaxCard baseVelocity={0.5}>{tickerUICards}</ParallaxCard>
+          {!switchAbout && (
             <Center>
-              <ButtonGroup onClick={setSwitchAbout.on}>
-                <AnchorLink href="#about">
-                  <IconButton
-                    aria-label="intro"
-                    p={4}
-                    bg="rgba(255, 255, 255, 0.16)"
-                  >
-                    <Text letterSpacing={2} textAlign={"center"}>
-                      Hi, I&apos;m Oli, web and mobile developer based in
-                      Thailand
-                    </Text>
-                  </IconButton>
-                  <IconButton
-                    aria-label="more-about"
-                    transform={"rotate(90deg)"}
-                    icon={<Icon as={ArrowRightIcon} />}
-                    bg="rgba(255, 255, 255, 0.16)"
-                  />
-                </AnchorLink>
-              </ButtonGroup>
+              <AnchorLink href="#about">
+                <Button
+                  onClick={setSwitchAbout.on}
+                  zIndex={-1}
+                  ml={"4.6rem"}
+                  mt={"3%"}
+                  boxShadow="2xl"
+                  bg="rgba(255, 255, 255, 0.16)"
+                  aria-label="intro"
+                  p={6}
+                  px={18}
+                  w="4xl"
+                  rightIcon={
+                    <Icon
+                      as={ArrowRightIcon}
+                      transform={"rotate(90deg)"}
+                      ml={2}
+                    />
+                  }
+                >
+                  <Text letterSpacing={2} textAlign={"center"}>
+                    Hi, I&apos;m Oli, web and mobile developer based in Thailand
+                  </Text>
+                </Button>
+              </AnchorLink>
             </Center>
-          </Box>
-        )}
+          )}
+        </Box>
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          right={0}
+          height="100%"
+          width="100%"
+          boxShadow="inset 100px 0px 8px -10px rgba(48,55,61,0.981), inset -100px 0px 8px -10px rgba(48,55,61, 0.981)"
+          pointerEvents="none"
+          zIndex={2}
+        />
       </Box>
-      <Box
-        position="absolute"
-        top={0}
-        left={0}
-        right={0}
-        height="100%"
-        width="100%"
-        boxShadow="inset 100px 0px 8px -10px rgba(48,55,61,0.981), inset -100px 0px 8px -10px rgba(48,55,61, 0.981)"
-        pointerEvents="none"
-        zIndex={2}
-      />
-      {/* </Box> */}
 
       {/* <ParallaxCard baseVelocity={-0.09}>{tickerUICards}</ParallaxCard> */}
       {/* <section className="mySection">
@@ -318,4 +313,5 @@ export default function Ticker({
       </section> */}
     </section>
   );
-}
+};
+export default React.forwardRef(Ticker);

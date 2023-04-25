@@ -5,7 +5,7 @@ import { ArrowTriangle, SETriangle } from "../../StyledIcons";
 export const TriangleLogo = () => (
   <Circle
     ml={150}
-    transform="translate(20%, 7%)"
+    transform="translate(36%, -7%)"
     borderRadius={"full"}
     position="absolute"
     size={260}

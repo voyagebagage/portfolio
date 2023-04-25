@@ -1,17 +1,11 @@
 // components/SocialLinks.tsx
-import { Box, VStack, Icon, Text, Link } from "@chakra-ui/react";
-import {
-  FaGithub,
-  FaLinkedin,
-  FaTwitter,
-  FaEnvelope,
-  FaWhatsapp,
-  FaTelegram,
-  FaTelegramPlane,
-} from "react-icons/fa";
+import { Box, VStack, Icon, Text, Link, Button } from "@chakra-ui/react";
+import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
 // import { AnimateSharedLayout, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MIconButton from "../MIconButton";
+import { ChevronUpIcon } from "@chakra-ui/icons";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const variants = {
   expand: { scale: 2, display: "inline-block" },
@@ -19,18 +13,48 @@ const variants = {
 };
 
 const EmailDisplay = () => {
+  const [positionFromTop, setPositionFromTop] = useState<Boolean>(false);
   const [isSelected, setIsSelected] = useState(false);
   const toggleOpen = () => setIsSelected(!isSelected);
-  // console.log(isSelected);
+
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY >= 700) {
+        setPositionFromTop(true);
+      }
+      if (window.scrollY <= 550) {
+        setPositionFromTop(false);
+      }
+    });
+  }, [positionFromTop]);
+
   return (
     <VStack
       spacing={4}
       position="fixed"
       bottom="0"
       right="0"
-      px="3rem"
+      px="2.8rem"
       zIndex={20}
     >
+      {positionFromTop && (
+        <>
+          <AnchorLink href="#home">
+            <MIconButton
+              aria-label="top"
+              icon={<Icon as={ChevronUpIcon} boxSize={6} />}
+              size="xs"
+              colorScheme="teal"
+              borderRadius={"50%"}
+              opacity={0.5}
+              _hover={{ opacity: 1 }}
+              boxSize={6}
+            />
+          </AnchorLink>
+
+          <Box border={"0.8px solid white"} w="1rem" m={0} p={0} />
+        </>
+      )}
       <Link href="https://t.me/oliFantazor" isExternal>
         <MIconButton
           aria-label="telegram"
@@ -57,9 +81,8 @@ const EmailDisplay = () => {
       {/* <Text style={{ writingMode: "vertical-rl" }} fontSize="0.75rem" mb="-3">
         +33-7-69-65-43-61
       </Text> */}
-
       <Box border={"0.8px solid white"} w="1rem" />
-      <Link href="mailto:youremail@example.com" isExternal>
+      <Link href="mailto:idevandyou@gmail.com">
         <Text
           style={{
             writingMode: "vertical-lr",

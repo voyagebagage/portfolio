@@ -20,6 +20,7 @@ import { PlusSquareIcon } from "@chakra-ui/icons";
 import React, { useState } from "react";
 import { projects, ProjectProps } from "./data";
 import ProjectCard from "./ProjectCard";
+import { ArrowTriangle } from "../../StyledIcons";
 
 const tags = [
   "React",
@@ -103,7 +104,7 @@ const Projects = () => {
     <section id="projects" className="shadow-lg mt-10 rounded-t-3xl">
       {/* <Box h={`${100 + heigthRes * 10}%`}> */}
       <Flex justify={"center"} align={"flex-end"}>
-        <Heading>
+        <Heading position={"relative"}>
           <Highlight
             query={["02.", "built ..."]}
             styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
@@ -111,6 +112,15 @@ const Projects = () => {
             02. What I&apos;ve built ...
           </Highlight>
         </Heading>
+        <ArrowTriangle
+          position={"absolute"}
+          zIndex={2}
+          transformOrigin="right"
+          transform="translate(550%, 0%) rotate(180deg)"
+          boxSize={70}
+          opacity="0.08"
+          alignSelf="flex-end"
+        />
         <Box
           w="10rem"
           // border={"1px solid white"}
@@ -120,7 +130,7 @@ const Projects = () => {
       {/* <HStack gap={5} w="70%"> */}
       <Text
         as="kbd"
-        fontSize={"xl"}
+        fontSize={"lg"}
         color="#64ffda"
         borderColor="#64ffda"
         mb={-2}
@@ -128,7 +138,7 @@ const Projects = () => {
       >
         Pick:
       </Text>
-      <Box w="70%" as={Wrap} mt={-4}>
+      <Box w="50%" as={Wrap} mt={-4}>
         {tagNames.map((tag, index: number) =>
           tag !== "" ? (
             <Tag
@@ -160,7 +170,7 @@ const Projects = () => {
       <Box
         border="2px solid "
         borderRadius={5}
-        w="70%"
+        w="50%"
         h="fit-content"
         minH="50px"
         className=""
@@ -216,7 +226,7 @@ const Projects = () => {
         as={Flex}
         // border={"1px solid yellow"}
         overflowX="scroll"
-        w="70%"
+        w="50%"
         // h={250}
         h={275}
         // h="fill"
@@ -234,7 +244,7 @@ const Projects = () => {
               // border={"2px solid olive"}
               // display=
               minW={"90%"}
-              w="fit-content"
+              w="100%"
               display="flex"
               alignItems={"center"}
               // w="fit-content"

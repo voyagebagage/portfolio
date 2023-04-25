@@ -14,35 +14,29 @@ import {
   Spacer,
   ButtonGroup,
   VStack,
+  Container,
 } from "@chakra-ui/react";
 
-// import ProfilePic from "../../../assets/ProfilePic.jpg";
 import { BoxForNextImage, ChakraNextImage } from "../../ChakraNextImage";
 import { items } from "./data";
-// import '../../../assets/ProfilePic.jpg'
 import { motion } from "framer-motion";
 import StackCard from "./StackCard";
 import { TriangleLogo } from "./TriangleLogo";
 import Image from "next/image";
 import ThemeProviderContext, {
   ThemeProviderContextProps,
-} from "@/app/context/ThemeProviderContext"; // useThemeProviderContext,
+} from "@/app/context/ThemeProviderContext";
 
 function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
-  // const { index, setIndex }: ThemeProviderContextProps =
-  //   useContext(ThemeProviderContext)!;
-
   const MotionButton = motion(Button);
-
   const [isSmallerThan600] = useMediaQuery("(min-width:600px)");
   const [isLargerThan1280] = useMediaQuery("(min-width:1280px)");
   const { colorMode } = useColorMode();
   const [isShown, setIsShown] = useState(false);
-  // const [index, setIndex] = useState(0);
-
   const isDark = colorMode === "dark";
 
   return (
+    // <Container maxW="4xl">
     <HStack
       width="100%"
       // mt={16}
@@ -54,7 +48,7 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
       w="88%"
       minWidth="max-content"
       justifyContent={"center"}
-      ml={"-5rem"}
+      ml={"-3rem"}
       mb={6}
     >
       {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Left-col */}
@@ -129,6 +123,7 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
                 as="samp"
                 _hover={{ textDecoration: "none" }}
                 size="sm"
+                isExternal
                 // w="100%"
               >
                 Let&apos;s Talk
@@ -142,64 +137,13 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
               scale: 1.1,
             }}
           >
-            CV
+            <Link href="/CV DEV 2023.pdf" isExternal>
+              CV
+            </Link>
           </MotionButton>
         </ButtonGroup>
-        {/* {(items[index]?.name || items[0]?.name) && (
-          <Heading
-            opacity={0.8}
-            ml={-4}
-            // mt={-10}
-            as="h2"
-            // pos={"absolute"}
-            // top={"65%"}
-            display={"flex"}
-            color={items[index]?.color}
-            textAlign="center"
-            alignSelf={"center"}
-            fontSize="6xl"
-            fontWeight={"extraBold"}
-          >
-            {items[index]?.name
-              ? items[index]?.name
-              : items[index]?.name === items[0]?.name
-              ? items[0]?.name
-              : null}
-          </Heading>
-        )} */}
       </VStack>
-      {/* {(items[index]?.name || items[0]?.name) && (
-        <Heading
-          maxW="8%"
-          border={"1px solid red"}
-          ml={4}
-          as="div"
-          opacity={0.8}
-          // pos={"absolute"}
-          display={"flex"}
-          bgGradient={`linear(to-bl, ${
-            items[index]?.color || items[0]?.color
-          },#4ff3cc)`}
-          bgClip="text"
-          // color={items[index]?.color}
-          // textAlign="center"
-          alignSelf={"flex-start"}
-          fontSize="4xl"
-          fontWeight={"extraBold"}
-          style={{
-            writingMode: "vertical-lr",
-            textOrientation: "upright",
 
-            // marginTop: "12px",
-          }}
-        >
-          {items[index]?.name
-            ? items[index]?.name
-            : items[index]?.name === items[0]?.name
-            ? items[0]?.name
-            : null}
-        </Heading>
-      )} */}
       <Spacer
         maxW="5%"
         // border="1px solid yellow"
@@ -207,20 +151,21 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
       {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Right-col */}
       <Box
         // border="10px solid green"
+        display="flex"
         position={"relative"}
         alignSelf="start"
-        display="flex"
         w="40%"
         boxSize={"xs"}
       >
         <ChakraNextImage
           src={"/ProfilePic.jpg"}
           alt={"ProfilePic"}
-          boxSize={isSmallerThan600 ? 320 : 340}
+          boxSize={isSmallerThan600 ? 300 : 340}
           mr={"8%"}
           borderRadius="full"
           flexShrink={0}
-          mt={isSmallerThan600 ? "0" : "12"}
+          // mt={20}
+          // mt={isSmallerThan600 ? "0" : 12}
           mb={isSmallerThan600 ? "0" : "12"}
           alignSelf="center"
           boxShadow={isSmallerThan600 ? "lg" : "dark-lg"}
@@ -230,7 +175,6 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
         />
         <TriangleLogo />
       </Box>
-      {/* </Flex> */}
     </HStack>
   );
 }

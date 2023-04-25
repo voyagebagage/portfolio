@@ -52,7 +52,7 @@ function StackCard({ index, setIndex }: ThemeProviderContextProps) {
   const transition = {
     default: {
       duration: duration / 1000,
-      type: "inertia",
+      type: "spring",
       ease: "easeInOut",
       repeat: Infinity,
       repeatType: "loop",
