@@ -30,27 +30,23 @@ import { setToken } from "../utils/tokenManager";
 import { v4 as uuidv4 } from "uuid";
 
 const MotionModalContent = motion(ModalContent);
-const MotionBox = motion(Box);
 const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
 const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 const userId = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
 
-const AnimatedModal = () => {
+type Props = {
+  setVisitingName: React.Dispatch<React.SetStateAction<string>>;
+};
+const AnimatedModal = ({ setVisitingName }: Props) => {
   const { handleChange, handleClick, formState, submitted, setSubmitted } =
     useForm();
   const { step } = formState;
-  // const [submitted, setSubmitted] = useState(false);
-  // const [showSpinningBox, setShowSpinningBox] = useState(false);
+
   const delayOnClose = 3000;
 
   useEffect(() => {
     onOpen();
   }, []);
-
-  // const overlayVariants = {
-  //   open: { bg: "teal" },
-  //   submitted: { bg: "tranparent", transition: { duration: 1 } },
-  // };
 
   const contentVariants = {
     open: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.3 } },
@@ -65,22 +61,19 @@ const AnimatedModal = () => {
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const handleSubmit = async (
-    e: React.SyntheticEvent
-    // option: string
-  ) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setSubmitted(true);
 
     const { name, company, website, email, userType } = formState;
     handleClick("step3", userType);
+    setVisitingName(name);
     if (userType === "HR") {
     }
     if (userType === "want a website") {
     }
     const token = uuidv4();
     setToken(token);
-    // console.log("token", token);
 
     //send an email to me with coordinates collected
     console.log("send an email to me with coordinates collected");
@@ -109,10 +102,6 @@ const AnimatedModal = () => {
       console.log("submit error", error);
     }
   };
-  // console.log("submitted:1 ", submitted);
-
-  // console.log("showSpinningBox", showSpinningBox);
-  console.log("formSTATE", formState);
 
   return (
     <>

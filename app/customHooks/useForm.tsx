@@ -17,7 +17,6 @@ export default () => {
   };
   const [formState, updateFormState] = useState<IForm>(initialFormState);
   const [submitted, setSubmitted] = useState<boolean>(false);
-  const [visitingName, setVisitingName] = useState<string>("");
   // ~~~~~~
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -33,15 +32,12 @@ export default () => {
       userType: HRorWantAWebSite,
       step,
     }));
-    setVisitingName(() => formState.name);
-    console.log("HANLDECLIK", formState, visitingName);
   };
 
   return {
     handleChange,
     handleClick,
     formState,
-    name: visitingName,
     errors,
     submitted,
     setSubmitted,

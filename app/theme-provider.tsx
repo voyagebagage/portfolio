@@ -40,9 +40,7 @@ export default function ThemeProvider({
     "about" || "work" || "projects" || "contact"
   );
   const [index, setIndex] = useState<number>(0);
-  const { name, formState } = useForm();
-
-  console.log("formState LAYOUT", name, formState);
+  const [visitingName, setVisitingName] = useState<string>("");
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const contextValues = {
@@ -70,11 +68,13 @@ export default function ThemeProvider({
           <ThemeProviderContext.Provider value={contextValues}>
             <SocialLinks />
             <EmailDisplay />
-            <Header visitingName={name} index={index} />
+            <Header visitingName={visitingName} index={index} />
             {/* <FloatingButton /> */}
             {children}
             <Footer />
-            {!token ? <AnimatedModal /> : null}
+            {!token ? (
+              <AnimatedModal setVisitingName={setVisitingName} />
+            ) : null}
           </ThemeProviderContext.Provider>
         </AnimationContext.Provider>
       </ChakraProvider>

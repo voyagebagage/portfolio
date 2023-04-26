@@ -67,7 +67,7 @@ export const SimpleList = ({ myList, icon, noIcon }: SimpleListProps) => (
     </List>
   </UnorderedList>
 );
-const WorkExperience = React.forwardRef<HTMLHeadingElement, Props>(() => {
+const WorkExperience = () => {
   const { arrowPointingAt, setArrowPointingAt } = useContext(AnimationContext)!;
   // const [width, height, ref] = useElementSize(-0.2);
   const [adjustedHeight, setAdjustedHeight] = useState<number>(0);
@@ -562,6 +562,6 @@ const WorkExperience = React.forwardRef<HTMLHeadingElement, Props>(() => {
       </Tabs>
     </section>
   );
-});
+};
 
 export default WorkExperience;
