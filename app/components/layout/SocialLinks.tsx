@@ -60,7 +60,7 @@ const SocialLinks = () => {
           boxSize={6}
         />
       </Link>
-      <Box border={"0.7px solid white"} h="10rem" />
+      <Box border={"0.7px solid"} h="10rem" />
     </VStack>
   );
 };

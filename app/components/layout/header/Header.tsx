@@ -14,10 +14,11 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { TriangleLogoSmall } from "./TriangleLogoSmall";
 import { items } from "../../landingPage/profileHeader/data";
+import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
 
 type props = {
   visitingName: String;
-  index: number;
+  index: ThemeProviderContextProps["index"];
 };
 
 const Header = ({ visitingName, index }: props) => {
@@ -106,7 +107,7 @@ const Header = ({ visitingName, index }: props) => {
         },#4ff3cc)`}
         bgClip="text"
       >
-        Welcome {visitingName && visitingName}
+        Welcome {visitingName}
       </Text>
       <div className="flex justify-around gap-8">
         {/* <AnchorLink href="/">Top</AnchorLink> */}

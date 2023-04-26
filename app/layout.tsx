@@ -14,9 +14,9 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        <Suspense fallback={<Loading />}>
-          <ThemeProvider>{children}</ThemeProvider>
-        </Suspense>
+        {/* <Suspense fallback={<Loading />}> */}
+        <ThemeProvider>{children}</ThemeProvider>
+        {/* </Suspense> */}
       </body>
     </html>
   );

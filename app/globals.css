@@ -191,9 +191,10 @@ html {
   /* background-color: #29c7ac; */
 }
 #work {
-  height: 97.5vh;
+  height: 100vh;
   width: 100vw;
-  position: relative;
+  display: flex;
+  /* position: relative; */
   /* align-items: center; */
   /* background-color: #303d3d; */
   /* background-color: #28d0a9; */

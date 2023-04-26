@@ -52,7 +52,7 @@ const EmailDisplay = () => {
             />
           </AnchorLink>
 
-          <Box border={"0.8px solid white"} w="1rem" m={0} p={0} />
+          <Box border={"0.8px solid"} w="1rem" m={0} p={0} />
         </>
       )}
       <Link href="https://t.me/oliFantazor" isExternal>
@@ -64,7 +64,7 @@ const EmailDisplay = () => {
           boxSize={6}
         />
       </Link>
-      <Box border={"0.8px solid white"} w="1rem" m={0} p={0} />
+      <Box border={"0.8px solid"} w="1rem" m={0} p={0} />
       <Link
         href="https://wa.me/33769654361?message=urlencodedtext I have a 10k job for you."
         isExternal
@@ -81,7 +81,7 @@ const EmailDisplay = () => {
       {/* <Text style={{ writingMode: "vertical-rl" }} fontSize="0.75rem" mb="-3">
         +33-7-69-65-43-61
       </Text> */}
-      <Box border={"0.8px solid white"} w="1rem" />
+      <Box border={"0.8px solid"} w="1rem" />
       <Link href="mailto:idevandyou@gmail.com">
         <Text
           style={{
@@ -94,7 +94,7 @@ const EmailDisplay = () => {
           idevandyou@gmail.com
         </Text>
       </Link>
-      <Box border={"0.7px solid white"} h="7rem" />
+      <Box border={"0.7px solid"} h="7rem" />
     </VStack>
   );
 };

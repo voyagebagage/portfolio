@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import NextLink from "next/link";
 import {
-  Flex,
   Link,
   Stack,
   Box,
@@ -23,7 +22,8 @@ import { motion } from "framer-motion";
 import StackCard from "./StackCard";
 import { TriangleLogo } from "./TriangleLogo";
 import Image from "next/image";
-import ThemeProviderContext, {
+import {
+  ThemeProviderContext,
   ThemeProviderContextProps,
 } from "@/app/context/ThemeProviderContext";
 

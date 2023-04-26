@@ -179,10 +179,12 @@ interface TickerProps extends ThemeProviderContextProps {
     toggle: () => void;
   };
 }
-const Ticker: React.ForwardRefRenderFunction<HTMLDivElement, TickerProps> = (
-  { index, setIndex, setSwitchAbout, switchAbout },
-  ref
-) => {
+const Ticker = ({
+  index,
+  setIndex,
+  setSwitchAbout,
+  switchAbout,
+}: TickerProps) => {
   const tickerStackCards = stacks.map((stack, indexStackCard) => {
     if (stack?.category !== "UI") {
       return (
@@ -314,4 +316,4 @@ const Ticker: React.ForwardRefRenderFunction<HTMLDivElement, TickerProps> = (
     </section>
   );
 };
-export default React.forwardRef(Ticker);
+export default Ticker;

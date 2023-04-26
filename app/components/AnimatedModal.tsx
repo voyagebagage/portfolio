@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import useForm from "../customHooks/useForm";
+import emailjs from "emailjs-com";
+
 import {
   Button,
   Center,
@@ -24,11 +26,16 @@ import {
   VStack,
   Box,
 } from "@chakra-ui/react";
+import { setToken } from "../utils/tokenManager";
+import { v4 as uuidv4 } from "uuid";
 
 const MotionModalContent = motion(ModalContent);
 const MotionBox = motion(Box);
+const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const userId = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
 
-const AnimatedModal = ({ setShowSpinningBox }: any) => {
+const AnimatedModal = () => {
   const { handleChange, handleClick, formState, submitted, setSubmitted } =
     useForm();
   const { step } = formState;
@@ -38,7 +45,7 @@ const AnimatedModal = ({ setShowSpinningBox }: any) => {
 
   useEffect(() => {
     onOpen();
-  });
+  }, []);
 
   // const overlayVariants = {
   //   open: { bg: "teal" },
@@ -67,34 +74,50 @@ const AnimatedModal = ({ setShowSpinningBox }: any) => {
 
     const { name, company, website, email, userType } = formState;
     handleClick("step3", userType);
-    console.log("formSTATE", formState);
     if (userType === "HR") {
     }
     if (userType === "want a website") {
     }
+    const token = uuidv4();
+    setToken(token);
+    // console.log("token", token);
+
     //send an email to me with coordinates collected
     console.log("send an email to me with coordinates collected");
-    //close modal
+    const templateParams = {
+      from_name: name,
+      company: company,
+      website: website,
+      from_email: email,
+    };
+    await emailjs.send(
+      `${serviceId}`,
+      `${templateId}`,
+      templateParams,
+      `${userId}`
+    );
 
+    //close modal
     setTimeout(() => {
-      onClose();
       setSubmitted(false);
+      onClose();
       handleClick("", userType);
     }, delayOnClose);
-    setShowSpinningBox(true);
+
     try {
     } catch (error) {
       console.log("submit error", error);
     }
   };
-  console.log("submitted:1 ", submitted);
+  // console.log("submitted:1 ", submitted);
 
   // console.log("showSpinningBox", showSpinningBox);
+  console.log("formSTATE", formState);
 
   return (
     <>
-      <AnimatePresence>
-        {isOpen && (
+      {isOpen && (
+        <AnimatePresence>
           <Modal size="lg" isCentered isOpen={isOpen} onClose={onClose}>
             <ModalOverlay
               // initial="open"
@@ -108,7 +131,7 @@ const AnimatedModal = ({ setShowSpinningBox }: any) => {
             />
 
             <MotionModalContent
-              // as={motion.div}
+              as={motion.div}
               bg={submitted ? "transparent" : "teal"}
               borderRadius="md"
               initial={{ opacity: 0, y: "50%", scale: 0.5, boxShadow: "lg" }}
@@ -160,7 +183,7 @@ const AnimatedModal = ({ setShowSpinningBox }: any) => {
                       What is your name ? Who do you work for ?
                     </ModalHeader>
                     <ModalBody>
-                      <FormControl isRequired>
+                      <FormControl>
                         <VStack spacing="2">
                           <Input
                             variant="flushed"
@@ -168,6 +191,7 @@ const AnimatedModal = ({ setShowSpinningBox }: any) => {
                             value={formState.name || ""}
                             onChange={handleChange}
                             name="name"
+                            isRequired
                           />
 
                           <Input
@@ -176,6 +200,14 @@ const AnimatedModal = ({ setShowSpinningBox }: any) => {
                             value={formState.company || ""}
                             onChange={handleChange}
                             name="company"
+                            isRequired
+                          />
+                          <Input
+                            variant="flushed"
+                            placeholder="Company Email"
+                            value={formState.email || ""}
+                            onChange={handleChange}
+                            name="email"
                           />
 
                           <InputGroup>
@@ -186,6 +218,7 @@ const AnimatedModal = ({ setShowSpinningBox }: any) => {
                               value={formState.website || ""}
                               onChange={handleChange}
                               name="website"
+                              isRequired
                             />
                           </InputGroup>
                         </VStack>
@@ -263,8 +296,8 @@ const AnimatedModal = ({ setShowSpinningBox }: any) => {
               </SlideFade>
             </MotionModalContent>
           </Modal>
-        )}
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
     </>
   );
 };

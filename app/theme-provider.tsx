@@ -12,11 +12,17 @@ import customTheme from "./styles/theme";
 import Header from "./components/layout/header/Header";
 import Footer from "./components/landingPage/Footer";
 import { useState } from "react";
-import ThemeProviderContext from "./context/ThemeProviderContext";
+import {
+  AnimationContext,
+  ThemeProviderContext,
+} from "./context/ThemeProviderContext";
 import SocialLinks from "./components/layout/SocialLinks";
 import EmailDisplay from "./components/layout/EmailDisplay";
 import { ChevronUpIcon } from "@chakra-ui/icons";
 import { Box, useDisclosure } from "@chakra-ui/react";
+import AnimatedModal from "./components/AnimatedModal";
+import { getToken } from "./utils/tokenManager";
+import { log } from "console";
 
 const manager = createLocalStorageManager("my-key");
 
@@ -26,16 +32,30 @@ export default function ThemeProvider({
   children: React.ReactNode;
 }) {
   //------------------------
-  const [showSpinningBox, setShowSpinningBox] = useState<boolean>(true);
+  const token = getToken();
+  console.log("token", token);
+
+  //------------------------
+  const [arrowPointingAt, setArrowPointingAt] = useState<string>(
+    "about" || "work" || "projects" || "contact"
+  );
   const [index, setIndex] = useState<number>(0);
-  const { formState } = useForm();
+  const { name, formState } = useForm();
+
+  console.log("formState LAYOUT", name, formState);
+
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  const contextValue = {
-    exampleProp: "This is an example prop",
-    showSpinningBox,
-    setShowSpinningBox,
+  const contextValues = {
+    // exampleProp: "This is an example prop",
+    // visitingName: formState.name,
     index,
     setIndex,
+    arrowPointingAt,
+    setArrowPointingAt,
+  };
+  const animationContextValues = {
+    arrowPointingAt,
+    setArrowPointingAt,
   };
 
   return (
@@ -46,17 +66,17 @@ export default function ThemeProvider({
         // colorModeManager={manager}
         // useSystemColorMode={true}
       >
-        <ThemeProviderContext.Provider value={contextValue}>
-          <SocialLinks />
-          <EmailDisplay />
-          {/* <div className="absolute">
-            <AnimatedModal setShowSpinningBox={setShowSpinningBox} />
-          </div> */}
-          <Header visitingName={formState.name || ""} index={index} />
-          {/* <FloatingButton /> */}
-          {children}
-          <Footer />
-        </ThemeProviderContext.Provider>
+        <AnimationContext.Provider value={animationContextValues}>
+          <ThemeProviderContext.Provider value={contextValues}>
+            <SocialLinks />
+            <EmailDisplay />
+            <Header visitingName={name} index={index} />
+            {/* <FloatingButton /> */}
+            {children}
+            <Footer />
+            {!token ? <AnimatedModal /> : null}
+          </ThemeProviderContext.Provider>
+        </AnimationContext.Provider>
       </ChakraProvider>
     </CacheProvider>
   );

@@ -1,3 +1,4 @@
+import { AnimationContext } from "@/app/context/ThemeProviderContext";
 import { EmailIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -12,15 +13,50 @@ import {
   Text,
   Textarea,
 } from "@chakra-ui/react";
+import { motion, useAnimation } from "framer-motion";
 import Link from "next/link";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
+import { inViewAnimation, outOfViewAnimation } from "../animations/animation";
 import { ArrowTriangle } from "../StyledIcons";
 
 const Contact = () => {
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  const { ref, inView } = useInView({
+    threshold: 1,
+  });
+  const { arrowPointingAt, setArrowPointingAt } = useContext(AnimationContext)!;
+  const [on, setOn] = useState<boolean>(false);
+  const animation = useAnimation();
+  useEffect(() => {
+    if (inView) {
+      animation.start(inViewAnimation);
+    }
+    if ((!on && arrowPointingAt === "contact") || !inView) {
+      animation.start(outOfViewAnimation);
+    }
+  }, [inView, animation, on, arrowPointingAt]);
+
+  const handleMouseEnter = () => {
+    setOn(true);
+    setArrowPointingAt("contact");
+  };
+  const handleMouseLeave = () => {
+    setOn(false);
+    setArrowPointingAt("");
+  };
+
+  //~~~~~~~~~~~~~
+
   return (
-    <section id="contact" className="bg-red-400 shadow-md pt-32 pb-10">
+    <section
+      id="contact"
+      className="bg-red-400 shadow-md pt-32 pb-10"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <Flex justify={"center"} align={"flex-end"}>
-        <Heading position={"relative"}>
+        <Heading position={"relative"} ref={ref}>
           <Highlight
             query={["03.", "Contact"]}
             styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
@@ -28,16 +64,26 @@ const Contact = () => {
             03. Contact me
           </Highlight>
         </Heading>
-        <ArrowTriangle
+        {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~Triangle arrowPointingAt */}
+        <Box
+          as={motion.div}
+          animate={
+            on && arrowPointingAt === "contact"
+              ? inViewAnimation
+              : outOfViewAnimation
+          }
           position={"absolute"}
-          zIndex={2}
-          transformOrigin="right"
-          transform="translate(550%, 0%) rotate(180deg)"
-          boxSize={70}
-          opacity="0.08"
-          alignSelf="flex-end"
+        >
+          <ArrowTriangle position={"absolute"} zIndex={2} boxSize={70} />
+        </Box>
+        <Box
+          as={motion.div}
+          initial={{ opacity: 0 }}
+          animate={on ? { opacity: 1 } : { opacity: 0 }}
+          w="10rem"
+          border={"1px solid"}
+          h={0}
         />
-        <Box w="10rem" border={"1px solid white"} h={0} />
       </Flex>
       <Text
         as="kbd"

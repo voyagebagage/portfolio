@@ -17,10 +17,17 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { PlusSquareIcon } from "@chakra-ui/icons";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { projects, ProjectProps } from "./data";
 import ProjectCard from "./ProjectCard";
 import { ArrowTriangle } from "../../StyledIcons";
+import { AnimationContext } from "@/app/context/ThemeProviderContext";
+import {
+  inViewAnimation,
+  outOfViewAnimation,
+} from "../../animations/animation";
+import { useInView } from "react-intersection-observer";
+import { motion, useAnimation } from "framer-motion";
 
 const tags = [
   "React",
@@ -51,7 +58,30 @@ const Projects = () => {
   const [tagNames, setTagNames] = useState<string[]>(tags);
   const [results, setResults] = useState<ProjectProps[]>([]);
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  const { ref, inView } = useInView({
+    threshold: 1,
+  });
+  const { arrowPointingAt, setArrowPointingAt } = useContext(AnimationContext)!;
+  const [on, setOn] = useState<boolean>(false);
+  const animation = useAnimation();
+  useEffect(() => {
+    if (inView) {
+      animation.start(inViewAnimation);
+    }
+    if ((!on && arrowPointingAt === "projects") || !inView) {
+      animation.start(outOfViewAnimation);
+    }
+  }, [inView, animation, on, arrowPointingAt]);
+  // console.log("ton scroll", inView, scrollSup850, on);
 
+  const handleMouseEnter = () => {
+    setOn(true);
+    setArrowPointingAt("projects");
+  };
+  const handleMouseLeave = () => {
+    setOn(false);
+    setArrowPointingAt("");
+  };
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Solid~~~~~~~~
   const handleOnClickSolid = (e: any) => {
     const newArr = [...tagList];
@@ -101,10 +131,15 @@ const Projects = () => {
   // console.log("results", results);
 
   return (
-    <section id="projects" className="shadow-lg mt-10 rounded-t-3xl">
+    <section
+      id="projects"
+      className="shadow-lg mt-10 rounded-t-3xl"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {/* <Box h={`${100 + heigthRes * 10}%`}> */}
       <Flex justify={"center"} align={"flex-end"}>
-        <Heading position={"relative"}>
+        <Heading position={"relative"} ref={ref}>
           <Highlight
             query={["02.", "built ..."]}
             styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
@@ -112,14 +147,26 @@ const Projects = () => {
             02. What I&apos;ve built ...
           </Highlight>
         </Heading>
-        <ArrowTriangle
+        {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~Triangle arrowPointingAt */}
+        <Box
+          as={motion.div}
+          animate={
+            on && arrowPointingAt === "projects"
+              ? inViewAnimation
+              : outOfViewAnimation
+          }
           position={"absolute"}
-          zIndex={2}
-          transformOrigin="right"
-          transform="translate(550%, 0%) rotate(180deg)"
-          boxSize={70}
-          opacity="0.08"
-          alignSelf="flex-end"
+        >
+          <ArrowTriangle position={"absolute"} zIndex={2} boxSize={70} />
+        </Box>{" "}
+        <Box
+          as={motion.div}
+          initial={{ opacity: 0 }}
+          animate={on ? { opacity: 1 } : { opacity: 0 }}
+          // transition={{ duration: 0.5 }}
+          w="10rem"
+          border={"1px solid"}
+          h={0}
         />
         <Box
           w="10rem"

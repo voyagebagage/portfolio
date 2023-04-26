@@ -18,11 +18,11 @@ import { BoxForNextImage, ChakraNextImage } from "../../ChakraNextImage";
 import Image from "next/image";
 import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
 
-// interface StackCardProps {
-//   index: number;
-//   setIndex: React.Dispatch<React.SetStateAction<number>>;
-//   // transition?: Transition;
-// }
+interface StackCardProps {
+  index: number;
+  setIndex: React.Dispatch<React.SetStateAction<number>>;
+  // transition?: Transition;
+}
 interface StackMotionCardProps
   extends PropsOf<typeof motion.div>,
     MotionProps {}
@@ -41,7 +41,7 @@ function StackCard({ index, setIndex }: ThemeProviderContextProps) {
     // }
     const interval = setInterval(() => {
       if (index >= 5) setIndex(-1);
-      setIndex((index) => index + 1);
+      setIndex((index: number) => index + 1);
     }, 2000);
 
     return () => clearInterval(interval);
