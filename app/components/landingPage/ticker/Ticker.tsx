@@ -303,7 +303,7 @@ const Ticker = ({
           right={0}
           height="100%"
           width="100%"
-          boxShadow="inset 100px 0px 8px -10px rgba(48,55,61,0.981), inset -100px 0px 8px -10px rgba(48,55,61, 0.981)"
+          boxShadow="inset 100px 0px 10px -10px rgba(48,55,61,0.981), inset -100px 0px 10px -10px rgba(48,55,61, 0.981)"
           pointerEvents="none"
           zIndex={2}
         />

@@ -1,5 +1,6 @@
 // components/SocialLinks.tsx
 import { Box, Link, VStack, Icon } from "@chakra-ui/react";
+import { IconType } from "react-icons/lib";
 import {
   FaGithub,
   FaLinkedin,
@@ -9,11 +10,15 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import MIconButton from "../MIconButton";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 const SocialLinks = () => {
+  const [isSelected, setIsSelected] = useState<boolean>(false);
+  const toggleOpen = () => setIsSelected(!isSelected);
   return (
     <VStack
-      spacing={4}
+      // spacing={2}
       position="fixed"
       bottom="0"
       left="0"
@@ -23,41 +28,35 @@ const SocialLinks = () => {
       <Link href="https://github.com/voyagebagage" isExternal>
         <MIconButton
           aria-label="github"
-          // variant={"ghost"}
-          size="xs"
-          colorScheme=""
-          icon={<Icon as={FaGithub} boxSize={6} />}
-          boxSize={6}
+          size="sm"
+          icon={<Icon as={FaGithub} boxSize={5} />}
         />
       </Link>
       <Link href="https://www.linkedin.com/in/oliv-dev" isExternal>
         <MIconButton
           aria-label="FaLinkedin"
           // variant={"ghost"}
-          size="xs"
-          colorScheme=""
-          icon={<Icon as={FaLinkedin} boxSize={6} />}
-          boxSize={6}
+          size="sm"
+          // colorScheme="linkedin"
+          icon={<Icon as={FaLinkedin} boxSize={5} />}
         />
       </Link>
       <Link href="https://www.instagram.com/voyage_bagage/" isExternal>
         <MIconButton
           aria-label="FaInstagram"
           // variant={"ghost"}
-          size="xs"
-          colorScheme=""
-          icon={<Icon as={FaInstagram} boxSize={6} />}
-          boxSize={6}
+          size="sm"
+          // colorScheme="instagram"
+          icon={<Icon as={FaInstagram} boxSize={5} />}
         />
       </Link>
       <Link href="https://www.youtube.com/@VoyageBagage" isExternal>
         <MIconButton
           aria-label="FaYoutube"
           // variant={"ghost"}
-          size="xs"
-          colorScheme=""
-          icon={<Icon as={FaYoutube} boxSize={6} />}
-          boxSize={6}
+          size="sm"
+          // colorScheme="youtube"
+          icon={<Icon as={FaYoutube} boxSize={5} />}
         />
       </Link>
       <Box border={"0.7px solid"} h="10rem" />

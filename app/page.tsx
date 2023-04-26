@@ -8,9 +8,6 @@ import WorkExperience from "./components/landingPage/WorkExperience";
 import Projects from "./components/landingPage/projects/Projects";
 import Contact from "./components/landingPage/Contact";
 import { useBoolean } from "@chakra-ui/react";
-import { useInView } from "react-intersection-observer";
-import { motion, useAnimation } from "framer-motion";
-import ArrowPointingCards from "./components/ArrowPointingCards";
 
 export default function Home() {
   const { index, setIndex, showSpinningBox } =
@@ -25,21 +22,12 @@ export default function Home() {
           setIndex={setIndex}
           setSwitchAbout={setSwitchAbout}
           switchAbout={switchAbout}
-          // ref={ref}
         />
-
         <About index={index} />
-
         <WorkExperience />
         <Projects />
         <Contact />
       </div>
     </>
   );
-}
-
-{
-  /* <div className="w-full">
-  <HeroHeader showSpinningBox={showSpinningBox} />
-</div> */
 }

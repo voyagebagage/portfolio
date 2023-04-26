@@ -59,7 +59,6 @@ export const SimpleList = ({ myList, icon, noIcon }: SimpleListProps) => (
         >
           <HStack mb="0.15rem">
             <ListIcon as={icon || BiIcons.BiRightArrow} color="#64FFDA" />
-            {/* <ListIcon as={icon || BsIcons.BsPatchCheckFill} color="#64FFDA" /> */}
             <Text>{item}</Text>
           </HStack>
         </ListItem>
@@ -98,12 +97,13 @@ const WorkExperience = () => {
   return (
     <section
       id="work"
-      className="shadow-xl bg-cyan-500 pt-10 pb-10 mb-2 "
+      className="shadow-xl  pt-2 pb-10 mb-2 "
       style={{
         width: "70%",
         margin: "auto",
         // borderRadius: "40px 40px 0px 0px",
-        borderRadius: "40px 40px  80% 80%",
+        // borderRadius: "40px 40px  80% 80%",
+        borderRadius: "40px 40px 40px 40px",
         // borderTop: "2px solid",
       }}
       onMouseEnter={handleMouseEnter}
@@ -198,12 +198,10 @@ const WorkExperience = () => {
                 w="full"
                 px={0}
                 pb={0}
-                // pt="1"
                 h={`${100 / 3.8}%`}
                 // border={"0.1px solid"}
-                // className="h-1/4"
+
                 position="relative"
-                // ref={heightRef}
               >
                 <Image
                   src={"/ninjaGroupMod.png"}
@@ -212,14 +210,10 @@ const WorkExperience = () => {
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
                   33vw"
-                  // priority={true}
-                  // ref={ref}
                   style={{
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
                     objectFit: "cover",
                     borderRadius: "0 10px 0 0",
-                    // marginTop: 10,
-                    // objectPosition: "left",
                   }}
                 />
                 <Box
@@ -232,12 +226,10 @@ const WorkExperience = () => {
                   justifyContent="space-start"
                   alignItems="center"
                   gap={3}
-                  // ref={ref}
                 >
                   <Square
                     position="relative"
                     size={"10vh"}
-                    // h={"85%"}
                     my={4}
                     ml={"0.7rem"}
                   >
@@ -267,13 +259,9 @@ const WorkExperience = () => {
                     lineHeight={1.8}
                     letterSpacing="wider"
                     textShadow="-0.7px 0 black, 0 0.7px black, 0.7px 0 black, 0 -0.7px black"
-                    // opacity={0.8}
-                    // textAlign={"end"}
                   >
                     Full Stack Developer
                   </Heading>
-                  {/* </Flex> */}
-                  {/* </Flex> */}
                 </Box>
               </Box>
               <Box

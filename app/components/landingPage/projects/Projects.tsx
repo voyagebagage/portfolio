@@ -158,21 +158,17 @@ const Projects = () => {
           position={"absolute"}
         >
           <ArrowTriangle position={"absolute"} zIndex={2} boxSize={70} />
-        </Box>{" "}
+        </Box>
         <Box
           as={motion.div}
           initial={{ opacity: 0 }}
           animate={on ? { opacity: 1 } : { opacity: 0 }}
           // transition={{ duration: 0.5 }}
-          w="10rem"
+          w="8rem"
           border={"1px solid"}
           h={0}
         />
-        <Box
-          w="10rem"
-          // border={"1px solid white"}
-          h={0}
-        />
+        <Box w="10rem" h={0} />
       </Flex>
       {/* <HStack gap={5} w="70%"> */}
       <Text

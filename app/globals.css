@@ -159,11 +159,6 @@ html {
   align-items: center;
   justify-content: center;
   gap: 4%;
-  /* position: sticky;
-  top: 0; */
-  /* right: "50%"; */
-  /* overflow-x: hidden; */
-  /* scroll-snap-align: start; */
 }
 
 .cards .ticker-section {
@@ -193,7 +188,7 @@ html {
 #work {
   height: 100vh;
   width: 100vw;
-  display: flex;
+  /* display: flex; */
   /* position: relative; */
   /* align-items: center; */
   /* background-color: #303d3d; */

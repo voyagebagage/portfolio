@@ -1,23 +1,33 @@
-"use client";
-import { IconButton, Icon, IconButtonProps, IconProps } from "@chakra-ui/react";
+import { IconButton, IconButtonProps } from "@chakra-ui/react";
 import { motion, MotionProps } from "framer-motion";
 import React from "react";
 
-// type MIconButtonProp = {
-//   // rest:  Object;
-//   children?: React.ReactNode;
-// };
+type MIconButtonProps = IconButtonProps & MotionProps;
+
 const MotionIconButton = motion(IconButton);
 
-const MIconButton = (
-  // children,
-  { ...rest }: IconButtonProps & MotionProps
-): JSX.Element => {
+const MIconButton: React.FC<MIconButtonProps> = ({ ...rest }) => {
   return (
     <MotionIconButton
-      whileHover={{ scale: 1.2 }}
+      whileHover={{
+        scale: 1.2,
+        translateY: -4,
+        // display: "inline-block",
+        opacity: 1,
+      }}
       whileTap={{ scale: 0.85 }}
-      // transition={{ type: "spring", stiffness: 200, damping: 20 }}
+      transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      flexShrink={0}
+      // p={1.5}
+      // boxSize={7}
+      bg="transparent"
+      borderRadius="full"
+      opacity=".9"
+      _hover={{
+        bg: "modeDarkText",
+        color: "modeDarkBg",
+        cursor: "pointer",
+      }}
       {...rest}
     />
   );

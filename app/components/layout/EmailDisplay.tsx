@@ -42,13 +42,11 @@ const EmailDisplay = () => {
           <AnchorLink href="#home">
             <MIconButton
               aria-label="top"
-              icon={<Icon as={ChevronUpIcon} boxSize={6} />}
-              size="xs"
-              colorScheme="teal"
-              borderRadius={"50%"}
+              icon={<Icon as={ChevronUpIcon} boxSize={5} />}
+              size="sm"
+              bg="teal"
               opacity={0.5}
               _hover={{ opacity: 1 }}
-              boxSize={6}
             />
           </AnchorLink>
 
@@ -58,10 +56,8 @@ const EmailDisplay = () => {
       <Link href="https://t.me/oliFantazor" isExternal>
         <MIconButton
           aria-label="telegram"
-          icon={<Icon as={FaTelegramPlane} boxSize={6} />}
-          size="xs"
-          colorScheme=""
-          boxSize={6}
+          size="sm"
+          icon={<Icon as={FaTelegramPlane} boxSize={5} />}
         />
       </Link>
       <Box border={"0.8px solid"} w="1rem" m={0} p={0} />
@@ -71,16 +67,11 @@ const EmailDisplay = () => {
       >
         <MIconButton
           aria-label="whatsapp"
-          // variant={"ghost"}
-          size="xs"
-          colorScheme=""
-          icon={<Icon as={FaWhatsapp} boxSize={6} />}
-          boxSize={6}
+          size="sm"
+          icon={<Icon as={FaWhatsapp} boxSize={5} />}
         />
       </Link>
-      {/* <Text style={{ writingMode: "vertical-rl" }} fontSize="0.75rem" mb="-3">
-        +33-7-69-65-43-61
-      </Text> */}
+
       <Box border={"0.8px solid"} w="1rem" />
       <Link href="mailto:idevandyou@gmail.com">
         <Text

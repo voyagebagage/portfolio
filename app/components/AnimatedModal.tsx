@@ -109,10 +109,6 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
         <AnimatePresence>
           <Modal size="lg" isCentered isOpen={isOpen} onClose={onClose}>
             <ModalOverlay
-              // initial="open"
-              // animate={step === "step3" ? "submitted" : "open"}
-              // exit="submitted"
-              // variants={overlayVariants}
               bg="none"
               backdropFilter="auto"
               backdropInvert="10%"
@@ -280,7 +276,6 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                       </VStack>
                     </Center>
                   </ModalBody>
-                  // {/* </motion.div>
                 )}
               </SlideFade>
             </MotionModalContent>

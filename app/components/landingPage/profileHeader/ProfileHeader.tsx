@@ -2,30 +2,23 @@ import React, { useContext, useState } from "react";
 import NextLink from "next/link";
 import {
   Link,
-  Stack,
   Box,
   useColorMode,
   useMediaQuery,
   HStack,
-  Text,
-  Heading,
   Button,
   Spacer,
   ButtonGroup,
   VStack,
-  Container,
 } from "@chakra-ui/react";
 
-import { BoxForNextImage, ChakraNextImage } from "../../ChakraNextImage";
+import { ChakraNextImage } from "../../ChakraNextImage";
 import { items } from "./data";
 import { motion } from "framer-motion";
 import StackCard from "./StackCard";
 import { TriangleLogo } from "./TriangleLogo";
-import Image from "next/image";
-import {
-  ThemeProviderContext,
-  ThemeProviderContextProps,
-} from "@/app/context/ThemeProviderContext";
+
+import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
 
 function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
   const MotionButton = motion(Button);
@@ -36,7 +29,6 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
   const isDark = colorMode === "dark";
 
   return (
-    // <Container maxW="4xl">
     <HStack
       width="100%"
       // mt={16}

@@ -12,7 +12,7 @@ import { createIcon } from "@chakra-ui/icons";
 import { mode, darken, whiten } from "@chakra-ui/theme-tools";
 import Image, { ImageProps } from "next/image";
 
-interface StyledIconProps extends IconProps {
+export interface StyledIconProps extends IconProps {
   to?: string;
   colors?: string;
   content?: React.ReactNode;
@@ -59,7 +59,7 @@ export const StyledIconGradient = ({
 
 export const StyledIcon = ({ ...rest }: StyledIconProps): JSX.Element => {
   // const primaryFontColor = useColorModeValue("gray.700", "gray.200");
-  const { colorMode } = useColorMode();
+  // const { colorMode } = useColorMode();
 
   // const isButton = props.isButton;
   return (
@@ -68,8 +68,8 @@ export const StyledIcon = ({ ...rest }: StyledIconProps): JSX.Element => {
       p={1.5}
       boxSize={7}
       _hover={{
-        bg: colorMode === "dark" ? "modeDarkText" : whiten("modeDarkBg", 10),
-        color: colorMode === "dark" ? "modeDarkBg" : "modeDarkText",
+        bg: "modeDarkText",
+        color: "modeDarkBg",
         cursor: "pointer",
         transform: "scale(1.2)",
         opacity: "1",
