@@ -272,11 +272,6 @@ const Projects = () => {
         w="50%"
         // h={250}
         h={275}
-        // h="fill"
-        // pb={100}
-        // zIndex={1000}
-        // bg="blue.300"
-        // p={10}
         // className="bg-blue-300"
       >
         {results &&
@@ -285,17 +280,11 @@ const Projects = () => {
               key={index}
               borderRadius="10px"
               // border={"2px solid olive"}
-              // display=
               minW={"90%"}
               w="100%"
               display="flex"
               alignItems={"center"}
-              // w="fit-content"
-              // h={250}
-              // h="fit-content"
-              // p={2}
               m={4}
-              // my={4}
               boxShadow={"lg"}
               // className="w-96 h-auto"
             >

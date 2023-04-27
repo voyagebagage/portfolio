@@ -12,7 +12,7 @@ import { useBoolean } from "@chakra-ui/react";
 export default function Home() {
   const { index, setIndex, showSpinningBox } =
     useContext(ThemeProviderContext)!;
-  const [switchAbout, setSwitchAbout] = useBoolean();
+  // const [switchAbout, setSwitchAbout] = useBoolean();
 
   return (
     <>
@@ -20,8 +20,8 @@ export default function Home() {
         <Ticker
           index={index}
           setIndex={setIndex}
-          setSwitchAbout={setSwitchAbout}
-          switchAbout={switchAbout}
+          // setSwitchAbout={setSwitchAbout}
+          // switchAbout={switchAbout}
         />
         <About index={index} />
         <WorkExperience />

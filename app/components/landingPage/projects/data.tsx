@@ -28,7 +28,7 @@ export const projects = [
       { name: "NextJs", icon: TbIcons.TbBrandNextjs },
       { name: "React", icon: SiIcons.SiReact },
       { name: "Puppeteer", icon: SiIcons.SiPuppeteer },
-      { name: "BootStrap", icon: BsIcons.BsBootstrap },
+      { name: "Bootstrap", icon: BsIcons.BsBootstrap },
     ],
   },
   {

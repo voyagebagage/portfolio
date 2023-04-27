@@ -1,5 +1,13 @@
 // components/SocialLinks.tsx
-import { Box, VStack, Icon, Text, Link, Button } from "@chakra-ui/react";
+import {
+  Box,
+  VStack,
+  Icon,
+  Text,
+  Link,
+  Button,
+  useMediaQuery,
+} from "@chakra-ui/react";
 import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
 // import { AnimateSharedLayout, motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -7,16 +15,10 @@ import MIconButton from "../MIconButton";
 import { ChevronUpIcon } from "@chakra-ui/icons";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
-const variants = {
-  expand: { scale: 2, display: "inline-block" },
-  shrink: { scale: 1 },
-};
-
 const EmailDisplay = () => {
   const [positionFromTop, setPositionFromTop] = useState<Boolean>(false);
-  const [isSelected, setIsSelected] = useState(false);
-  const toggleOpen = () => setIsSelected(!isSelected);
-
+  const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
+  const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (window.scrollY >= 700) {
@@ -28,13 +30,13 @@ const EmailDisplay = () => {
     });
   }, [positionFromTop]);
 
-  return (
+  return isLargerThan800 ? (
     <VStack
       spacing={4}
       position="fixed"
       bottom="0"
       right="0"
-      px="2.8rem"
+      px={isLargerThan1150 ? "2.8rem" : "1rem"}
       zIndex={20}
     >
       {positionFromTop && (
@@ -87,7 +89,7 @@ const EmailDisplay = () => {
       </Link>
       <Box border={"0.7px solid"} h="7rem" />
     </VStack>
-  );
+  ) : null;
 };
 
 export default EmailDisplay;

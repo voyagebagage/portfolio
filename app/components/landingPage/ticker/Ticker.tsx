@@ -5,8 +5,10 @@ import {
   Box,
   Button,
   Center,
+  Flex,
   Icon,
   Text,
+  useMediaQuery,
 } from "@chakra-ui/react";
 
 import {
@@ -171,20 +173,19 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
 //   toggle: () => void;
 // };
 
-interface TickerProps extends ThemeProviderContextProps {
-  switchAbout: boolean;
-  setSwitchAbout: {
-    on: () => void;
-    off: () => void;
-    toggle: () => void;
-  };
-}
-const Ticker = ({
-  index,
-  setIndex,
-  setSwitchAbout,
-  switchAbout,
-}: TickerProps) => {
+// interface TickerProps extends ThemeProviderContextProps {
+//   switchAbout: boolean;
+//   setSwitchAbout: {
+//     on: () => void;
+//     off: () => void;
+//     toggle: () => void;
+//   };
+// }
+const Ticker = ({ index, setIndex }: ThemeProviderContextProps) => {
+  const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
+  const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)");
+  const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
+  const [isLargerThan600] = useMediaQuery("(min-width: 600px)");
   const tickerStackCards = stacks.map((stack, indexStackCard) => {
     if (stack?.category !== "UI") {
       return (
@@ -193,6 +194,7 @@ const Ticker = ({
           // style={{ border: "2px solid orange" }}
         >
           <TickerStackCard
+            index={index}
             title={stack.tickerName || ""}
             content={stack.content || ""}
             level={stack.level || ""}
@@ -221,6 +223,7 @@ const Ticker = ({
           // style={{ border: "2px solid orange" }}
         >
           <TickerStackCard
+            index={index}
             title={stack.tickerName || ""}
             content={stack.content || ""}
             level={stack.level || ""}
@@ -240,7 +243,7 @@ const Ticker = ({
     }
   });
 
-  return (
+  return isLargerThan1150 ? (
     <section>
       <Box position={"relative"} bg="default" h="100%">
         {/* <section className="mySection"></section> */}
@@ -258,7 +261,6 @@ const Ticker = ({
           justifyContent="center"
           gap="0.6rem"
           zIndex={1}
-          // textTransform="uppercase"
           className="mySection"
           // _hover={{ color: "white", stroke: "blue" }}
           // border="2px solid yellow"
@@ -266,35 +268,40 @@ const Ticker = ({
           <ProfileHeader index={index} setIndex={setIndex} />
           <ParallaxCard baseVelocity={-0.6}>{tickerStackCards}</ParallaxCard>
           <ParallaxCard baseVelocity={0.5}>{tickerUICards}</ParallaxCard>
-          {!switchAbout && (
-            <Center>
-              <AnchorLink href="#about">
-                <Button
-                  onClick={setSwitchAbout.on}
-                  zIndex={-1}
-                  ml={"4.6rem"}
-                  mt={"3%"}
-                  boxShadow="2xl"
-                  bg="rgba(255, 255, 255, 0.16)"
-                  aria-label="intro"
-                  p={6}
-                  px={18}
-                  w="4xl"
-                  rightIcon={
-                    <Icon
-                      as={ArrowRightIcon}
-                      transform={"rotate(90deg)"}
-                      ml={2}
-                    />
-                  }
-                >
+
+          <Center>
+            <AnchorLink href="#about">
+              <Button
+                // onClick={setSwitchAbout.on}
+                zIndex={-1}
+                ml={"4.6rem"}
+                mt={"3%"}
+                boxShadow="2xl"
+                bg="rgba(255, 255, 255, 0.16)"
+                aria-label="intro"
+                p={6}
+                px={18}
+                w={isLargerThan1000 ? "4xl" : "fit-content"}
+                rightIcon={
+                  <Icon
+                    as={ArrowRightIcon}
+                    transform={"rotate(90deg)"}
+                    ml={2}
+                  />
+                }
+              >
+                {isLargerThan1000 ? (
                   <Text letterSpacing={2} textAlign={"center"}>
                     Hi, I&apos;m Oli, web and mobile developer based in Thailand
                   </Text>
-                </Button>
-              </AnchorLink>
-            </Center>
-          )}
+                ) : (
+                  <Text letterSpacing={2} textAlign={"center"}>
+                    Hi, I&apos;m Oli, web and mobile
+                  </Text>
+                )}
+              </Button>
+            </AnchorLink>
+          </Center>
         </Box>
         <Box
           position="absolute"
@@ -308,11 +315,55 @@ const Ticker = ({
           zIndex={2}
         />
       </Box>
+    </section>
+  ) : (
+    <section>
+      <Box
+        mt="3.5vh"
+        position="relative"
+        height="100vh"
+        w="100vw"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="center"
+        gap="0.7rem"
+        zIndex={1}
+        className="mySection"
+        // mb="3vh"
+      >
+        <ProfileHeader index={index} setIndex={setIndex} />
+        {/* <Box as={Flex} flexDirection="column" overflowX="hidden" w="87%"> */}
+        <ParallaxCard baseVelocity={-0.6}>{tickerStackCards}</ParallaxCard>
+        <ParallaxCard baseVelocity={0.5}>{tickerUICards}</ParallaxCard>
+        {/* </Box> */}
 
-      {/* <ParallaxCard baseVelocity={-0.09}>{tickerUICards}</ParallaxCard> */}
-      {/* <section className="mySection">
-        <ParallaxCard baseVelocity={-1}>{tickerStackCards}</ParallaxCard>
-      </section> */}
+        <Center>
+          <AnchorLink href="#about">
+            <Button
+              // onClick={setSwitchAbout.on}
+              zIndex={-1}
+              // ml={"4.6rem"}
+              mt={"3%"}
+              boxShadow="2xl"
+              bg="rgba(255, 255, 255, 0.16)"
+              aria-label="intro"
+              p={6}
+              px={8}
+              w="70vw"
+              rightIcon={
+                <Icon as={ArrowRightIcon} transform={"rotate(90deg)"} ml={2} />
+              }
+            >
+              {isLargerThan600 ? (
+                <Text letterSpacing={2} textAlign={"center"}>
+                  Hi, I&apos;m Oli, web and mobile developer
+                </Text>
+              ) : null}
+            </Button>
+          </AnchorLink>
+        </Center>
+      </Box>
     </section>
   );
 };

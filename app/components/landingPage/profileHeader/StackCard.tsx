@@ -20,34 +20,19 @@ import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
 
 interface StackCardProps {
   index: number;
-  setIndex: React.Dispatch<React.SetStateAction<number>>;
+  // setIndex: React.Dispatch<React.SetStateAction<number>>;
   // transition?: Transition;
 }
 interface StackMotionCardProps
   extends PropsOf<typeof motion.div>,
     MotionProps {}
 
-function StackCard({ index, setIndex }: ThemeProviderContextProps) {
+function StackCard({ index }: StackCardProps) {
   const StackMotionCard: ChakraComponent<"div", StackMotionCardProps> = chakra(
     motion.div
   );
   // const [index, setIndex] = useState(0);
   const duration = 2000;
-
-  useEffect(() => {
-    // if (!isShown) {
-    //   setIndex(null);
-    //   // setIntermediary(false);
-    // }
-    const interval = setInterval(() => {
-      if (index >= 5) setIndex(-1);
-      setIndex((index: number) => index + 1);
-    }, 2000);
-
-    return () => clearInterval(interval);
-
-    // setIndex(null);
-  }, [index]);
 
   const transition = {
     default: {

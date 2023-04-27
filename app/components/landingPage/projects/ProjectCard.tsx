@@ -91,6 +91,7 @@ const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
                 rightIcon={
                   <Icon as={VscIcons.VscLinkExternal} boxSize={"0.80rem"} />
                 }
+                onClick={() => window.open(links[0], "_blank")}
               >
                 Readme
               </Button>

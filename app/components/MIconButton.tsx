@@ -12,14 +12,11 @@ const MIconButton: React.FC<MIconButtonProps> = ({ ...rest }) => {
       whileHover={{
         scale: 1.2,
         translateY: -4,
-        // display: "inline-block",
         opacity: 1,
       }}
       whileTap={{ scale: 0.85 }}
       transition={{ type: "spring", stiffness: 400, damping: 17 }}
       flexShrink={0}
-      // p={1.5}
-      // boxSize={7}
       bg="transparent"
       borderRadius="full"
       opacity=".9"

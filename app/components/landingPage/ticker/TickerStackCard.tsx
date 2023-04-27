@@ -1,4 +1,5 @@
 // components/Card.tsx
+import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
 import {
   AbsoluteCenter,
   Card,
@@ -21,6 +22,7 @@ import React from "react";
 import * as CgIcons from "react-icons/cg";
 import * as FcIcons from "react-icons/fc";
 import MIconButton from "../../MIconButton";
+import { items } from "../profileHeader/data";
 
 interface TickerStackCardProps {
   title?: string;
@@ -29,6 +31,7 @@ interface TickerStackCardProps {
   level?: string;
   orientation?: "top" | "bottom";
   project?: string;
+  index: ThemeProviderContextProps["index"];
 }
 // const MIconButton = motion(IconButton);
 
@@ -39,6 +42,7 @@ const TickerStackCard = ({
   level,
   orientation,
   project,
+  index,
 }: TickerStackCardProps) => {
   const contentPhrases: string[] = content?.split("," || ".") as string[];
   // console.log("contentText", contentPhrases);
@@ -59,7 +63,11 @@ const TickerStackCard = ({
         <PopoverTrigger>
           <Card
             // as={Square}
-            _hover={{ bg: "teal.300", color: "#8fbaae" }}
+            _hover={{
+              // bg: items[index].color,
+              filter: "brightness(105%)",
+              color: items[index].color,
+            }}
             borderWidth="0.1px"
             borderRadius="lg"
             // borderColor="transparent"
