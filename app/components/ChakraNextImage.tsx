@@ -10,6 +10,9 @@ export const ChakraNextImage = chakra(
   ({
     src,
     alt,
+    priority,
+    loading,
+    // onLoadingComplete,
     // height,
     // width,
     imageObjectFit,
@@ -21,6 +24,10 @@ export const ChakraNextImage = chakra(
         <Image
           src={src}
           alt={alt}
+          sizes={rest.sizes}
+          // priority={priority}
+          loading={loading}
+          // onLoadingComplete={rest.onLoadingComplete}
           // height={height}
           // width={width}
           fill

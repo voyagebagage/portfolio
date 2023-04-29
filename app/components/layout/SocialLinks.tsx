@@ -1,4 +1,5 @@
 // components/SocialLinks.tsx
+import customTheme from "@/app/styles/theme";
 import { Box, Link, VStack, Icon, useMediaQuery } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
 import MIconButton from "../MIconButton";
@@ -6,12 +7,14 @@ import MIconButton from "../MIconButton";
 const SocialLinks = () => {
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
   const [isLargerThan1050] = useMediaQuery("(min-width: 800px)");
+
   return isLargerThan1050 ? (
     <VStack
       spacing={2}
       position="fixed"
       bottom="0"
       left="0"
+      bg={"#30373d"}
       px={isLargerThan1150 ? "3rem" : "1rem"}
       zIndex={20}
     >

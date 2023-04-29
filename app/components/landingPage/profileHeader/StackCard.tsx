@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import {
   chakra,
   ChakraComponent,
@@ -70,40 +70,42 @@ function StackCard({ index }: StackCardProps) {
         <StackMotionCard
           boxSize={320}
           layout
-          // layoutId={index}
           borderRadius={100}
           transition={transition}
         >
-          <ChakraNextImage
-            src={`${items[index]?.IconName || items[0]?.IconName}`}
-            alt="ducon"
-            boxSize={298}
-            borderRadius="full"
-            flexShrink={0}
-            boxShadow={"lg"}
-            // objectFit="contain"
-          />
-          {/* {(items[index]?.name || items[0]?.name) && (
-            <Heading
-              opacity={0.3}
-              ml={-4}
-              mt={-10}
-              as="h2"
-              pos={"absolute"}
-              display={"flex"}
-              color={items[index]?.color}
-              textAlign="center"
-              alignSelf={"center"}
-              fontSize="6xl"
-              fontWeight={"extraBold"}
-            >
-              {items[index]?.name
-                ? items[index]?.name
-                : items[index]?.name === items[0]?.name
-                ? items[0]?.name
-                : null}
-            </Heading>
-          )} */}
+          <Suspense
+            fallback={
+              <ChakraNextImage
+                src={`${items[0]?.IconName}`}
+                alt="fallback-stack"
+                boxSize={298}
+                borderRadius="full"
+                flexShrink={0}
+                boxShadow={"lg"}
+                // priority={true}
+                // sizes="(max-width: 768px) 100vw,
+                // (max-width: 1200px) 50vw,
+                // 33vw"
+                loading="eager"
+                // objectFit="contain"
+              />
+            }
+          >
+            <ChakraNextImage
+              src={`${items[index]?.IconName}`}
+              alt="stackPic"
+              boxSize={298}
+              borderRadius="full"
+              flexShrink={0}
+              boxShadow={"lg"}
+              priority={true}
+              // loading="eager"
+              // sizes="(max-width: 768px) 100vw,
+              // (max-width: 1200px) 50vw,
+              // 33vw"
+              // objectFit="contain"
+            />
+          </Suspense>
         </StackMotionCard>
       </AnimatePresence>
     </Flex>

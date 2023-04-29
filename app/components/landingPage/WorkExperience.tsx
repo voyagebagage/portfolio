@@ -70,7 +70,7 @@ const WorkExperience = () => {
   const { arrowPointingAt, setArrowPointingAt } = useContext(AnimationContext)!;
   // const [width, height, ref] = useElementSize(-0.2);
   const [adjustedHeight, setAdjustedHeight] = useState<number>(0);
-  const { ref, inView } = useInView({
+  const { ref, inView, entry } = useInView({
     threshold: 0.3,
   });
   const [on, setOn] = useState<boolean>(false);
@@ -93,6 +93,7 @@ const WorkExperience = () => {
     setOn(false);
     setArrowPointingAt("");
   };
+  // console.log("entry", entry?.isIntersecting, "inView", inView);
 
   return (
     <section
@@ -203,19 +204,24 @@ const WorkExperience = () => {
 
                 position="relative"
               >
-                <Image
-                  src={"/ninjaGroupMod.png"}
-                  alt={"workedExperience_ninjaPartnerGroup"}
-                  fill
-                  sizes="(max-width: 768px) 100vw,
-                  (max-width: 1200px) 50vw,
-                  33vw"
-                  style={{
-                    filter: "brightness(65%) grayscale(60%) blur(0.2px)",
-                    objectFit: "cover",
-                    borderRadius: "0 10px 0 0",
-                  }}
-                />
+                {entry?.isIntersecting && (
+                  <Image
+                    src={"/ninjaGroupMod.png"}
+                    alt={"workedExperience_ninjaPartnerGroup"}
+                    fill
+                    sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 50vw,
+                33vw"
+                    style={{
+                      filter: "brightness(65%) grayscale(60%) blur(0.2px)",
+                      objectFit: "cover",
+                      borderRadius: "0 10px 0 0",
+                    }}
+                    // priority={entry?.isIntersecting}
+                    // loading="lazy"
+                  />
+                )}
+
                 <Box
                   // border={"1px solid cyan"}
                   pb={0}
@@ -233,21 +239,22 @@ const WorkExperience = () => {
                     my={4}
                     ml={"0.7rem"}
                   >
-                    <ChakraNextImage
-                      src={"/ninjaLogoSquare.png"}
-                      alt={"workedExperience_ninjaPartnerLogo"}
-                      sizes="(max-width: 768px) 100vw,
-                      (max-width: 1200px) 50vw,
-                      33vw"
-                      w={"100%"}
-                      h={"100%"}
-                      border="0.1px solid"
-                      borderRadius={"50%"}
-                      objectFit={"contain"}
-                      // imageBorderRadius="50%"
-                      // imageObjectFit={"contain"}
-                      // priority={true}
-                    />
+                    {entry?.isIntersecting && (
+                      <ChakraNextImage
+                        src={"/ninjaLogoSquare.png"}
+                        alt={"workedExperience_ninjaPartnerLogo"}
+                        sizes="(max-width: 768px) 100vw,
+                    (max-width: 1200px) 50vw,
+                    33vw"
+                        w={"100%"}
+                        h={"100%"}
+                        border="0.1px solid"
+                        borderRadius={"50%"}
+                        objectFit={"contain"}
+                        // priority={inView}
+                        // loading="lazy"
+                      />
+                    )}
                   </Square>
                   <Heading
                     // border={"1px solid yellow"}
