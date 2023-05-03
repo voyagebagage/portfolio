@@ -19,6 +19,7 @@ const EmailDisplay = () => {
   const [positionFromTop, setPositionFromTop] = useState<Boolean>(false);
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
+
   useEffect(() => {
     window.addEventListener("scroll", () => {
       if (window.scrollY >= 700) {
@@ -36,6 +37,7 @@ const EmailDisplay = () => {
       position="fixed"
       bottom="0"
       right="0"
+      bg={isLargerThan800 && !isLargerThan1150 ? "#30373d" : "transparent"}
       px={isLargerThan1150 ? "2.8rem" : "1rem"}
       zIndex={20}
     >

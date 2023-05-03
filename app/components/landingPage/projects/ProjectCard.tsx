@@ -108,6 +108,11 @@ const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
             borderRadius={"0 10px 10px 0"}
           >
             <Box
+              _hover={{
+                filter: "brightness(0.3)",
+                padding: 6,
+                border: "1px solid red",
+              }}
               w={"100%"}
               minW={imgFullWitdh ? width : "100%"}
               h={height}

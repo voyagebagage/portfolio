@@ -29,8 +29,9 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
   const { colorMode } = useColorMode();
   const [isShown, setIsShown] = useState(false);
   const isDark = colorMode === "dark";
-
+  const [turnOnQuery, setTurnOnQuery] = useState(true);
   useEffect(() => {
+    setTurnOnQuery(false);
     const interval = setInterval(() => {
       if (index >= 5) setIndex(-1);
       setIndex((index: number) => index + 1);
@@ -39,9 +40,8 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
     return () => clearInterval(interval);
   }, [index]);
   console.log(
-    "isLargerThan850",
-    isLargerThan850,
-    "WINDOW"
+    ["isLargerThan850", isLargerThan850],
+    ["turnOnQuery", turnOnQuery]
     // typeof window,
     // window.document.head
     // win  dow.
@@ -88,7 +88,7 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
       repeatType: "loop",
     },
   };
-  return isLargerThan850 ? (
+  return turnOnQuery || isLargerThan850 ? (
     <HStack
       width="100%"
       // mt={16}

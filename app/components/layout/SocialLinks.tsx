@@ -6,15 +6,15 @@ import MIconButton from "../MIconButton";
 
 const SocialLinks = () => {
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
-  const [isLargerThan1050] = useMediaQuery("(min-width: 800px)");
+  const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
 
-  return isLargerThan1050 ? (
+  return isLargerThan800 ? (
     <VStack
       spacing={2}
       position="fixed"
       bottom="0"
       left="0"
-      bg={"#30373d"}
+      bg={isLargerThan800 && !isLargerThan1150 ? "#30373d" : "transparent"}
       px={isLargerThan1150 ? "3rem" : "1rem"}
       zIndex={20}
     >

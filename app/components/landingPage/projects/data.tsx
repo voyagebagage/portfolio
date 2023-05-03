@@ -22,7 +22,7 @@ export const projects = [
     links: ["https://github.com/voyagebagage/view-booster-pwa"],
     img: "",
     content:
-      "A personal project to boost the views of videos youtube, this is made as a progressive web app, with NextJs on the front and Back end, it is currently 2mb to big to be deployed on vercel/AWS/Netlify, but it is working locally, I'm looking at EC2 to deploy it",
+      "A personal project to boost the views of videos youtube, this is made as a progressive web app, with NextJs on the front and Back end, This works locally only as it is currently 2mb to big to be deployed,and that is why I won't use pupeteer for boting... I'm looking at EC2 to deploy it",
 
     tags: [
       { name: "NextJs", icon: TbIcons.TbBrandNextjs },
@@ -41,7 +41,7 @@ export const projects = [
       { name: "React", icon: SiIcons.SiReact },
       { name: "AWS", icon: SiIcons.SiAmazonaws },
       { name: "Amplify", icon: SiIcons.SiAwsamplify },
-      { name: "GrapghQl", icon: SiIcons.SiGraphql },
+      { name: "GraphQL", icon: SiIcons.SiGraphql },
       { name: "DynamoDB", icon: SiIcons.SiAmazondynamodb },
       { name: "Semantic UI", icon: SiIcons.SiChakraui },
     ],

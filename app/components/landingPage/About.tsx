@@ -58,7 +58,7 @@ const About = ({ index }: Props) => {
 
   return (
     <section
-      // id="about"
+      id="about"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -73,7 +73,7 @@ const About = ({ index }: Props) => {
         // bg="#2BDEB2"
         // bg="#28D0A9"
       >
-        <Container maxW="4xl">
+        <Container maxW={{ sm: "100%", md: "xl", lg: "4xl" }}>
           <Text as="kbd" fontSize={"md"} color="#64ffda">
             Hi, my name is
           </Text>
@@ -120,7 +120,14 @@ const About = ({ index }: Props) => {
           >
             I do web and mobile app.
           </Heading>
-          <SimpleGrid columns={2} w="100%" spacingX={7} spacingY={2} p={2}>
+          <SimpleGrid
+            columns={{ sm: 1, md: 2, lg: 2, xl: 2 }}
+            w="100%"
+            // minChildWidth="200px"
+            spacingX={7}
+            spacingY={2}
+            p={4}
+          >
             <Box>
               <Text wordBreak="break-word" textAlign="right">
                 <Highlight

@@ -242,6 +242,7 @@ const Projects = () => {
             flexWrap="wrap"
             w="100%"
             boxSizing="border-box"
+            pt={1}
           >
             {tagList.map((tag, index) => (
               <Tag
@@ -250,6 +251,7 @@ const Projects = () => {
                 size="lg"
                 colorScheme="teal"
                 variant="solid"
+                // _hover={{ variant: "outline" }}
                 cursor="pointer"
                 display="flex"
                 w="fit-content"
