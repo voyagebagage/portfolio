@@ -19,17 +19,30 @@ import StackCard from "./StackCard";
 import { TriangleLogo } from "./TriangleLogo";
 
 import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
+import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
 
 function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
   const MotionButton = motion(Button);
-  const [isSmallerThan600] = useMediaQuery("(min-width:600px)");
-  const isLargerThan850 = useLayoutMediaQuery("(min-width:850px)");
   // const [isLargerThan850] = useMediaQuery("(min-width:850px)");
-  const [isLargerThan1280] = useMediaQuery("(min-width:1280px)");
   const { colorMode } = useColorMode();
   const [isShown, setIsShown] = useState(false);
   const isDark = colorMode === "dark";
   const [turnOnQuery, setTurnOnQuery] = useState(true);
+
+  //~~~~~~~~~~~~~~~MediaQueries~~~~~~~~~~~~~~~~~~~~~
+  const {
+    screenSizeIsSmallerThan600,
+    screenSizeIsLargerThan850,
+    screenSizeIsLargerThan1280,
+  } = useFirstLoadMediaBooleans();
+  const [isSmallerThan600] = useMediaQuery("(min-width:600px)");
+  const isLargerThan850 = useLayoutMediaQuery("(min-width:850px)");
+  const [isLargerThan1280] = useMediaQuery("(min-width:1280px)");
+  //===================================
+  const myIsSmallerThan600 = isSmallerThan600 || screenSizeIsSmallerThan600;
+  const myIsLargerThan850 = isLargerThan850 || screenSizeIsLargerThan850;
+  const myIsLargerThan1280 = isLargerThan1280 || screenSizeIsLargerThan1280;
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   useEffect(() => {
     setTurnOnQuery(false);
     const interval = setInterval(() => {
@@ -39,13 +52,6 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
 
     return () => clearInterval(interval);
   }, [index]);
-  console.log(
-    ["isLargerThan850", isLargerThan850],
-    ["turnOnQuery", turnOnQuery]
-    // typeof window,
-    // window.document.head
-    // win  dow.
-  );
 
   const whileHover = {
     letsTalk: {
@@ -88,7 +94,7 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
       repeatType: "loop",
     },
   };
-  return turnOnQuery || isLargerThan850 ? (
+  return myIsLargerThan850 ? (
     <HStack
       width="100%"
       // mt={16}
@@ -219,7 +225,7 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
         <ChakraNextImage
           src={"/ProfilePic.jpg"}
           alt={"ProfilePic"}
-          mr={"8%"}
+          // mr={"8%"}
           borderRadius="full"
           flexShrink={0}
           // mt={20}

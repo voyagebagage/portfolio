@@ -1,21 +1,28 @@
 // components/SocialLinks.tsx
 import customTheme from "@/app/styles/theme";
+import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
 import { Box, Link, VStack, Icon, useMediaQuery } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
 import MIconButton from "../MIconButton";
 
 const SocialLinks = () => {
+  //~~~~~~~~~~~~~~~MediaQueries~~~~~~~~~~~~~~~~~~~~~
+  const { screenSizeIsLargerThan800, screenSizeIsLargerThan1150 } =
+    useFirstLoadMediaBooleans();
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
+  const myIsLargerThan1150 = isLargerThan1150 || screenSizeIsLargerThan1150;
+  const myIsLargerThan800 = isLargerThan800 || screenSizeIsLargerThan800;
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  return isLargerThan800 ? (
+  return myIsLargerThan800 ? (
     <VStack
       spacing={2}
       position="fixed"
       bottom="0"
       left="0"
-      bg={isLargerThan800 && !isLargerThan1150 ? "#30373d" : "transparent"}
-      px={isLargerThan1150 ? "3rem" : "1rem"}
+      bg={myIsLargerThan800 && !myIsLargerThan1150 ? "#30373d" : "transparent"}
+      px={myIsLargerThan1150 ? "3rem" : "1rem"}
       zIndex={20}
     >
       <Link href="https://github.com/voyagebagage" isExternal>

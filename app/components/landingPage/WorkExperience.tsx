@@ -24,6 +24,7 @@ import {
   List,
   ListItem,
   ListIcon,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { ChakraNextImage } from "../ChakraNextImage";
@@ -35,6 +36,7 @@ import {
   ThemeProviderContext,
   AnimationContext,
 } from "@/app/context/ThemeProviderContext";
+import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
 
 type SimpleListProps = {
   myList?: string[];
@@ -67,6 +69,20 @@ export const SimpleList = ({ myList, icon, noIcon }: SimpleListProps) => (
   </UnorderedList>
 );
 const WorkExperience = () => {
+  //~~~~~~~~~~~~
+  const {
+    screenSizeIsSmallerThan600,
+    screenSizeIsLargerThan800,
+    screenSizeIsLargerThan920,
+    screenSizeIsLargerThan1150,
+  } = useFirstLoadMediaBooleans();
+  const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
+  const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
+  const [isLargerThan920] = useMediaQuery("(min-width: 920px)");
+  const myIsLargerThan1150 = isLargerThan1150 || screenSizeIsLargerThan1150;
+  const myIsLargerThan920 = isLargerThan920 || screenSizeIsLargerThan920;
+  const myIsLargerThan800 = isLargerThan800 || screenSizeIsLargerThan800;
+  //~~~~~~~~~~~~
   const { arrowPointingAt, setArrowPointingAt } = useContext(AnimationContext)!;
   // const [width, height, ref] = useElementSize(-0.2);
   const [adjustedHeight, setAdjustedHeight] = useState<number>(0);
@@ -100,7 +116,7 @@ const WorkExperience = () => {
       id="work"
       className="shadow-xl  pt-2 pb-10 mb-2 "
       style={{
-        width: "70%",
+        width: myIsLargerThan1150 ? "70%" : myIsLargerThan800 ? "80%" : "100%",
         margin: "auto",
         // borderRadius: "40px 40px 0px 0px",
         // borderRadius: "40px 40px  80% 80%",
@@ -144,9 +160,10 @@ const WorkExperience = () => {
       <Tabs
         isFitted
         variant="enclosed"
-        orientation="vertical"
-        h={`${calc(100 / 2)}%`}
+        orientation={myIsLargerThan1150 ? "vertical" : "horizontal"}
+        minH={`${calc(100 / 2)}%`}
         w={`${calc(100 / 1.75)}%`}
+        h={"fit-content"}
         // border={"4px solid blue"}
         pb={0}
         borderBottom={0}
@@ -262,6 +279,7 @@ const WorkExperience = () => {
                     size={"lg"}
                     display="flex"
                     pt={2}
+                    pr={2}
                     // ml={-3}
                     lineHeight={1.8}
                     letterSpacing="wider"
@@ -420,9 +438,11 @@ const WorkExperience = () => {
               </Box>
             </VStack>
           </TabPanel>
+          {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~ BootCamp */}
           <TabPanel
             w="full"
             h="100%"
+            // h={"fit-content"}
             // border={"1px solid white"}
             pt={0}
             pr={0}
@@ -458,6 +478,7 @@ const WorkExperience = () => {
                     // objectPosition: "left",
                   }}
                 />
+                {/* //~~~~~~~~~~~~~~~ */}
                 <Box
                   // border={"1px solid cyan"}
                   // as={HStack}
@@ -500,6 +521,7 @@ const WorkExperience = () => {
                     size={"lg"}
                     display="flex"
                     pt={2}
+                    pr={2}
                     // ml={-3}
                     lineHeight={1.8}
                     letterSpacing="wider"
@@ -509,10 +531,6 @@ const WorkExperience = () => {
                   >
                     Le Réacteur
                   </Heading>
-                  <IconButton
-                    aria-label="icon-reacteur"
-                    icon={<ExternalLinkIcon />}
-                  />
                 </Box>
               </Box>
               <Box
@@ -525,16 +543,21 @@ const WorkExperience = () => {
                 <Heading size="md" pl="6">
                   mar - july 2021
                 </Heading>
+                <IconButton
+                  aria-label="icon-reacteur"
+                  icon={<ExternalLinkIcon />}
+                />
               </Box>
               <Box
                 pb={0}
-                pl={1}
+                // pl={1}
                 // border={"1px solid white"}
                 w="full"
                 h={"full"}
                 // flexDirection="row"
+                // p={3}
               >
-                <Container>
+                <Container py={2}>
                   <SimpleList
                     // border="1px solid"
                     // icon={BsIcons.BsPatchCheckFill}

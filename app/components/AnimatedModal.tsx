@@ -1,3 +1,4 @@
+"use client";
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import useForm from "../customHooks/useForm";
@@ -35,7 +36,7 @@ const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
 const userId = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
 
 type Props = {
-  setVisitingName: React.Dispatch<React.SetStateAction<string>>;
+  setVisitingName: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 const AnimatedModal = ({ setVisitingName }: Props) => {
   const { handleChange, handleClick, formState, submitted, setSubmitted } =
@@ -73,7 +74,9 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
     if (userType === "want a website") {
     }
     const token = uuidv4();
-    setToken(token);
+    console.log(typeof token);
+
+    setToken(`${name}--${token}`);
 
     //send an email to me with coordinates collected
     console.log("send an email to me with coordinates collected");

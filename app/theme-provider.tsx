@@ -40,7 +40,7 @@ export default function ThemeProvider({
     "about" || "work" || "projects" || "contact"
   );
   const [index, setIndex] = useState<number>(0);
-  const [visitingName, setVisitingName] = useState<string>("");
+  const [visitingName, setVisitingName] = useState<string | undefined>("");
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const contextValues = {
@@ -68,7 +68,11 @@ export default function ThemeProvider({
           <ThemeProviderContext.Provider value={contextValues}>
             <SocialLinks />
             <EmailDisplay />
-            <Header visitingName={visitingName} index={index} />
+            <Header
+              visitingName={visitingName}
+              setVisitingName={setVisitingName}
+              index={index}
+            />
             {/* <FloatingButton /> */}
             {children}
             <Footer />

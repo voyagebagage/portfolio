@@ -1,9 +1,10 @@
+"use client";
 import Cookies from "js-cookie";
 
 const TOKEN_NAME = "userToken";
 
 export const setToken = (token: string) => {
-  Cookies.set(TOKEN_NAME, token);
+  Cookies.set(TOKEN_NAME, token, { expires: 2 });
 };
 
 export const getToken = (): string | null => {
