@@ -10,23 +10,16 @@ import Contact from "./components/landingPage/Contact";
 import { useBoolean } from "@chakra-ui/react";
 
 export default function Home() {
-  const { index, setIndex, showSpinningBox } =
-    useContext(ThemeProviderContext)!;
-  // const [switchAbout, setSwitchAbout] = useBoolean();
+  const { index, setIndex } = useContext(ThemeProviderContext)!;
 
   return (
     <>
       <div className="cards" id="home">
-        <Ticker
-          index={index}
-          setIndex={setIndex}
-          // setSwitchAbout={setSwitchAbout}
-          // switchAbout={switchAbout}
-        />
+        <Ticker index={index} setIndex={setIndex} />
         <About index={index} />
         <WorkExperience />
         <Projects />
-        <Contact />
+        <Contact index={index} />
       </div>
     </>
   );

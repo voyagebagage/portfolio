@@ -1,4 +1,7 @@
-import { AnimationContext } from "@/app/context/ThemeProviderContext";
+import {
+  AnimationContext,
+  ThemeProviderContextProps,
+} from "@/app/context/ThemeProviderContext";
 import { EmailIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -19,8 +22,12 @@ import React, { useContext, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { inViewAnimation, outOfViewAnimation } from "../animations/animation";
 import { ArrowTriangle } from "../StyledIcons";
+import { items } from "./profileHeader/data";
 
-const Contact = () => {
+type Props = {
+  index: ThemeProviderContextProps["index"];
+};
+const Contact = ({ index }: Props) => {
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const { ref, inView } = useInView({
     threshold: 1,
@@ -56,7 +63,11 @@ const Contact = () => {
       onMouseLeave={handleMouseLeave}
     >
       <Flex justify={"center"} align={"flex-end"}>
-        <Heading position={"relative"} ref={ref}>
+        <Heading
+          position={"relative"}
+          ref={ref}
+          size={{ xs: "md", sm: "lg", md: "xl", lg: "2xl" }}
+        >
           <Highlight
             query={["03.", "Contact"]}
             styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
@@ -94,12 +105,23 @@ const Contact = () => {
       >
         What&apos;s next ?
       </Text>
-      <Container textAlign={"center"} fontSize="larger">
+      <Container
+        textAlign={"center"}
+        fontSize="larger"
+        // pb={1}
+        size={{ sm: "sm", md: "xl" }}
+      >
         Although I’m not currently looking for any new opportunities, my inbox
         is always open. Whether you have a question or just want to say hi, I’ll
         try my best to get back to you!
       </Container>
-      <Box display={"flex"} flexDirection="column" boxSize={"xl"}>
+      <Box
+        display={"flex"}
+        flexDirection="column"
+        pr={1}
+        pl={1}
+        boxSize={{ xs: "sm", sm: "md", md: "xl" }}
+      >
         <InputGroup gap={"2%"}>
           <Input
             placeholder="Your name"
@@ -154,11 +176,12 @@ const Contact = () => {
             as={Link}
             w="50%"
             px={8}
-            color={"primary"}
+            color={items[index]?.color || items[0]?.color}
             fontSize="xl"
             fontWeight={"semibold"}
             variant="outline"
             href="mailto:idevandyou@gmail.com"
+            borderColor={items[index]?.color || items[0]?.color}
           >
             Mail app
           </Button>

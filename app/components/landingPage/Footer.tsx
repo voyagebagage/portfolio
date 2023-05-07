@@ -1,9 +1,10 @@
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import React from "react";
 
 const Footer = () => {
   return (
-    <section className="h-1/5" style={{ border: "2px solid green" }}>
-      Footer
+    <section className="h-1/4 pl-40">
+      Code Source :<ExternalLinkIcon />
     </section>
   );
 };

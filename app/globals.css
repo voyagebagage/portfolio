@@ -147,7 +147,7 @@ html {
   border: "1px solid pink";
 } */
 .cards {
-  position: relative;
+  /* position: relative; */
   /* background-color: cyan; */
 }
 
@@ -167,7 +167,8 @@ html {
 }
 
 #about {
-  height: 60vh;
+  min-height: 60vh;
+  height: fit-content;
   width: 100vw;
 
   /* align-items: flex-start; */
@@ -177,7 +178,7 @@ html {
   /* background-color: #80d7dd; */
 }
 #projects {
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
   margin-top: 3.65rem;
   /* align-items: center; */
@@ -202,7 +203,7 @@ html {
   /* bg="#759c91" */
 }
 #contact {
-  height: 100vh;
+  height: 90vh;
   width: 100vw;
   background-color: #2f373d;
   /* align-items: center; */

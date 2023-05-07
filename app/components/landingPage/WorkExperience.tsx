@@ -69,20 +69,22 @@ export const SimpleList = ({ myList, icon, noIcon }: SimpleListProps) => (
   </UnorderedList>
 );
 const WorkExperience = () => {
-  //~~~~~~~~~~~~
+  //~~~~~~~~~~~~Media Queries~~~~~~~~~~~~~~~~~
   const {
     screenSizeIsSmallerThan600,
     screenSizeIsLargerThan800,
     screenSizeIsLargerThan920,
     screenSizeIsLargerThan1150,
   } = useFirstLoadMediaBooleans();
+  const [isLargerThan600] = useMediaQuery("(max-width: 600px)");
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
   const [isLargerThan920] = useMediaQuery("(min-width: 920px)");
+  const myIsLargerThan600 = isLargerThan600 || screenSizeIsSmallerThan600;
   const myIsLargerThan1150 = isLargerThan1150 || screenSizeIsLargerThan1150;
   const myIsLargerThan920 = isLargerThan920 || screenSizeIsLargerThan920;
   const myIsLargerThan800 = isLargerThan800 || screenSizeIsLargerThan800;
-  //~~~~~~~~~~~~
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const { arrowPointingAt, setArrowPointingAt } = useContext(AnimationContext)!;
   // const [width, height, ref] = useElementSize(-0.2);
   const [adjustedHeight, setAdjustedHeight] = useState<number>(0);
@@ -109,25 +111,29 @@ const WorkExperience = () => {
     setOn(false);
     setArrowPointingAt("");
   };
-  // console.log("entry", entry?.isIntersecting, "inView", inView);
 
   return (
     <section
       id="work"
-      className="shadow-xl  pt-2 pb-10 mb-2 "
+      className="shadow-xl pt-2 pb-10 mb-2 "
       style={{
         width: myIsLargerThan1150 ? "70%" : myIsLargerThan800 ? "80%" : "100%",
         margin: "auto",
         // borderRadius: "40px 40px 0px 0px",
         // borderRadius: "40px 40px  80% 80%",
         borderRadius: "40px 40px 40px 40px",
-        // borderTop: "2px solid",
       }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <Flex justify={"center"} align={"flex-end"}>
-        <Heading position="relative" ref={ref}>
+        <Heading
+          as="h2"
+          // fontSize={myIsLargerThan600 ? "xl" : null}
+          size={{ xs: "md", sm: "lg", md: "xl", lg: "2xl" }}
+          position="relative"
+          ref={ref}
+        >
           <Highlight
             query={["01.", "worked ..."]}
             styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
@@ -162,8 +168,8 @@ const WorkExperience = () => {
         variant="enclosed"
         orientation={myIsLargerThan1150 ? "vertical" : "horizontal"}
         minH={`${calc(100 / 2)}%`}
-        w={`${calc(100 / 1.75)}%`}
-        h={"fit-content"}
+        w={myIsLargerThan600 ? "100%" : `${calc(100 / 1.75)}%`}
+        h={myIsLargerThan600 ? "80%" : "fit-content"}
         // border={"4px solid blue"}
         pb={0}
         borderBottom={0}
@@ -209,7 +215,7 @@ const WorkExperience = () => {
             pt={0}
             pr={0}
             pl={0}
-            boxShadow="xl"
+            // boxShadow="xl"
           >
             <VStack h="100%">
               <Box
@@ -296,7 +302,7 @@ const WorkExperience = () => {
                 display="flex"
                 alignItems={"center"}
               >
-                <Heading size="md">
+                <Heading size="md" pl="6">
                   oct 2021 - feb 2022 / oct 2022- dec 2022
                 </Heading>
               </Box>
@@ -419,7 +425,7 @@ const WorkExperience = () => {
                 display="flex"
                 alignItems={"center"}
               >
-                <Heading size="md">
+                <Heading size="md" pl="6">
                   oct 2021 - feb 2022 / oct 2022- dec 2022
                 </Heading>
               </Box>
@@ -441,13 +447,13 @@ const WorkExperience = () => {
           {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~ BootCamp */}
           <TabPanel
             w="full"
-            h="100%"
-            // h={"fit-content"}
+            minH="100%"
+            h={"fit-content"}
             // border={"1px solid white"}
             pt={0}
             pr={0}
             pl={0}
-            boxShadow="xl"
+            // boxShadow="xl"
           >
             <VStack h="100%">
               <Box

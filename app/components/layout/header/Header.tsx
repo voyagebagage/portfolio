@@ -32,14 +32,18 @@ const Header = ({ visitingName, setVisitingName, index }: props) => {
   const [positionFromTop, setPositionFromTop] = useState<Boolean>(false);
 
   //~~~~~~~~~~~~~~~MediaQueries~~~~~~~~~~~~~~~~~~~~~
-  const { screenSizeIsSmallerThan600, screenSizeIsLargerThan1150 } =
-    useFirstLoadMediaBooleans();
+  const {
+    screenSizeIsSmallerThan600,
+    screenSizeIsSmallerThan700,
+    screenSizeIsLargerThan1150,
+  } = useFirstLoadMediaBooleans();
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
   const [isSmallerThan700] = useMediaQuery("(max-width: 700px)");
   const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
   //========================
   const myIsLargerThan1150 = isLargerThan1150 || screenSizeIsLargerThan1150;
   const myIsSmallerThan600 = isSmallerThan600 || screenSizeIsSmallerThan600;
+  const myIsSmallerThan700 = isSmallerThan700 || screenSizeIsSmallerThan700;
   // document.documentElement.clientWidth < 600 ? true : false;
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   useEffect(() => {
@@ -127,7 +131,7 @@ const Header = ({ visitingName, setVisitingName, index }: props) => {
         </Box>
       </div>
     </Box>
-  ) : !myIsSmallerThan600 ? (
+  ) : !myIsSmallerThan700 ? (
     <Box
       className="flex flex-row items-center justify-between px-2 py-1"
       w="100%"
@@ -151,11 +155,25 @@ const Header = ({ visitingName, setVisitingName, index }: props) => {
           items[index]?.color || items[0]?.color
         },#4ff3cc)`}
         bgClip="text"
-        ml={"-10rem"}
+        // ml={"-10rem"}
         // className="-ml-40"
       >
         Welcome <>{visitingName}</>
       </Text>
+      {positionFromTop && (
+        // <Box alignSelf={"end"}>
+        <AnchorLink href="#home">
+          <MIconButton
+            aria-label="top"
+            icon={<Icon as={ChevronUpIcon} boxSize={5} />}
+            size="sm"
+            bg="teal"
+            opacity={0.5}
+            _hover={{ opacity: 1 }}
+          />
+        </AnchorLink>
+        // </Box>
+      )}
       <div className="flex justify-around gap-8">
         <Box _hover={{ color: "#64FFDA" }}>
           <AnchorLink href="#about">
@@ -189,7 +207,7 @@ const Header = ({ visitingName, setVisitingName, index }: props) => {
     </Box>
   ) : (
     <HStack
-      // as={Box}
+      as={Box}
       spacing={4}
       // border="2px solid blue"
       w="100%"
@@ -197,41 +215,45 @@ const Header = ({ visitingName, setVisitingName, index }: props) => {
       css={{ backdropFilter: "blur(15px)" }}
       zIndex={99009}
       maxH="10.3vh"
-      alignItems={"flex-end"}
+      h="7vh"
+      pb={1}
+      display={"flex"}
+      alignItems={"end"}
       justifyContent="space-around"
     >
       <Text
-        // as="p"
         noOfLines={1}
         pt={2}
         w={"50%"}
-        // h="20%"
         fontSize="xl"
         fontWeight="bold"
         bgGradient={`linear(to-r, ${
           items[index]?.color || items[0]?.color
         },#4ff3cc)`}
         bgClip="text"
-        alignSelf={"end"}
+        display={"flex"}
+        // alignSelf={"end"}
         // className=""
       >
         Welcome <>{visitingName}</>
       </Text>
       {positionFromTop && (
-        <>
+        <Box display={"flex"} pt={3} mt={3}>
           <AnchorLink href="#home">
             <MIconButton
               aria-label="top"
               icon={<Icon as={ChevronUpIcon} boxSize={5} />}
-              size="sm"
+              size="md"
               bg="teal"
               opacity={0.5}
               _hover={{ opacity: 1 }}
             />
           </AnchorLink>
-        </>
+        </Box>
       )}
-      <BurgerMenu />
+      <Box alignSelf={"center"}>
+        <BurgerMenu />
+      </Box>
     </HStack>
   );
 };

@@ -13,6 +13,7 @@ const fonts = {
   heading: "Inter",
 };
 const breakpoints = {
+  xs: "20em",
   sm: "40em",
   md: "52em",
   lg: "64em",

@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 
 interface ScreenSizeProperties {
   screenSizeIsSmallerThan600?: boolean;
+  screenSizeIsSmallerThan640?: boolean;
   screenSizeIsSmallerThan700?: boolean;
   screenSizeIsLargerThan600?: boolean;
   screenSizeIsLargerThan800?: boolean;
@@ -41,6 +42,7 @@ export default (): ScreenSizeProperties => {
   }
 
   const screenSizeIsSmallerThan600 = screenSize < 600;
+  const screenSizeIsSmallerThan640 = screenSize < 640;
   const screenSizeIsSmallerThan700 = screenSize < 700;
   const screenSizeIsLargerThan600 = screenSize > 600;
   const screenSizeIsLargerThan800 = screenSize > 800;
@@ -52,6 +54,7 @@ export default (): ScreenSizeProperties => {
 
   return {
     screenSizeIsSmallerThan600,
+    screenSizeIsSmallerThan640,
     screenSizeIsSmallerThan700,
     screenSizeIsLargerThan600,
     screenSizeIsLargerThan800,

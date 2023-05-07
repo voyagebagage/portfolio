@@ -6,6 +6,7 @@ import {
   Heading,
   Container,
   Highlight,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { items } from "./profileHeader/data";
@@ -20,14 +21,16 @@ import { useInView } from "react-intersection-observer";
 import ArrowPointingCards from "../ArrowPointingCards";
 import usePositionFromTop from "@/app/customHooks/useScrollValue";
 import { inViewAnimation, outOfViewAnimation } from "../animations/animation";
+import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
 
 type Props = {
   index: ThemeProviderContextProps["index"];
-  // arrowPointingAt: ThemeProviderContextProps["arrowPointingAt"];
-  // setArrowPointingAt: ThemeProviderContextProps["setArrowPointingAt"];
-  // refSetter: (node: HTMLElement) => void;
 };
 const About = ({ index }: Props) => {
+  //~~~~~~~~~~~~~~~MediaQueries~~~~~~~~~~~~~~~~~~~~~
+  const { screenSizeIsSmallerThan640 } = useFirstLoadMediaBooleans();
+  const [isSmallerThan600] = useMediaQuery("(max-width: 640px)");
+  const myIsSmallerThan640 = isSmallerThan600 || screenSizeIsSmallerThan640;
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const { ref, inView } = useInView({
     threshold: 1,
@@ -82,7 +85,7 @@ const About = ({ index }: Props) => {
             position={"relative"}
             letterSpacing={1.8}
             fontSize="5xl"
-            pl={39}
+            pl={myIsSmallerThan640 ? 0 : 39}
             // className="pl-16"
             textAlign={"center"}
             filter="brightness(105%)"
@@ -115,13 +118,22 @@ const About = ({ index }: Props) => {
           <Heading
             letterSpacing={1.5}
             fontSize="5xl"
-            className="pl-16"
+            pl={myIsSmallerThan640 ? 0 : "4rem"}
+            // className="pl-16"
             filter="brightness(75%)"
           >
-            I do web and mobile app.
+            <Highlight
+              query={["."]}
+              styles={{
+                color: items[index]?.color || items[0]?.color,
+                filter: "brightness(200%)",
+              }}
+            >
+              I do web and mobile app.
+            </Highlight>
           </Heading>
           <SimpleGrid
-            columns={{ sm: 1, md: 2, lg: 2, xl: 2 }}
+            columns={{ sm: 2, xs: 1 }}
             w="100%"
             // minChildWidth="200px"
             spacingX={7}
@@ -129,7 +141,10 @@ const About = ({ index }: Props) => {
             p={4}
           >
             <Box>
-              <Text wordBreak="break-word" textAlign="right">
+              <Text
+                wordBreak="break-word"
+                textAlign={myIsSmallerThan640 ? "center" : "right"}
+              >
                 <Highlight
                   query={["front", "full", "Koh Phangan"]}
                   styles={{ color: "#64FFDA" }}
@@ -142,7 +157,11 @@ const About = ({ index }: Props) => {
               </Text>
             </Box>
             <Box>
-              <Text wordBreak="break-word" textAlign="left">
+              <Text
+                wordBreak="break-word"
+                textAlign={myIsSmallerThan640 ? "justify" : "left"}
+                textIndent={myIsSmallerThan640 ? "10%" : 0}
+              >
                 <Highlight
                   query={["back to work"]}
                   styles={{ color: "#64FFDA" }}
@@ -155,7 +174,11 @@ const About = ({ index }: Props) => {
               </Text>
             </Box>
             <Box>
-              <Text wordBreak="break-word" textAlign="right">
+              <Text
+                wordBreak="break-word"
+                textAlign={myIsSmallerThan640 ? "justify" : "right"}
+                textIndent={myIsSmallerThan640 ? "10%" : 0}
+              >
                 <Highlight
                   query={["youtube link"]}
                   styles={{
@@ -171,29 +194,16 @@ const About = ({ index }: Props) => {
               </Text>
             </Box>
             <Box>
-              <Text wordBreak="break-word" textAlign="left">
+              <Text
+                wordBreak="break-word"
+                textAlign={myIsSmallerThan640 ? "center" : "left"}
+              >
                 Before Asia, I was in the tourist industry. I was mostly driving
                 sled dogs/huskies in the north of Europe
               </Text>
             </Box>
           </SimpleGrid>
         </Container>
-
-        {/* <Box
-            // position={"absolute"}
-            // top={"60%"}
-            // mt={"5rem"}
-            w="85%"
-            display="flex"
-            // bg={"#303d3d"}
-            // bg="#5BD6DE"
-            // bg="#8FBAAE"
-            bg="#759c91"
-            // border="3px solid blue"
-            borderRadius="40px 40px 0px 0px"
-            // h="55%"
-            // w="100%"
-          ></Box> */}
       </VStack>
     </section>
   );

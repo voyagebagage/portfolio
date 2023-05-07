@@ -44,8 +44,6 @@ export default function ThemeProvider({
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const contextValues = {
-    // exampleProp: "This is an example prop",
-    // visitingName: formState.name,
     index,
     setIndex,
     arrowPointingAt,
@@ -58,12 +56,7 @@ export default function ThemeProvider({
 
   return (
     <CacheProvider>
-      <ChakraProvider
-        resetCSS
-        theme={customTheme}
-        // colorModeManager={manager}
-        // useSystemColorMode={true}
-      >
+      <ChakraProvider resetCSS theme={customTheme}>
         <AnimationContext.Provider value={animationContextValues}>
           <ThemeProviderContext.Provider value={contextValues}>
             <SocialLinks />
@@ -73,7 +66,7 @@ export default function ThemeProvider({
               setVisitingName={setVisitingName}
               index={index}
             />
-            {/* <FloatingButton /> */}
+
             {children}
             <Footer />
             {!token ? (

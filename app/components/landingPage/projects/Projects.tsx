@@ -15,6 +15,7 @@ import {
   HStack,
   Wrap,
   Text,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { PlusSquareIcon } from "@chakra-ui/icons";
 import React, { useContext, useEffect, useState } from "react";
@@ -28,6 +29,7 @@ import {
 } from "../../animations/animation";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
+import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
 
 const tags = [
   "React",
@@ -54,6 +56,14 @@ interface TagListProps {
 }
 
 const Projects = () => {
+  //~~~~~~~~Media queries~~~~~~~~~~~~~~~
+  const { screenSizeIsSmallerThan600, screenSizeIsLargerThan1150 } =
+    useFirstLoadMediaBooleans();
+  const [isSmallerThan600] = useMediaQuery("(max-width:600px)");
+  const [isLargerThan1150] = useMediaQuery("min-width:920px");
+  const myIsSmallerThan600 = isSmallerThan600 || screenSizeIsSmallerThan600;
+  const myIsLargerThan1150 = isLargerThan1150 || screenSizeIsLargerThan1150;
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [tagList, setTagList] = useState<TagListProps[]>([]);
   const [tagNames, setTagNames] = useState<string[]>(tags);
   const [results, setResults] = useState<ProjectProps[]>([]);
@@ -139,7 +149,11 @@ const Projects = () => {
     >
       {/* <Box h={`${100 + heigthRes * 10}%`}> */}
       <Flex justify={"center"} align={"flex-end"}>
-        <Heading position={"relative"} ref={ref}>
+        <Heading
+          position={"relative"}
+          ref={ref}
+          size={{ xs: "md", sm: "lg", md: "xl", lg: "2xl" }}
+        >
           <Highlight
             query={["02.", "built ..."]}
             styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
@@ -181,124 +195,132 @@ const Projects = () => {
       >
         Pick:
       </Text>
-      <Box w="50%" as={Wrap} mt={-4}>
-        {tagNames.map((tag, index: number) =>
-          tag !== "" ? (
-            <Tag
-              // as={Button}
-              key={index}
-              data-index={`${index}`}
-              size="lg"
-              color="#CAFFF5"
-              variant="outline"
-              border={"0.8px solid #64FFDA"}
-              m={1}
-              onClick={handleOnClickOutlined}
-              cursor="pointer"
-              boxShadow={"xs"}
-            >
-              {tag}
-            </Tag>
-          ) : (
-            <Tag
-              key={index}
-              minW={70}
-              bg="transparent"
-              color={"transparent"}
-            ></Tag>
-          )
-        )}
-      </Box>
-      {/* </HStack> */}
       <Box
-        border="2px solid "
-        borderRadius={5}
-        w="50%"
-        h="fit-content"
-        minH="50px"
-        className=""
-        pt={1}
-        display="flex"
-        alignItems={"flex-start"}
-        justifyContent={"flex-start"}
-        // pl={15}
-        boxShadow={"lg"}
+        w={myIsSmallerThan600 ? "100%" : myIsLargerThan1150 ? "50%" : "75%"}
+        pr={1}
+        pl={1}
       >
-        <InputGroup>
-          <InputLeftElement
-            borderRight={"1px white solid"}
-            // h={tagList.length > 0 ? "full" : "0px"}
-            h={"full"}
-            // minH="50px"
-          >
-            <AbsoluteCenter h="full">
-              <PlusSquareIcon />
-            </AbsoluteCenter>
-          </InputLeftElement>
-          <Box
-            ml={12}
-            display="flex"
-            alignItems={"center"}
-            flexWrap="wrap"
-            w="100%"
-            boxSizing="border-box"
-            pt={1}
-          >
-            {tagList.map((tag, index) => (
+        <Box w="100%" as={Wrap} mt={-4}>
+          {tagNames.map((tag, index: number) =>
+            tag !== "" ? (
               <Tag
-                key={tag.id}
+                // as={Button}
+                key={index}
                 data-index={`${index}`}
                 size="lg"
-                colorScheme="teal"
-                variant="solid"
-                // _hover={{ variant: "outline" }}
+                color="#CAFFF5"
+                variant="outline"
+                border={"0.8px solid #64FFDA"}
+                m={1}
+                onClick={handleOnClickOutlined}
                 cursor="pointer"
-                display="flex"
-                w="fit-content"
-                mr={2}
-                mb={2}
                 boxShadow={"xs"}
-                onClick={handleOnClickSolid}
               >
-                {tag.name}
+                {tag}
               </Tag>
-            ))}
-          </Box>
-        </InputGroup>
-      </Box>
-      {/* ///========================================Carousel================== */}
-      <Box
-        as={Flex}
-        // border={"1px solid yellow"}
-        overflowX="scroll"
-        w="50%"
-        // h={250}
-        h={275}
-        // className="bg-blue-300"
-      >
-        {results &&
-          results.map((project, index) => (
+            ) : (
+              <Tag
+                key={index}
+                minW={70}
+                bg="transparent"
+                color={"transparent"}
+              ></Tag>
+            )
+          )}
+        </Box>
+        {/* </HStack> */}
+        <Box
+          border="2px solid "
+          mt={4}
+          mb={4}
+          borderRadius={5}
+          w="100%"
+          h="fit-content"
+          minH="50px"
+          className=""
+          pt={1}
+          display="flex"
+          alignItems={"flex-start"}
+          justifyContent={"flex-start"}
+          // pl={15}
+          boxShadow={"lg"}
+        >
+          <InputGroup>
+            <InputLeftElement
+              borderRight={"1px white solid"}
+              // h={tagList.length > 0 ? "full" : "0px"}
+              h={"full"}
+              // minH="50px"
+            >
+              <AbsoluteCenter h="full">
+                <PlusSquareIcon />
+              </AbsoluteCenter>
+            </InputLeftElement>
             <Box
-              key={index}
-              borderRadius="10px"
-              // border={"2px solid olive"}
-              minW={"90%"}
-              w="100%"
+              ml={12}
               display="flex"
               alignItems={"center"}
-              m={4}
-              boxShadow={"lg"}
-              // className="w-96 h-auto"
+              flexWrap="wrap"
+              w="100%"
+              boxSizing="border-box"
+              pt={1}
             >
-              <ProjectCard
-                name={project.name}
-                links={project.links}
-                tags={project.tags}
-                content={project.content}
-                img={project.img}
-              />
+              {tagList.map((tag, index) => (
+                <Tag
+                  key={tag.id}
+                  data-index={`${index}`}
+                  size="lg"
+                  colorScheme="teal"
+                  variant="solid"
+                  // _hover={{ variant: "outline" }}
+                  cursor="pointer"
+                  display="flex"
+                  w="fit-content"
+                  mr={2}
+                  mb={2}
+                  boxShadow={"xs"}
+                  onClick={handleOnClickSolid}
+                >
+                  {tag.name}
+                </Tag>
+              ))}
             </Box>
-          ))}
+          </InputGroup>
+        </Box>
+        {/* ///========================================Carousel================== */}
+        <Box
+          as={Flex}
+          // border={"1px solid yellow"}
+          overflowX="scroll"
+          w="100%"
+          // h={250}
+          h={275}
+          // className="bg-blue-300"
+        >
+          {results &&
+            results.map((project, index) => (
+              <Box
+                key={index}
+                borderRadius="10px"
+                // border={"2px solid olive"}
+                minW={myIsSmallerThan600 ? "80%" : "90%"}
+                w="100%"
+                display="flex"
+                alignItems={"center"}
+                m={4}
+                boxShadow={"lg"}
+                // className="w-96 h-auto"
+              >
+                <ProjectCard
+                  name={project.name}
+                  links={project.links}
+                  tags={project.tags}
+                  content={project.content}
+                  img={project.img}
+                />
+              </Box>
+            ))}
+        </Box>
       </Box>
     </section>
   );
