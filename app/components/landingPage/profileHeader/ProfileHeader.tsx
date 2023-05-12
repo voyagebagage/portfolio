@@ -181,7 +181,7 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
         boxSize={"xs"}
       >
         <ChakraNextImage
-          priority
+          priority={true}
           src={"/ProfilePic.jpg"}
           alt={"ProfilePic"}
           mr={"8%"}
@@ -194,7 +194,9 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
           border={"10px solid"}
           borderColor={"modeDarkBg"}
           _hover={{ boxShadow: "lg" }}
-
+          sizes="(max-width: 768px) 100vw,
+          (max-width: 1200px) 50vw,
+          33vw"
           // mt={20}
           // mt={isSmallerThan600 ? "0" : 12}
           // boxSize={isSmallerThan600 ? 300 : 340}
@@ -215,23 +217,14 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
       pr={0}
       pl={0}
       style={{
-        // margin: 0,
-        // padding: 0,
-        // marginLeft: 0,
-        // alignItems: "center",
         justifyContent: "center",
       }}
       // border={"2px solid violet"}
     >
       <Box
         style={{
-          // margin: 0,
-          // padding: 0,
-          // marginLeft: 0,
-          // alignItems: "center",
           justifyContent: "center",
         }}
-        // border="10px solid green"
         pr={0}
         pl={0}
         display="flex"
@@ -244,6 +237,7 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
           src={"/ProfilePic.jpg"}
           alt={"ProfilePic"}
           borderRadius="full"
+          priority={true}
           flexShrink={0}
           alignSelf="center"
           boxSize={"18.75rem"}
@@ -252,6 +246,9 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
           border={"10px solid"}
           borderColor={"modeDarkBg"}
           _hover={{ boxShadow: "lg" }}
+          sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 50vw,
+                33vw"
         />
       </Box>
       <ButtonGroup isAttached mt={4} display={"flex"} justifyContent={"center"}>

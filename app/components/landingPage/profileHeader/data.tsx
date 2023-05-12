@@ -12,11 +12,6 @@ export const items = [
     color: "#60DBFA",
   },
   {
-    IconName: "/reactLogo.png",
-    name: "Native",
-    color: "#60DBFA",
-  },
-  {
     IconName: "/GraphQLLogo.png",
     name: "GraphQl",
     color: "#B054AE",

@@ -82,11 +82,14 @@ function StackCard({ index }: StackCardProps) {
                 borderRadius="full"
                 flexShrink={0}
                 boxShadow={"lg"}
-                // priority={true}
+                sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 50vw,
+                33vw"
+                priority={true}
                 // sizes="(max-width: 768px) 100vw,
                 // (max-width: 1200px) 50vw,
                 // 33vw"
-                loading="eager"
+                // loading="eager"
                 // objectFit="contain"
               />
             }
@@ -94,12 +97,15 @@ function StackCard({ index }: StackCardProps) {
             <ChakraNextImage
               src={`${items[index]?.IconName}`}
               alt="stackPic"
+              sizes="(max-width: 768px) 100vw,
+                (max-width: 1200px) 50vw,
+                33vw"
               boxSize={298}
               borderRadius="full"
               flexShrink={0}
               boxShadow={"lg"}
               priority={true}
-              // loading="eager"
+              // loading="lazy"
               // sizes="(max-width: 768px) 100vw,
               // (max-width: 1200px) 50vw,
               // 33vw"

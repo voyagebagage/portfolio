@@ -13,10 +13,13 @@ const fonts = {
   heading: "Inter",
 };
 const breakpoints = {
-  xs: "20em",
+  "3xs": "10em",
+  xxs: "20em",
+  xs: "30em",
   sm: "40em",
   md: "52em",
   lg: "64em",
+  xl: "70em",
 };
 const colors = {
   // primaryDark: "#40CFC8",
@@ -72,8 +75,9 @@ const overrides = {
     extraBold: 900,
   },
   fontSizes: {
+    xxs: "11px",
     xs: "12px",
-    sm: "14px",
+    sm: "15px",
     md: "16px",
     lg: "18px",
     xl: "20px",

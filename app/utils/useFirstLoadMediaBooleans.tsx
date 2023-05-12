@@ -12,6 +12,7 @@ interface ScreenSizeProperties {
   screenSizeIsSmallerThan640?: boolean;
   screenSizeIsSmallerThan700?: boolean;
   screenSizeIsLargerThan600?: boolean;
+  screenSizeIsLargerThan670?: boolean;
   screenSizeIsLargerThan800?: boolean;
   screenSizeIsLargerThan850?: boolean;
   screenSizeIsLargerThan920?: boolean;
@@ -45,6 +46,7 @@ export default (): ScreenSizeProperties => {
   const screenSizeIsSmallerThan640 = screenSize < 640;
   const screenSizeIsSmallerThan700 = screenSize < 700;
   const screenSizeIsLargerThan600 = screenSize > 600;
+  const screenSizeIsLargerThan670 = screenSize < 670;
   const screenSizeIsLargerThan800 = screenSize > 800;
   const screenSizeIsLargerThan850 = screenSize > 850;
   const screenSizeIsLargerThan920 = screenSize > 920;
@@ -57,6 +59,7 @@ export default (): ScreenSizeProperties => {
     screenSizeIsSmallerThan640,
     screenSizeIsSmallerThan700,
     screenSizeIsLargerThan600,
+    screenSizeIsLargerThan670,
     screenSizeIsLargerThan800,
     screenSizeIsLargerThan850,
     screenSizeIsLargerThan920,

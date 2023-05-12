@@ -1,28 +1,19 @@
 "use client";
 import "./globals.css";
 import { CacheProvider } from "@chakra-ui/next-js";
-import useForm from "./customHooks/useForm";
-import {
-  Button,
-  ChakraProvider,
-  ColorModeScript,
-  createLocalStorageManager,
-} from "@chakra-ui/react";
+import { ChakraProvider, createLocalStorageManager } from "@chakra-ui/react";
 import customTheme from "./styles/theme";
 import Header from "./components/layout/header/Header";
 import Footer from "./components/landingPage/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AnimationContext,
   ThemeProviderContext,
 } from "./context/ThemeProviderContext";
 import SocialLinks from "./components/layout/SocialLinks";
 import EmailDisplay from "./components/layout/EmailDisplay";
-import { ChevronUpIcon } from "@chakra-ui/icons";
-import { Box, useDisclosure } from "@chakra-ui/react";
 import AnimatedModal from "./components/AnimatedModal";
 import { getToken } from "./utils/tokenManager";
-import { log } from "console";
 
 const manager = createLocalStorageManager("my-key");
 
@@ -32,8 +23,15 @@ export default function ThemeProvider({
   children: React.ReactNode;
 }) {
   //------------------------
-  const token = getToken();
+  const [token, setToken] = useState<string | null>(getToken() || null);
   // console.log("token", token);
+  const isToken = getToken();
+  useEffect(() => {
+    // const isToken = getToken();
+    if (isToken) {
+      setToken(isToken);
+    }
+  }, [token]);
 
   //------------------------
   const [arrowPointingAt, setArrowPointingAt] = useState<string>(
@@ -61,12 +59,15 @@ export default function ThemeProvider({
           <ThemeProviderContext.Provider value={contextValues}>
             <SocialLinks />
             <EmailDisplay />
+            {/* {isToken || token ? ( */}
             <Header
               visitingName={visitingName}
               setVisitingName={setVisitingName}
               index={index}
             />
-
+            {/* ) : (
+              <AnimatedModal setVisitingName={setVisitingName} />
+            )} */}
             {children}
             <Footer />
             {!token ? (

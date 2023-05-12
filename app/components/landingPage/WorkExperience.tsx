@@ -25,6 +25,7 @@ import {
   ListItem,
   ListIcon,
   useMediaQuery,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { ChakraNextImage } from "../ChakraNextImage";
@@ -69,21 +70,31 @@ export const SimpleList = ({ myList, icon, noIcon }: SimpleListProps) => (
   </UnorderedList>
 );
 const WorkExperience = () => {
+  //~~~~~~~~~~~~Breakpoints~~~~~~~~~~~~~~~~~
+  const orientation = useBreakpointValue<"vertical" | "horizontal">({
+    xl: "vertical",
+    base: "horizontal",
+  });
   //~~~~~~~~~~~~Media Queries~~~~~~~~~~~~~~~~~
   const {
     screenSizeIsSmallerThan600,
+    screenSizeIsLargerThan670,
     screenSizeIsLargerThan800,
     screenSizeIsLargerThan920,
     screenSizeIsLargerThan1150,
   } = useFirstLoadMediaBooleans();
   const [isLargerThan600] = useMediaQuery("(max-width: 600px)");
+  const [isLargerThan670] = useMediaQuery("(max-width: 670px)");
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
   const [isLargerThan920] = useMediaQuery("(min-width: 920px)");
   const myIsLargerThan600 = isLargerThan600 || screenSizeIsSmallerThan600;
+  const myIsLargerThan670 = isLargerThan670 || screenSizeIsLargerThan670;
   const myIsLargerThan1150 = isLargerThan1150 || screenSizeIsLargerThan1150;
   const myIsLargerThan920 = isLargerThan920 || screenSizeIsLargerThan920;
   const myIsLargerThan800 = isLargerThan800 || screenSizeIsLargerThan800;
+  // console.log("myIsLargerThan600", myIsLargerThan600);
+
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const { arrowPointingAt, setArrowPointingAt } = useContext(AnimationContext)!;
   // const [width, height, ref] = useElementSize(-0.2);
@@ -101,7 +112,7 @@ const WorkExperience = () => {
     if ((!on && arrowPointingAt === "work") || !inView) {
       animation.start(outOfViewAnimation);
     }
-  }, [inView, animation, on, arrowPointingAt]);
+  }, [inView, on, arrowPointingAt === "work"]);
 
   const handleMouseEnter = () => {
     setOn(true);
@@ -117,8 +128,16 @@ const WorkExperience = () => {
       id="work"
       className="shadow-xl pt-2 pb-10 mb-2 "
       style={{
-        width: myIsLargerThan1150 ? "70%" : myIsLargerThan800 ? "80%" : "100%",
+        // width: myIsLargerThan1150 ? "70%" : myIsLargerThan800 ? "80%" : "100%",
+        width: myIsLargerThan1150
+          ? "72%"
+          : myIsLargerThan920
+          ? "80%"
+          : myIsLargerThan800
+          ? "92%"
+          : "100%",
         margin: "auto",
+        padding: !myIsLargerThan670 ? 0 : "0.3rem",
         // borderRadius: "40px 40px 0px 0px",
         // borderRadius: "40px 40px  80% 80%",
         borderRadius: "40px 40px 40px 40px",
@@ -130,13 +149,20 @@ const WorkExperience = () => {
         <Heading
           as="h2"
           // fontSize={myIsLargerThan600 ? "xl" : null}
-          size={{ xs: "md", sm: "lg", md: "xl", lg: "2xl" }}
+          size={{ "3xs": "xs", xxs: "md", xs: "lg", md: "xl", lg: "xl" }}
           position="relative"
           ref={ref}
         >
           <Highlight
             query={["01.", "worked ..."]}
-            styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
+            styles={{
+              px: "2",
+              py: "1",
+              rounded: "full",
+              color: "#30373D",
+              bg: "teal.100",
+              filter: "contrast(102%)",
+            }}
           >
             01. Where I have worked ...
           </Highlight>
@@ -166,17 +192,25 @@ const WorkExperience = () => {
       <Tabs
         isFitted
         variant="enclosed"
-        orientation={myIsLargerThan1150 ? "vertical" : "horizontal"}
-        minH={`${calc(100 / 2)}%`}
-        w={myIsLargerThan600 ? "100%" : `${calc(100 / 1.75)}%`}
-        h={myIsLargerThan600 ? "80%" : "fit-content"}
+        orientation={orientation}
+        // orientation={myIsLargerThan1150 ? "vertical" : "horizontal"}
+        w={myIsLargerThan670 ? "100%" : `${calc(100 / 1.6)}%`}
+        minH={`${calc(100 / 1.8)}%`}
+        h={
+          myIsLargerThan600
+            ? "fit-content"
+            : myIsLargerThan800
+            ? `${calc(100 / 1.8)}%`
+            : `${calc(100 / 1.75)}%`
+        }
         // border={"4px solid blue"}
         pb={0}
         borderBottom={0}
         bg={"#30373D"}
         // boxShadow="2xl"
         boxShadow="dark-lg"
-        borderRadius={"10px 10px 0 0"}
+        borderRadius={!myIsLargerThan600 ? "10px 10px 0 0" : "10px"}
+        // box-sizing="border-box"
         // className="shadow-2xl"
       >
         <TabList border={0}>
@@ -210,11 +244,13 @@ const WorkExperience = () => {
           {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Ninja Partners */}
           <TabPanel
             w="full"
-            h="100%"
+            minH="100%"
+            h={"fit-content"}
             // border={"1px solid white"}
             pt={0}
             pr={0}
             pl={0}
+            box-sizing="border-box"
             // boxShadow="xl"
           >
             <VStack h="100%">
@@ -306,13 +342,7 @@ const WorkExperience = () => {
                   oct 2021 - feb 2022 / oct 2022- dec 2022
                 </Heading>
               </Box>
-              <Box
-                pb={0}
-                // border={"1px solid white"}
-                w="full"
-                h={"full"}
-                // flexDirection="row"
-              >
+              <Box pb={0} w="full">
                 <Container py="2">
                   <SimpleList
                     myList={[
@@ -329,7 +359,8 @@ const WorkExperience = () => {
           {/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Own Projects */}
           <TabPanel
             w="full"
-            h="100%"
+            minH="100%"
+            h={"fit-content"}
             // border={"1px solid white"}
             pt={0}
             pr={0}
@@ -340,7 +371,6 @@ const WorkExperience = () => {
                 w="full"
                 px={0}
                 pb={0}
-                // pt="1"
                 h={`${100 / 3.8}%`}
                 // border={"0.1px solid"}
                 // className="h-1/4"
@@ -348,8 +378,8 @@ const WorkExperience = () => {
                 // ref={heightRef}
               >
                 <Image
-                  src={"/ninjaGroupMod.png"}
-                  alt={"workedExperience_ninjaPartnerGroup"}
+                  src={"/gh.png"}
+                  alt={"workedExperience_ghGroup"}
                   fill
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
@@ -438,13 +468,16 @@ const WorkExperience = () => {
               >
                 <Container py="2">
                   <SimpleList
-                    myList={["Youtube View booster bot, made as a PWA"]}
+                    myList={[
+                      "Youtube View booster bot, made as a PWA",
+                      "Happy cow clone, mostly the map filtering",
+                    ]}
                   />
                 </Container>
               </Box>
             </VStack>
           </TabPanel>
-          {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~ BootCamp */}
+          {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~ BootCamp ~~~~~~~~~~~ */}
           <TabPanel
             w="full"
             minH="100%"
@@ -468,14 +501,12 @@ const WorkExperience = () => {
                 // ref={heightRef}
               >
                 <Image
-                  src={"/ninjaGroupMod.png"}
-                  alt={"workedExperience_ninjaPartnerGroup"}
+                  src={"/reacteurGroup.png"}
+                  alt={"workedExperience_reacteurGroup"}
                   fill
                   sizes="(max-width: 768px) 100vw,
                   (max-width: 1200px) 50vw,
                   33vw"
-                  // priority={true}
-                  // ref={ref}
                   style={{
                     filter: "brightness(65%) grayscale(60%) blur(0.2px)",
                     objectFit: "cover",
@@ -487,7 +518,7 @@ const WorkExperience = () => {
                 {/* //~~~~~~~~~~~~~~~ */}
                 <Box
                   // border={"1px solid cyan"}
-                  // as={HStack}
+
                   pb={0}
                   w={"full"}
                   h="100%"
@@ -496,7 +527,6 @@ const WorkExperience = () => {
                   justifyContent="space-start"
                   alignItems="center"
                   gap={3}
-                  // ref={ref}
                 >
                   <Square
                     position="relative"
@@ -556,17 +586,17 @@ const WorkExperience = () => {
               </Box>
               <Box
                 pb={0}
-                // pl={1}
                 // border={"1px solid white"}
                 w="full"
                 h={"full"}
-                // flexDirection="row"
-                // p={3}
+                display={"flex"}
+                justifyContent={"center"}
+                justifySelf={"center"}
               >
-                <Container py={2}>
+                <Container py={2} justifySelf={"center"}>
                   <SimpleList
                     // border="1px solid"
-                    // icon={BsIcons.BsPatchCheckFill}
+
                     myList={[
                       "Convert a design to a website or mobile app",
                       "Create servers, APIs and secure data ",

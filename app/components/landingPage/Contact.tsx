@@ -42,7 +42,7 @@ const Contact = ({ index }: Props) => {
     if ((!on && arrowPointingAt === "contact") || !inView) {
       animation.start(outOfViewAnimation);
     }
-  }, [inView, animation, on, arrowPointingAt]);
+  }, [inView, on, arrowPointingAt === "contact"]);
 
   const handleMouseEnter = () => {
     setOn(true);
@@ -66,11 +66,18 @@ const Contact = ({ index }: Props) => {
         <Heading
           position={"relative"}
           ref={ref}
-          size={{ xs: "md", sm: "lg", md: "xl", lg: "2xl" }}
+          size={{ "3xs": "xs", xxs: "md", xs: "lg", md: "xl", lg: "xl" }}
         >
           <Highlight
             query={["03.", "Contact"]}
-            styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
+            styles={{
+              px: "2",
+              py: "1",
+              rounded: "full",
+              color: "#30373D",
+              bg: "teal.100",
+              filter: "contrast(102%)",
+            }}
           >
             03. Contact me
           </Highlight>

@@ -40,6 +40,7 @@ const Header = ({ visitingName, setVisitingName, index }: props) => {
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
   const [isSmallerThan700] = useMediaQuery("(max-width: 700px)");
   const [isSmallerThan600] = useMediaQuery("(max-width: 600px)");
+  const [isSmallerThan800] = useMediaQuery("(max-width: 800px)");
   //========================
   const myIsLargerThan1150 = isLargerThan1150 || screenSizeIsLargerThan1150;
   const myIsSmallerThan600 = isSmallerThan600 || screenSizeIsSmallerThan600;
@@ -70,192 +71,199 @@ const Header = ({ visitingName, setVisitingName, index }: props) => {
   // console.log(["windowWidth", window.innerWidth]);
 
   // console.log(["windowWidth2", document.documentElement.clientWidth]);
-
-  return myIsLargerThan1150 ? (
-    <Box
-      className="flex flex-row items-center justify-between px-10 pt-1"
-      w="100%"
-      position="fixed"
-      css={{ backdropFilter: "blur(15px)" }}
-      zIndex={99009}
-      maxH="8.3vh"
-    >
-      <Flex>
-        <TriangleLogoSmall />
-        {/* <Text className="text-xl" alignSelf="center">
+  if (myIsLargerThan1150) {
+    return (
+      <Box
+        className="flex flex-row items-center justify-between px-10 pt-1"
+        w="100%"
+        position="fixed"
+        css={{ backdropFilter: "blur(15px)" }}
+        zIndex={99009}
+        maxH="8.3vh"
+      >
+        <Flex>
+          <TriangleLogoSmall />
+          {/* <Text className="text-xl" alignSelf="center">
           idevandyou
         </Text> */}
-      </Flex>
-      <Text
-        // as="p"
-        // noOfLines={1}
-        fontSize="xl"
-        fontWeight="bold"
-        bgGradient={`linear(to-r, ${
-          items[index]?.color || items[0]?.color
-        },#4ff3cc)`}
-        bgClip="text"
-        ml={"-10rem"}
-        // className="-ml-40"
+        </Flex>
+        <Text
+          // as="p"
+          // noOfLines={1}
+          fontSize="xl"
+          fontWeight="bold"
+          bgGradient={`linear(to-r, ${
+            items[index]?.color || items[0]?.color
+          },#4ff3cc)`}
+          bgClip="text"
+          ml={"-10rem"}
+          // className="-ml-40"
+        >
+          Welcome <>{visitingName}</>
+        </Text>
+        <div className="flex justify-around gap-8">
+          <Box _hover={{ color: "#64FFDA" }}>
+            <AnchorLink href="#about">
+              <Highlight query="00." styles={{ color: "#64FFDA" }}>
+                00. About
+              </Highlight>
+            </AnchorLink>
+          </Box>
+          <Box _hover={{ color: "#64FFDA" }}>
+            <AnchorLink href="#work">
+              <Highlight query="01." styles={{ color: "#64FFDA" }}>
+                01. Work
+              </Highlight>
+            </AnchorLink>
+          </Box>
+          <Box _hover={{ color: "#64FFDA" }}>
+            <AnchorLink href={"#projects"}>
+              <Highlight query="02." styles={{ color: "#64FFDA" }}>
+                02. Projects
+              </Highlight>
+            </AnchorLink>
+          </Box>
+          <Box _hover={{ color: "#64FFDA" }}>
+            <AnchorLink href="#contact">
+              <Highlight query="03." styles={{ color: "#64FFDA" }}>
+                03. Contact
+              </Highlight>
+            </AnchorLink>
+          </Box>
+        </div>
+      </Box>
+    );
+  } else if (!myIsSmallerThan700) {
+    return (
+      <Box
+        className="flex flex-row items-center justify-between px-2 py-1"
+        w="100%"
+        position="fixed"
+        css={{ backdropFilter: "blur(15px)" }}
+        zIndex={99009}
+        maxH="8.3vh"
+        // ml={"-8rem"}
       >
-        Welcome <>{visitingName}</>
-      </Text>
-      <div className="flex justify-around gap-8">
-        <Box _hover={{ color: "#64FFDA" }}>
-          <AnchorLink href="#about">
-            <Highlight query="00." styles={{ color: "#64FFDA" }}>
-              00. About
-            </Highlight>
-          </AnchorLink>
-        </Box>
-        <Box _hover={{ color: "#64FFDA" }}>
-          <AnchorLink href="#work">
-            <Highlight query="01." styles={{ color: "#64FFDA" }}>
-              01. Work
-            </Highlight>
-          </AnchorLink>
-        </Box>
-        <Box _hover={{ color: "#64FFDA" }}>
-          <AnchorLink href={"#projects"}>
-            <Highlight query="02." styles={{ color: "#64FFDA" }}>
-              02. Projects
-            </Highlight>
-          </AnchorLink>
-        </Box>
-        <Box _hover={{ color: "#64FFDA" }}>
-          <AnchorLink href="#contact">
-            <Highlight query="03." styles={{ color: "#64FFDA" }}>
-              03. Contact
-            </Highlight>
-          </AnchorLink>
-        </Box>
-      </div>
-    </Box>
-  ) : !myIsSmallerThan700 ? (
-    <Box
-      className="flex flex-row items-center justify-between px-2 py-1"
-      w="100%"
-      position="fixed"
-      css={{ backdropFilter: "blur(15px)" }}
-      zIndex={99009}
-      maxH="8.3vh"
-    >
-      <Flex>
-        <TriangleLogoSmall />
-        {/* <Text className="text-xl" alignSelf="center">
+        <Flex
+        //  ml={"8rem"}
+        >
+          <TriangleLogoSmall />
+          {/* <Text className="text-xl" alignSelf="center">
         idevandyou
       </Text> */}
-      </Flex>
-      <Text
-        // as="p"
-        noOfLines={1}
-        fontSize="xl"
-        fontWeight="bold"
-        bgGradient={`linear(to-r, ${
-          items[index]?.color || items[0]?.color
-        },#4ff3cc)`}
-        bgClip="text"
-        // ml={"-10rem"}
-        // className="-ml-40"
-      >
-        Welcome <>{visitingName}</>
-      </Text>
-      {positionFromTop && (
-        // <Box alignSelf={"end"}>
-        <AnchorLink href="#home">
-          <MIconButton
-            aria-label="top"
-            icon={<Icon as={ChevronUpIcon} boxSize={5} />}
-            size="sm"
-            bg="teal"
-            opacity={0.5}
-            _hover={{ opacity: 1 }}
-          />
-        </AnchorLink>
-        // </Box>
-      )}
-      <div className="flex justify-around gap-8">
-        <Box _hover={{ color: "#64FFDA" }}>
-          <AnchorLink href="#about">
-            <Highlight query="00." styles={{ color: "#64FFDA" }}>
-              00. About
-            </Highlight>
-          </AnchorLink>
-        </Box>
-        <Box _hover={{ color: "#64FFDA" }}>
-          <AnchorLink href="#work">
-            <Highlight query="01." styles={{ color: "#64FFDA" }}>
-              01. Work
-            </Highlight>
-          </AnchorLink>
-        </Box>
-        <Box _hover={{ color: "#64FFDA" }}>
-          <AnchorLink href={"#projects"}>
-            <Highlight query="02." styles={{ color: "#64FFDA" }}>
-              02. Projects
-            </Highlight>
-          </AnchorLink>
-        </Box>
-        <Box _hover={{ color: "#64FFDA" }}>
-          <AnchorLink href="#contact">
-            <Highlight query="03." styles={{ color: "#64FFDA" }}>
-              03. Contact
-            </Highlight>
-          </AnchorLink>
-        </Box>
-      </div>
-    </Box>
-  ) : (
-    <HStack
-      as={Box}
-      spacing={4}
-      // border="2px solid blue"
-      w="100%"
-      position="fixed"
-      css={{ backdropFilter: "blur(15px)" }}
-      zIndex={99009}
-      maxH="10.3vh"
-      h="7vh"
-      pb={1}
-      display={"flex"}
-      alignItems={"end"}
-      justifyContent="space-around"
-    >
-      <Text
-        noOfLines={1}
-        pt={2}
-        w={"50%"}
-        fontSize="xl"
-        fontWeight="bold"
-        bgGradient={`linear(to-r, ${
-          items[index]?.color || items[0]?.color
-        },#4ff3cc)`}
-        bgClip="text"
-        display={"flex"}
-        // alignSelf={"end"}
-        // className=""
-      >
-        Welcome <>{visitingName}</>
-      </Text>
-      {positionFromTop && (
-        <Box display={"flex"} pt={3} mt={3}>
+        </Flex>
+        <Text
+          // as="p"
+          noOfLines={1}
+          fontSize="xl"
+          fontWeight="bold"
+          bgGradient={`linear(to-r, ${
+            items[index]?.color || items[0]?.color
+          },#4ff3cc)`}
+          bgClip="text"
+          ml={positionFromTop && isSmallerThan800 ? 0 : "-10rem"}
+          // className="-ml-40"
+        >
+          Welcome <>{visitingName}</>
+        </Text>
+        {positionFromTop && isSmallerThan800 && (
           <AnchorLink href="#home">
             <MIconButton
               aria-label="top"
               icon={<Icon as={ChevronUpIcon} boxSize={5} />}
-              size="md"
+              size="sm"
               bg="teal"
               opacity={0.5}
               _hover={{ opacity: 1 }}
             />
           </AnchorLink>
-        </Box>
-      )}
-      <Box alignSelf={"center"}>
-        <BurgerMenu />
+          // </Box>
+        )}
+        <div className="flex justify-around gap-8">
+          <Box _hover={{ color: "#64FFDA" }}>
+            <AnchorLink href="#about">
+              <Highlight query="00." styles={{ color: "#64FFDA" }}>
+                00. About
+              </Highlight>
+            </AnchorLink>
+          </Box>
+          <Box _hover={{ color: "#64FFDA" }}>
+            <AnchorLink href="#work">
+              <Highlight query="01." styles={{ color: "#64FFDA" }}>
+                01. Work
+              </Highlight>
+            </AnchorLink>
+          </Box>
+          <Box _hover={{ color: "#64FFDA" }}>
+            <AnchorLink href={"#projects"}>
+              <Highlight query="02." styles={{ color: "#64FFDA" }}>
+                02. Projects
+              </Highlight>
+            </AnchorLink>
+          </Box>
+          <Box _hover={{ color: "#64FFDA" }}>
+            <AnchorLink href="#contact">
+              <Highlight query="03." styles={{ color: "#64FFDA" }}>
+                03. Contact
+              </Highlight>
+            </AnchorLink>
+          </Box>
+        </div>
       </Box>
-    </HStack>
-  );
+    );
+  } else {
+    return (
+      <HStack
+        as={Box}
+        spacing={4}
+        // border="2px solid blue"
+        w="100%"
+        position="fixed"
+        css={{ backdropFilter: "blur(15px)" }}
+        zIndex={99009}
+        maxH="10.3vh"
+        h="7vh"
+        pb={1}
+        display={"flex"}
+        alignItems={"end"}
+        justifyContent="space-around"
+      >
+        <Text
+          noOfLines={1}
+          pt={2}
+          w={"50%"}
+          fontSize="xl"
+          fontWeight="bold"
+          bgGradient={`linear(to-r, ${
+            items[index]?.color || items[0]?.color
+          },#4ff3cc)`}
+          bgClip="text"
+          display={"flex"}
+          // alignSelf={"end"}
+          // className=""
+        >
+          Welcome <>{visitingName}</>
+        </Text>
+        {positionFromTop && (
+          <Box display={"flex"} pt={3} mt={3}>
+            <AnchorLink href="#home">
+              <MIconButton
+                aria-label="top"
+                icon={<Icon as={ChevronUpIcon} boxSize={5} />}
+                size="md"
+                bg="teal"
+                opacity={0.5}
+                _hover={{ opacity: 1 }}
+              />
+            </AnchorLink>
+          </Box>
+        )}
+        <Box alignSelf={"center"}>
+          <BurgerMenu />
+        </Box>
+      </HStack>
+    );
+  }
 };
 
 export default Header;

@@ -42,6 +42,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
   const { handleChange, handleClick, formState, submitted, setSubmitted } =
     useForm();
   const { step } = formState;
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const delayOnClose = 3000;
 
@@ -53,14 +54,12 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
     open: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.3 } },
     submitted: {
       opacity: 1,
-      scale: 1.5,
+      scale: 2,
       y: 0,
       boxShadow: "none",
       transition: { duration: 3 },
     },
   };
-
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -86,12 +85,12 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
       website: website,
       from_email: email,
     };
-    await emailjs.send(
-      `${serviceId}`,
-      `${templateId}`,
-      templateParams,
-      `${userId}`
-    );
+    // await emailjs.send(
+    //   `${serviceId}`,
+    //   `${templateId}`,
+    //   templateParams,
+    //   `${userId}`
+    // );
 
     //close modal
     setTimeout(() => {
@@ -110,12 +109,20 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
     <>
       {isOpen && (
         <AnimatePresence>
-          <Modal size="lg" isCentered isOpen={isOpen} onClose={onClose}>
+          <Modal
+            size="lg"
+            isCentered
+            isOpen={isOpen}
+            closeOnOverlayClick={false}
+            onClose={onClose}
+          >
             <ModalOverlay
               bg="none"
               backdropFilter="auto"
               backdropInvert="10%"
               backdropBlur="5px"
+              h="full"
+              w="full"
             />
 
             <MotionModalContent

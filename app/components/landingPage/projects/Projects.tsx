@@ -81,7 +81,7 @@ const Projects = () => {
     if ((!on && arrowPointingAt === "projects") || !inView) {
       animation.start(outOfViewAnimation);
     }
-  }, [inView, animation, on, arrowPointingAt]);
+  }, [inView, on, arrowPointingAt === "projects"]);
   // console.log("ton scroll", inView, scrollSup850, on);
 
   const handleMouseEnter = () => {
@@ -152,11 +152,18 @@ const Projects = () => {
         <Heading
           position={"relative"}
           ref={ref}
-          size={{ xs: "md", sm: "lg", md: "xl", lg: "2xl" }}
+          size={{ "3xs": "xs", xxs: "md", xs: "lg", md: "xl", lg: "xl" }}
         >
           <Highlight
             query={["02.", "built ..."]}
-            styles={{ px: "2", py: "1", rounded: "full", bg: "teal.100" }}
+            styles={{
+              px: "2",
+              py: "1",
+              rounded: "full",
+              color: "#30373D",
+              bg: "teal.100",
+              filter: "contrast(102%)",
+            }}
           >
             02. What I&apos;ve built ...
           </Highlight>

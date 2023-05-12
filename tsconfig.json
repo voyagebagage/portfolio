@@ -28,7 +28,8 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "app/components/landingPage/profileHeader/NextImage.js"
+    "app/components/landingPage/profileHeader/NextImage.js",
+    "app/utils/useFirstLoadMediaBooleans.js"
   ],
   "exclude": ["node_modules"]
 }
