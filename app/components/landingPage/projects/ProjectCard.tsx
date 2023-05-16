@@ -15,7 +15,7 @@ import {
   ButtonGroup,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React from "react";
 import useElementSize from "../../../customHooks/useElementSize";
 
 import Feature from "../../Feature";

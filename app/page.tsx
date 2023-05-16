@@ -21,7 +21,7 @@ export default function Home() {
         <Ticker index={index} />
         <About index={index} />
         <WorkExperience />
-        <Projects index={index} />
+        <Projects />
         <Contact index={index} />
       </div>
     </>
