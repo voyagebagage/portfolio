@@ -16,6 +16,7 @@ import {
   Wrap,
   Text,
   useMediaQuery,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { PlusSquareIcon } from "@chakra-ui/icons";
 import React, { useContext, useEffect, useState } from "react";
@@ -56,6 +57,14 @@ interface TagListProps {
 }
 
 const Projects = () => {
+  //~~~~~~~~~~~~Breakpoints~~~~~~~~~~~~~~~~~
+  // const displayValue = useBreakpointValue({ base: "none", md: "inline" });
+  const BoxSizes = useBreakpointValue({
+    base: "100%",
+    sm: `${calc(100 / 1.3)}%`,
+    lg: "72%",
+  });
+  //~~~~~~~~~~~~
   //~~~~~~~~Media queries~~~~~~~~~~~~~~~
   const { screenSizeIsSmallerThan600, screenSizeIsLargerThan1150 } =
     useFirstLoadMediaBooleans();
@@ -202,11 +211,7 @@ const Projects = () => {
       >
         Pick:
       </Text>
-      <Box
-        w={myIsSmallerThan600 ? "100%" : myIsLargerThan1150 ? "50%" : "75%"}
-        pr={1}
-        pl={1}
-      >
+      <Box w={BoxSizes} pr={1} pl={1}>
         <Box w="100%" as={Wrap} mt={-4}>
           {tagNames.map((tag, index: number) =>
             tag !== "" ? (
@@ -321,6 +326,8 @@ const Projects = () => {
                 <ProjectCard
                   name={project.name}
                   links={project.links}
+                  liveDemo={project.liveDemo}
+                  videos={project.videos}
                   tags={project.tags}
                   content={project.content}
                   img={project.img}

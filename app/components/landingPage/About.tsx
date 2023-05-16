@@ -8,18 +8,15 @@ import {
   Highlight,
   useMediaQuery,
 } from "@chakra-ui/react";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { items } from "./profileHeader/data";
 import {
-  ThemeProviderContext,
   AnimationContext,
   ThemeProviderContextProps,
 } from "@/app/context/ThemeProviderContext";
 import { ArrowTriangle } from "../StyledIcons";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import ArrowPointingCards from "../ArrowPointingCards";
-import usePositionFromTop from "@/app/customHooks/useScrollValue";
 import { inViewAnimation, outOfViewAnimation } from "../animations/animation";
 import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
 

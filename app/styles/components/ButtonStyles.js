@@ -40,10 +40,9 @@ export const ButtonStyles = {
       bg: "primary",
       color: "white",
       _hover: {
-        bg: mode(
-          whiten(props.primary?.default, 40),
-          whiten("primary", 40)
-        )(props),
+        bg:
+          // whiten(props.primary?.default, 40),
+          "primary",
         transform: "scale(1.02)",
         boxShadow: "md",
       },

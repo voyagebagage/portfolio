@@ -10,6 +10,8 @@ interface TagListProps {
 export interface ProjectProps {
   name: string;
   links: string[];
+  liveDemo: boolean;
+  videos: boolean;
   tags: TagListProps[];
   content: string;
   img: string;
@@ -24,6 +26,8 @@ export const projects = [
     content:
       "A personal project to boost the views of videos youtube, this is made as a progressive web app, with NextJs on the front and Back end, This works locally, I have an issue open",
 
+    liveDemo: true,
+    videos: true,
     tags: [
       { name: "NextJs", icon: TbIcons.TbBrandNextjs },
       { name: "React", icon: SiIcons.SiReact },
@@ -37,6 +41,8 @@ export const projects = [
     img: "",
     content:
       "My first project at the company, I was tasked to create a dashboard for the company's gamification system deployed on AWS, I used ReactJs, Amplify and Semantic UI. The API is made with GraphQl, the App can CRUD clients, campaigns, and agents. it has a search function, a login/sign up system that creates agent, a filtered daily/weekly/monthly leaderboard, and last a taks system that rewards points, uptdate to agents based on their actions.",
+    liveDemo: true,
+    videos: true,
     tags: [
       { name: "React", icon: SiIcons.SiReact },
       { name: "AWS", icon: SiIcons.SiAmazonaws },
@@ -56,6 +62,8 @@ export const projects = [
     img: "",
     content:
       "This is a clone of the Happy Cow app, which was the last project at Le Reacteur (Bootcamp name), I used React Native and Expo. it is a mobile app that allows you to find vegan restaurants, and filter them by distance, price, and rating. It is responsice on every app devices",
+    liveDemo: true,
+    videos: true,
     tags: [
       { name: "React Native", icon: SiIcons.SiReact },
       { name: "NodeJs", icon: SiIcons.SiNodedotjs },
@@ -70,6 +78,8 @@ export const projects = [
     img: "",
     content:
       "First full stack project, made with ReactJs and NodeJs, during the bootcamp",
+    liveDemo: true,
+    videos: true,
     tags: [
       { name: "React", icon: SiIcons.SiReact },
       { name: "NodeJs", icon: SiIcons.SiNodedotjs },
@@ -83,6 +93,8 @@ export const projects = [
     links: ["https://github.com/voyagebagage/portfolio"],
     img: "",
     content: "",
+    liveDemo: true,
+    videos: true,
     tags: [
       { name: "NextJs", icon: TbIcons.TbBrandNextjs },
       { name: "React", icon: SiIcons.SiReact },
@@ -98,6 +110,8 @@ export const projects = [
     img: "",
     content:
       "My boss ask me to create small app to manage his messy AirTable, I was collection data from reply.io in his marketing campaings ",
+    liveDemo: true,
+    videos: true,
     tags: [
       { name: "Air Table", icon: TbIcons.TbBrandAirtable },
       { name: "Javascript", icon: SiIcons.SiJavascript },
@@ -109,6 +123,8 @@ export const projects = [
     links: ["https://github.com/voyagebagage/oliv-thailand-exam-front-sixt"],
     img: "",
     content: "this is a clone of the Sixt.fr website, made during my bootcamp",
+    liveDemo: true,
+    videos: true,
     tags: [
       { name: "React", icon: SiIcons.SiReact },
       { name: "NodeJs", icon: SiIcons.SiNodedotjs },
@@ -124,6 +140,8 @@ export const projects = [
     img: "",
     content:
       "This is a app that search for marvel and comics books, you can add them to your favorites. I added a cubic space background made with ThreeJs. This is currently not working because it was deployed on Heroku, and it is not free anymore",
+    liveDemo: true,
+    videos: true,
     tags: [
       { name: "React", icon: SiIcons.SiReact },
       { name: "ThreeJs", icon: SiIcons.SiThreedotjs },
@@ -133,7 +151,7 @@ export const projects = [
   },
 ];
 
-//   { name: "",img:'' ,tags: ["", ""] },
+//   { name: "",img:'' ,liveDemo:true,videos:true,tags: ["", ""] },
 //   { name: "",img:'' ,tags: ["", ""] },
 //   { name: "",img:'' ,tags: ["", ""] },
 //   { name: "",img:'' ,tags: ["", ""] },

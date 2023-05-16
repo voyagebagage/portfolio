@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import NextLink from "next/link";
 import {
   Link,
@@ -12,22 +12,24 @@ import {
   VStack,
 } from "@chakra-ui/react";
 import { useLayoutMediaQuery } from "../../../utils/useLayoutMediaQuery";
-import { ChakraNextImage } from "../../ChakraNextImage";
+import { ChakraNextImage } from "../../../components/ChakraNextImage";
 import { items } from "./data";
 import { motion } from "framer-motion";
 import StackCard from "./StackCard";
 import { TriangleLogo } from "./TriangleLogo";
 
-import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
 import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
+import { css } from "@emotion/react";
 
-function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
+type prop = {
+  index: number;
+};
+
+function ProfileHeader({ index }: prop) {
   const MotionButton = motion(Button);
-  // const [isLargerThan850] = useMediaQuery("(min-width:850px)");
+
   const { colorMode } = useColorMode();
-  const [isShown, setIsShown] = useState(false);
   const isDark = colorMode === "dark";
-  const [turnOnQuery, setTurnOnQuery] = useState(true);
 
   //~~~~~~~~~~~~~~~MediaQueries~~~~~~~~~~~~~~~~~~~~~
   const {
@@ -43,15 +45,6 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
   const myIsLargerThan850 = isLargerThan850 || screenSizeIsLargerThan850;
   const myIsLargerThan1280 = isLargerThan1280 || screenSizeIsLargerThan1280;
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  useEffect(() => {
-    setTurnOnQuery(false);
-    const interval = setInterval(() => {
-      if (index >= 5) setIndex(-1);
-      setIndex((index: number) => index + 1);
-    }, 2000);
-
-    return () => clearInterval(interval);
-  }, [index]);
 
   const whileHover = {
     letsTalk: {
@@ -97,7 +90,6 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
   return myIsLargerThan850 ? (
     <HStack
       width="100%"
-      // mt={16}
       display="flex"
       alignItems="center"
       // border="5px solid olive"
@@ -129,12 +121,16 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
             animate={{
               color: ["#fff", "#4ff3cc"],
               backgroundColor: [items[index]?.color, "#565C60"],
-              // backgroundColor: ["hsl(0, 100, 50)", "hsl(-120, 100, 50)"],
             }}
             whileTap={{ scale: 0.8 }}
             whileHover={whileHover.letsTalk}
             transition={transition}
             w="65%"
+            // style={{
+            //   "--color-0": items[index]?.color,
+            //   "--color-20": items[(index + 1) % items.length]?.color,
+
+            // }}
           >
             <NextLink
               href="https://wa.me/33769654361?message=urlencodedtext I have a 10k job for you."
@@ -197,14 +193,6 @@ function ProfileHeader({ index, setIndex }: ThemeProviderContextProps) {
           sizes="(max-width: 768px) 100vw,
           (max-width: 1200px) 50vw,
           33vw"
-          // mt={20}
-          // mt={isSmallerThan600 ? "0" : 12}
-          // boxSize={isSmallerThan600 ? 300 : 340}
-          // mb={isSmallerThan600 ? "0" : "12"}
-          // boxShadow={isSmallerThan600 ? "lg" : "dark-lg"}
-          // border={isSmallerThan600 && isDark ? "10px solid" : "4px solid"}
-          // borderColor={isSmallerThan600 ? "modeDarkBg" : "primary"}
-          // _hover={{ boxShadow: isSmallerThan600 ? "lg" : "dark-lg" }}
         />
         <TriangleLogo />
       </Box>

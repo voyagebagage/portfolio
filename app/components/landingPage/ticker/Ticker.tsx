@@ -1,11 +1,9 @@
 // import "./styles.css";
-import React, { useRef, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
-  AbsoluteCenter,
   Box,
   Button,
   Center,
-  Flex,
   Icon,
   Text,
   useMediaQuery,
@@ -13,50 +11,38 @@ import {
 
 import {
   motion,
-  clamp,
   MotionValue,
-  useScroll,
   useSpring,
   useTransform,
   useMotionValue,
-  useVelocity,
   useAnimationFrame,
-  useDragControls,
 } from "framer-motion";
 
 import { wrap } from "@motionone/utils";
 import TickerStackCard from "././TickerStackCard";
 import { stacks } from "./data";
-import About from "../About";
 import ProfileHeader from "../profileHeader/ProfileHeader";
-import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
 import { ArrowRightIcon } from "@chakra-ui/icons";
-import { IconButtonStyles } from "@/app/styles/components/IconButtonStyles";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-// interface ParallaxProps {
-//   children: string;
-//   baseVelocity: number;
-// }
+
 interface ParallaxProps {
   children: React.ReactNode;
   baseVelocity: number;
 }
-function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
+const ParallaxCard = React.memo(function ParallaxCard({
+  children,
+  baseVelocity = 100,
+}: ParallaxProps) {
+  const [isHovered, setIsHovered] = useState(false);
   const baseX = useMotionValue(0);
   const dragX = useSpring(useMotionValue(0), {
     damping: 30,
     stiffness: 100,
   });
-  const dragControls = useDragControls();
 
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const [isHovered, setIsHovered] = useState(false);
-  const [wrap2ndArgument, setWrap2ndArgument] = useState<number>(-45);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 500,
-    stiffness: 40,
-  });
+  // const [isHovered, setIsHovered] = useState(false);
+  const [wrap2ndArgument, setWrap2ndArgument] = useState<number>(-15);
+
   // const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
   //   clamp: false,
   // });
@@ -65,35 +51,14 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
     [-100, 100],
     [-baseVelocity, baseVelocity]
   );
-  /**
-   * This is a magic wrapping for the length of the text - you
-   * have to replace for wrapping that works for you or dynamically
-   * calculate
-   */
-  const limitDrag = (offset: number) => {
-    const minDrag = -100; // minimum drag limit
-    const maxDrag = 100; // maximum drag limit
-    return clamp(minDrag, offset, maxDrag);
-  };
 
   // const x = useTransform(baseX, (v) => `${wrap(1, -13.28, v)}%`);
   const x = useTransform(
     [baseX, dragX] as unknown as MotionValue<[number, number]>,
     ([base, drag]: [number, number]) => {
-      return `${wrap(-20, wrap2ndArgument, base) + drag}%`;
+      return `${wrap(10, wrap2ndArgument, base) + drag}%`;
     }
   );
-  const handleDragEnd = (event: any, info: any) => {
-    // prevent the click event
-    if (info?.offset?.x === 0) {
-      event.preventDefault();
-    }
-  };
-  const handleDrag = (event: any, info: any) => {
-    const moveBy = limitDrag(info?.offset?.x ?? 0);
-    baseX.set(baseX.get() + moveBy);
-    directionFactor.current = moveBy > 0 ? 1 : -1;
-  };
 
   const directionFactor = useRef<number>(1);
 
@@ -117,17 +82,9 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
 
     baseX.set(baseX.get() + moveBy);
   });
-  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseEnter = useCallback(() => setIsHovered(true), []);
 
-  const handleMouseLeave = () => setIsHovered(false);
-
-  /**
-   * The number of times to repeat the child text should be dynamically calculated
-   * based on the size of the text and viewport. Likewise, the x motion value is
-   * currently wrapped between -20 and -45% - this 25% is derived from the fact
-   * we have four children (100% / 4). This would also want deriving from the
-   * dynamically generated number of children.
-   */
+  const handleMouseLeave = useCallback(() => setIsHovered(false), []);
 
   return (
     <div
@@ -136,37 +93,15 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
       onMouseLeave={handleMouseLeave}
       // style={{ border: "1px solid green" }}
     >
-      <motion.div
-        className="scroller"
-        style={{ x }}
-
-        // drag="x"
-        // dragElastic={0.1}
-        // dragMomentum={false}
-        // dragControls={dragControls}
-        // onDragEnd={handleDragEnd}
-        // onDrag={handleDrag}
-      >
+      <motion.div className="scroller" style={{ x }}>
         {children}
         {children}
         {children}
         {children}
-
-        {/* {stacks.map((stack, index) => {
-          // setWrap2ndArgument(21);
-          if (stack?.category === "UI") {
-            return (
-              <React.Fragment key={index}>
-                {children}
-                {children}
-              </React.Fragment>
-            );
-          }
-        })} */}
       </motion.div>
     </div>
   );
-}
+});
 // type setSwitchAbout = {
 //   on: () => void;
 //   off: () => void;
@@ -181,7 +116,10 @@ function ParallaxCard({ children, baseVelocity = 100 }: ParallaxProps) {
 //     toggle: () => void;
 //   };
 // }
-const Ticker = ({ index, setIndex }: ThemeProviderContextProps) => {
+type prop = {
+  index: number;
+};
+const Ticker = ({ index }: prop) => {
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
   const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)");
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
@@ -265,9 +203,9 @@ const Ticker = ({ index, setIndex }: ThemeProviderContextProps) => {
           // _hover={{ color: "white", stroke: "blue" }}
           // border="2px solid yellow"
         >
-          <ProfileHeader index={index} setIndex={setIndex} />
-          <ParallaxCard baseVelocity={-0.6}>{tickerStackCards}</ParallaxCard>
-          <ParallaxCard baseVelocity={0.5}>{tickerUICards}</ParallaxCard>
+          <ProfileHeader index={index} />
+          <ParallaxCard baseVelocity={-0.25}>{tickerStackCards}</ParallaxCard>
+          <ParallaxCard baseVelocity={0.19}>{tickerUICards}</ParallaxCard>
 
           <Center>
             <AnchorLink href="#about">
@@ -332,10 +270,9 @@ const Ticker = ({ index, setIndex }: ThemeProviderContextProps) => {
         className="mySection"
         // mb="3vh"
       >
-        <ProfileHeader index={index} setIndex={setIndex} />
-        {/* <Box as={Flex} flexDirection="column" overflowX="hidden" w="87%"> */}
-        <ParallaxCard baseVelocity={-0.6}>{tickerStackCards}</ParallaxCard>
-        <ParallaxCard baseVelocity={0.5}>{tickerUICards}</ParallaxCard>
+        <ProfileHeader index={index} />
+        <ParallaxCard baseVelocity={-0.2}>{tickerStackCards}</ParallaxCard>
+        <ParallaxCard baseVelocity={0.1}>{tickerUICards}</ParallaxCard>
         {/* </Box> */}
 
         <Center>

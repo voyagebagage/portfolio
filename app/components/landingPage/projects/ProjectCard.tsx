@@ -10,6 +10,9 @@ import {
   Button,
   Spacer,
   useBoolean,
+  useBreakpointValue,
+  IconButton,
+  ButtonGroup,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React, { useLayoutEffect, useRef, useState } from "react";
@@ -19,14 +22,37 @@ import Feature from "../../Feature";
 import { ProjectProps } from "./data";
 import * as VscIcons from "react-icons/vsc";
 
-const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
+const ProjectCard = ({
+  name,
+  liveDemo,
+  videos,
+  tags,
+  content,
+  img,
+  links,
+}: ProjectProps) => {
+  //~~~~~~~~~~~~Breakpoints~~~~~~~~~~~~~~~~~
+  const displayValue = useBreakpointValue({ base: "none", md: "inline" });
+  const sizes = useBreakpointValue({ base: "xs", md: "sm" });
+  //~~~~~~~~~~~~
   const [textFullWitdh, setTextFullWitdh] = useBoolean(false);
   const [imgFullWitdh, setImgFullWitdh] = useBoolean(false);
-  const [width, height, ref] = useElementSize();
+  // const [width, height, ref, ref2] = useElementSize();
+  const refs = useElementSize();
+  //-------------------------------
+  const ref1 = refs[0].ref;
+  const height1 = refs[0].height;
+  const width1 = refs[0].width;
+  //-------------------------------
+  const ref2 = refs[1].ref;
+  const height2 = refs[1].height;
+  const width2 = refs[1].width;
+  //-------------------------------
+  // console.log([ref2, height2]);
 
   return (
     <>
-      <HStack ref={ref} bg="#66887f" w="100%" borderRadius={"10px"}>
+      <HStack ref={ref1} bg="#66887f" w="100%" borderRadius={"10px"}>
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~left col */}
         {!imgFullWitdh && (
           <VStack
@@ -55,6 +81,7 @@ const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
               w="100%"
               justifyContent="space-between"
               alignItems={"center"}
+              ref={ref2}
               // border={"1px solid brown"}
               // mr={-2}
               // h="40px"
@@ -80,21 +107,38 @@ const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
                     </Box>
                   ))}
               </Box>
-              <Button
-                as="kbd"
-                colorScheme="teal"
-                // ml={8}
-                py={2}
-                px={6}
-                size="sm"
-                leftIcon={<Icon as={VscIcons.VscGithub} boxSize={"0.87rem"} />}
-                rightIcon={
-                  <Icon as={VscIcons.VscLinkExternal} boxSize={"0.80rem"} />
-                }
-                onClick={() => window.open(links[0], "_blank")}
-              >
-                Readme
-              </Button>
+              {displayValue === "inline" && (
+                <Button
+                  as="kbd"
+                  colorScheme="teal"
+                  // ml={8}
+                  py={2}
+                  px={8}
+                  size={sizes}
+                  leftIcon={
+                    <Icon as={VscIcons.VscGithub} boxSize={"0.87rem"} />
+                  }
+                  rightIcon={
+                    <Icon
+                      as={VscIcons.VscLinkExternal}
+                      boxSize={"0.80rem"}
+                      display={displayValue}
+                    />
+                  }
+                  onClick={() => window.open(links[0], "_blank")}
+                >
+                  Readme
+                </Button>
+              )}
+              {displayValue === "none" && (
+                <IconButton
+                  aria-label="gb-icon-button"
+                  colorScheme="teal"
+                  py={2}
+                  icon={<Icon as={VscIcons.VscGithub} boxSize={"0.87rem"} />}
+                  // ref={displayValue === "none" &&ref2}
+                />
+              )}
             </HStack>
           </VStack>
         )}
@@ -109,13 +153,12 @@ const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
           >
             <Box
               _hover={{
-                filter: "brightness(0.3)",
-                padding: 6,
-                border: "1px solid red",
+                filter: "brightness(0.8)",
+                cursor: "pointer",
               }}
               w={"100%"}
-              minW={imgFullWitdh ? width : "100%"}
-              h={height}
+              minW={imgFullWitdh ? width1 : "100%"}
+              h={height1}
               position="relative"
               onClick={setImgFullWitdh.toggle}
               bg="gray.400"
@@ -139,6 +182,39 @@ const ProjectCard = ({ name, tags, content, img, links }: ProjectProps) => {
                 // 33vw"
                 // loading="lazy"
               />
+              <HStack
+                pb={3}
+                pr={2}
+                spacing={"0.7rem"}
+                position="absolute"
+                w="100%"
+                h="100%"
+                justifyContent={"flex-end"}
+                alignItems={"flex-end"}
+              >
+                <ButtonGroup size={sizes} h={`${height2}px`} isAttached>
+                  <Button
+                    disabled={liveDemo}
+                    colorScheme="red"
+                    _hover={{
+                      filter: "brightness(1.1)",
+                      cursor: !liveDemo ? "pointer" : "initial",
+                    }}
+                  >
+                    Live Demo
+                  </Button>
+                  <Button
+                    disabled={videos}
+                    colorScheme="cyan"
+                    _hover={{
+                      filter: "brightness(1.1)",
+                      cursor: !videos ? "pointer" : "initial",
+                    }}
+                  >
+                    Videos
+                  </Button>
+                </ButtonGroup>
+              </HStack>
             </Box>
           </VStack>
         ) : null}

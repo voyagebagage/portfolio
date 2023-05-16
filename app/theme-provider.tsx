@@ -14,8 +14,9 @@ import SocialLinks from "./components/layout/SocialLinks";
 import EmailDisplay from "./components/layout/EmailDisplay";
 import AnimatedModal from "./components/AnimatedModal";
 import { getToken } from "./utils/tokenManager";
+import { ColorProvider } from "./context/colorContext";
 
-const manager = createLocalStorageManager("my-key");
+// const manager = createLocalStorageManager("my-key");
 
 export default function ThemeProvider({
   children,
@@ -57,22 +58,20 @@ export default function ThemeProvider({
       <ChakraProvider resetCSS theme={customTheme}>
         <AnimationContext.Provider value={animationContextValues}>
           <ThemeProviderContext.Provider value={contextValues}>
-            <SocialLinks />
-            <EmailDisplay />
-            {/* {isToken || token ? ( */}
-            <Header
-              visitingName={visitingName}
-              setVisitingName={setVisitingName}
-              index={index}
-            />
-            {/* ) : (
-              <AnimatedModal setVisitingName={setVisitingName} />
-            )} */}
-            {children}
-            <Footer />
-            {!token ? (
-              <AnimatedModal setVisitingName={setVisitingName} />
-            ) : null}
+            <ColorProvider>
+              <SocialLinks />
+              <EmailDisplay />
+              <Header
+                visitingName={visitingName}
+                setVisitingName={setVisitingName}
+                index={index}
+              />
+              {children}
+              <Footer />
+              {!token ? (
+                <AnimatedModal setVisitingName={setVisitingName} />
+              ) : null}
+            </ColorProvider>
           </ThemeProviderContext.Provider>
         </AnimationContext.Provider>
       </ChakraProvider>

@@ -1,22 +1,9 @@
-import React, { Suspense, useEffect } from "react";
-import {
-  chakra,
-  ChakraComponent,
-  Flex,
-  Heading,
-  PropsOf,
-} from "@chakra-ui/react";
-import {
-  motion,
-  AnimatePresence,
-  Transition,
-  MotionProps,
-} from "framer-motion";
+import React, { Suspense } from "react";
+import { chakra, ChakraComponent, Flex, PropsOf } from "@chakra-ui/react";
+import { motion, AnimatePresence, MotionProps } from "framer-motion";
 
 import { items } from "./data";
-import { BoxForNextImage, ChakraNextImage } from "../../ChakraNextImage";
-import Image from "next/image";
-import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
+import { ChakraNextImage } from "../../ChakraNextImage";
 
 interface StackCardProps {
   index: number;
