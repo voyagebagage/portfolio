@@ -205,7 +205,7 @@ const ProjectCard = ({
                   </Button>
                   <Button
                     disabled={videos}
-                    colorScheme="cyan"
+                    colorScheme={"cyan"}
                     _hover={{
                       filter: "brightness(1.1)",
                       cursor: !videos ? "pointer" : "initial",
