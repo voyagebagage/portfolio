@@ -16,7 +16,11 @@ import { useInView } from "react-intersection-observer";
 import { inViewAnimation, outOfViewAnimation } from "../animations/animation";
 import { useColor } from "@/app/customHooks/useColor";
 import { useLayoutMediaQuery } from "@/app/utils/useLayoutMediaQuery";
+import { useInViewThreshold } from "@/app/customHooks/useInViewThresold";
 
+interface AboutProps {
+  setVisibleWhenInView: () => void;
+}
 const About = () => {
   const index = useColor();
   //~~~~~~~~~~~~~~~MediaQueries~~~~~~~~~~~~~~~~~~~~~
@@ -26,7 +30,7 @@ const About = () => {
   const { ref, inView } = useInView({
     threshold: 1,
   });
-
+  // const myRef = useInViewThreshold(0.8, setVisibleWhenInView);
   const { arrowPointingAt, setArrowPointingAt } = useContext(AnimationContext)!;
   const [on, setOn] = useState<boolean>(false);
   const animation = useAnimation();

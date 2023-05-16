@@ -10,7 +10,6 @@ import { useLayoutMediaQuery } from "@/app/utils/useLayoutMediaQuery";
 
 const EmailDisplay = () => {
   const [positionFromTop, setPositionFromTop] = useState<Boolean>(false);
-
   //~~~~~~~~~~~~~~~MediaQueries~~~~~~~~~~~~~~~~~~~~~
   const myIsLargerThan1150 = useLayoutMediaQuery("(min-width: 1150px)");
   const myIsLargerThan800 = useLayoutMediaQuery("(min-width: 800px)");
