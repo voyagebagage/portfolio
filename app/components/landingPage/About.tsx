@@ -6,7 +6,6 @@ import {
   Heading,
   Container,
   Highlight,
-  useMediaQuery,
 } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { items } from "./profileHeader/data";
@@ -15,15 +14,14 @@ import { ArrowTriangle } from "../StyledIcons";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { inViewAnimation, outOfViewAnimation } from "../animations/animation";
-import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
 import { useColor } from "@/app/customHooks/useColor";
+import { useLayoutMediaQuery } from "@/app/utils/useLayoutMediaQuery";
 
 const About = () => {
   const index = useColor();
   //~~~~~~~~~~~~~~~MediaQueries~~~~~~~~~~~~~~~~~~~~~
-  const { screenSizeIsSmallerThan640 } = useFirstLoadMediaBooleans();
-  const [isSmallerThan600] = useMediaQuery("(max-width: 640px)");
-  const myIsSmallerThan640 = isSmallerThan600 || screenSizeIsSmallerThan640;
+  const myIsSmallerThan640 = useLayoutMediaQuery("(max-width: 640px)");
+  const isLargerThanLarge = useLayoutMediaQuery("(min-width:1024px)");
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const { ref, inView } = useInView({
     threshold: 1,
@@ -65,9 +63,6 @@ const About = () => {
         borderRadius="20px 20px 0px 0px"
         textAlign={"center"}
         overflowX="hidden"
-
-        // bg="#2BDEB2"
-        // bg="#28D0A9"
       >
         <Container maxW={{ sm: "100%", md: "xl", lg: "4xl" }}>
           <Text as="kbd" fontSize={"md"} color="#64ffda">
@@ -79,7 +74,6 @@ const About = () => {
             letterSpacing={1.8}
             fontSize="5xl"
             pl={myIsSmallerThan640 ? 0 : 39}
-            // className="pl-16"
             textAlign={"center"}
             filter="brightness(105%)"
             bgGradient={`linear(to-t, ${
@@ -91,28 +85,31 @@ const About = () => {
             Olivier Frugier.
           </Heading>
           {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~Triangle arrowPointingAt */}
-          <Box
-            as={motion.div}
-            animate={
-              on && arrowPointingAt === "about"
-                ? inViewAnimation
-                : outOfViewAnimation
-            }
-          >
-            <ArrowTriangle
-              zIndex={2}
-              position={"absolute"}
-              boxSize={70}
-              opacity="0.08"
-              alignSelf="flex-end"
-            />
-          </Box>
+          {isLargerThanLarge ? (
+            <>
+              <Box
+                as={motion.div}
+                animate={
+                  on && arrowPointingAt === "about"
+                    ? inViewAnimation
+                    : outOfViewAnimation
+                }
+              >
+                <ArrowTriangle
+                  zIndex={2}
+                  position={"absolute"}
+                  boxSize={70}
+                  opacity="0.08"
+                  alignSelf="flex-end"
+                />
+              </Box>
+            </>
+          ) : null}
 
           <Heading
             letterSpacing={1.5}
             fontSize="5xl"
             pl={myIsSmallerThan640 ? 0 : "4rem"}
-            // className="pl-16"
             filter="brightness(75%)"
           >
             <Highlight
@@ -128,7 +125,6 @@ const About = () => {
           <SimpleGrid
             columns={{ sm: 2, xs: 1 }}
             w="100%"
-            // minChildWidth="200px"
             spacingX={7}
             spacingY={2}
             p={4}

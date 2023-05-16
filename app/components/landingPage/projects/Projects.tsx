@@ -1,8 +1,6 @@
 import {
   AbsoluteCenter,
   Box,
-  Center,
-  Input,
   InputGroup,
   InputLeftElement,
   Tag,
@@ -10,12 +8,8 @@ import {
   Flex,
   Heading,
   Highlight,
-  useControllableState,
-  Button,
-  HStack,
   Wrap,
   Text,
-  useMediaQuery,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { PlusSquareIcon } from "@chakra-ui/icons";
@@ -30,7 +24,7 @@ import {
 } from "../../animations/animation";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
-import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
+import { useLayoutMediaQuery } from "@/app/utils/useLayoutMediaQuery";
 
 const tags = [
   "React",
@@ -58,20 +52,14 @@ interface TagListProps {
 
 const Projects = () => {
   //~~~~~~~~~~~~Breakpoints~~~~~~~~~~~~~~~~~
-  // const displayValue = useBreakpointValue({ base: "none", md: "inline" });
   const BoxSizes = useBreakpointValue({
     base: "100%",
     sm: `${calc(100 / 1.3)}%`,
     lg: "72%",
   });
-  //~~~~~~~~~~~~
   //~~~~~~~~Media queries~~~~~~~~~~~~~~~
-  const { screenSizeIsSmallerThan600, screenSizeIsLargerThan1150 } =
-    useFirstLoadMediaBooleans();
-  const [isSmallerThan600] = useMediaQuery("(max-width:600px)");
-  const [isLargerThan1150] = useMediaQuery("min-width:920px");
-  const myIsSmallerThan600 = isSmallerThan600 || screenSizeIsSmallerThan600;
-  const myIsLargerThan1150 = isLargerThan1150 || screenSizeIsLargerThan1150;
+  const myIsSmallerThan600 = useLayoutMediaQuery("(max-width:600px)");
+  const isLargerThanLarge = useLayoutMediaQuery("(min-width:1024px)");
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [tagList, setTagList] = useState<TagListProps[]>([]);
   const [tagNames, setTagNames] = useState<string[]>(tags);
@@ -91,7 +79,6 @@ const Projects = () => {
       animation.start(outOfViewAnimation);
     }
   }, [inView, on, arrowPointingAt === "projects"]);
-  // console.log("ton scroll", inView, scrollSup850, on);
 
   const handleMouseEnter = () => {
     setOn(true);
@@ -147,7 +134,6 @@ const Projects = () => {
 
     setResults((prev) => [...prev, ...filteredResults]);
   };
-  // console.log("results", results);
 
   return (
     <section
@@ -156,7 +142,6 @@ const Projects = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      {/* <Box h={`${100 + heigthRes * 10}%`}> */}
       <Flex justify={"center"} align={"flex-end"}>
         <Heading
           position={"relative"}
@@ -178,36 +163,38 @@ const Projects = () => {
           </Highlight>
         </Heading>
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~Triangle arrowPointingAt */}
-        <Box
-          as={motion.div}
-          animate={
-            on && arrowPointingAt === "projects"
-              ? inViewAnimation
-              : outOfViewAnimation
-          }
-          position={"absolute"}
-        >
-          <ArrowTriangle position={"absolute"} zIndex={2} boxSize={70} />
-        </Box>
-        <Box
-          as={motion.div}
-          initial={{ opacity: 0 }}
-          animate={on ? { opacity: 1 } : { opacity: 0 }}
-          // transition={{ duration: 0.5 }}
-          w="8rem"
-          border={"1px solid"}
-          h={0}
-        />
-        <Box w="10rem" h={0} />
+        {isLargerThanLarge ? (
+          <>
+            <Box
+              as={motion.div}
+              animate={
+                on && arrowPointingAt === "projects"
+                  ? inViewAnimation
+                  : outOfViewAnimation
+              }
+              position={"absolute"}
+            >
+              <ArrowTriangle position={"absolute"} zIndex={2} boxSize={70} />
+            </Box>
+            <Box
+              as={motion.div}
+              initial={{ opacity: 0 }}
+              animate={on ? { opacity: 1 } : { opacity: 0 }}
+              w="8rem"
+              border={"1px solid"}
+              h={0}
+            />
+            <Box w="10rem" h={0} />
+          </>
+        ) : null}
       </Flex>
-      {/* <HStack gap={5} w="70%"> */}
+
       <Text
         as="kbd"
         fontSize={"lg"}
         color="#64ffda"
         borderColor="#64ffda"
         mb={-2}
-        // ml={-150}
       >
         Pick:
       </Text>
@@ -216,7 +203,6 @@ const Projects = () => {
           {tagNames.map((tag, index: number) =>
             tag !== "" ? (
               <Tag
-                // as={Button}
                 key={index}
                 data-index={`${index}`}
                 size="lg"
@@ -240,7 +226,6 @@ const Projects = () => {
             )
           )}
         </Box>
-        {/* </HStack> */}
         <Box
           border="2px solid "
           mt={4}
@@ -254,16 +239,10 @@ const Projects = () => {
           display="flex"
           alignItems={"flex-start"}
           justifyContent={"flex-start"}
-          // pl={15}
           boxShadow={"lg"}
         >
           <InputGroup>
-            <InputLeftElement
-              borderRight={"1px white solid"}
-              // h={tagList.length > 0 ? "full" : "0px"}
-              h={"full"}
-              // minH="50px"
-            >
+            <InputLeftElement borderRight={"1px white solid"} h={"full"}>
               <AbsoluteCenter h="full">
                 <PlusSquareIcon />
               </AbsoluteCenter>
@@ -284,7 +263,6 @@ const Projects = () => {
                   size="lg"
                   colorScheme="teal"
                   variant="solid"
-                  // _hover={{ variant: "outline" }}
                   cursor="pointer"
                   display="flex"
                   w="fit-content"
@@ -300,28 +278,18 @@ const Projects = () => {
           </InputGroup>
         </Box>
         {/* ///========================================Carousel================== */}
-        <Box
-          as={Flex}
-          // border={"1px solid yellow"}
-          overflowX="scroll"
-          w="100%"
-          // h={250}
-          h={275}
-          // className="bg-blue-300"
-        >
+        <Box as={Flex} overflowX="scroll" w="100%" h={275}>
           {results &&
             results.map((project, index) => (
               <Box
                 key={index}
                 borderRadius="10px"
-                // border={"2px solid olive"}
                 minW={myIsSmallerThan600 ? "80%" : "90%"}
                 w="100%"
                 display="flex"
                 alignItems={"center"}
                 m={4}
                 boxShadow={"lg"}
-                // className="w-96 h-auto"
               >
                 <ProjectCard
                   name={project.name}

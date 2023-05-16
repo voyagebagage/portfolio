@@ -1,18 +1,13 @@
 // components/SocialLinks.tsx
-import customTheme from "@/app/styles/theme";
-import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
-import { Box, Link, VStack, Icon, useMediaQuery } from "@chakra-ui/react";
+import { Box, Link, VStack, Icon } from "@chakra-ui/react";
 import { FaGithub, FaLinkedin, FaInstagram, FaYoutube } from "react-icons/fa";
 import MIconButton from "../MIconButton";
+import { useLayoutMediaQuery } from "@/app/utils/useLayoutMediaQuery";
 
 const SocialLinks = () => {
   //~~~~~~~~~~~~~~~MediaQueries~~~~~~~~~~~~~~~~~~~~~
-  const { screenSizeIsLargerThan800, screenSizeIsLargerThan1150 } =
-    useFirstLoadMediaBooleans();
-  const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
-  const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
-  const myIsLargerThan1150 = isLargerThan1150 || screenSizeIsLargerThan1150;
-  const myIsLargerThan800 = isLargerThan800 || screenSizeIsLargerThan800;
+  const myIsLargerThan1150 = useLayoutMediaQuery("(min-width: 1150px)");
+  const myIsLargerThan800 = useLayoutMediaQuery("(min-width: 800px)");
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   return myIsLargerThan800 ? (
@@ -22,6 +17,10 @@ const SocialLinks = () => {
       bottom="0"
       left="0"
       bg={myIsLargerThan800 && !myIsLargerThan1150 ? "#30373d" : "transparent"}
+      h={myIsLargerThan800 && !myIsLargerThan1150 ? "100%" : "transparent"}
+      justifyContent={
+        myIsLargerThan800 && !myIsLargerThan1150 ? "flex-end" : "unset"
+      }
       px={myIsLargerThan1150 ? "3rem" : "1rem"}
       zIndex={20}
     >

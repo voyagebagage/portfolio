@@ -21,6 +21,7 @@ import { inViewAnimation, outOfViewAnimation } from "../animations/animation";
 import { ArrowTriangle } from "../StyledIcons";
 import { items } from "./profileHeader/data";
 import { useColor } from "@/app/customHooks/useColor";
+import { useLayoutMediaQuery } from "@/app/utils/useLayoutMediaQuery";
 
 const Contact = () => {
   const index = useColor();
@@ -28,6 +29,7 @@ const Contact = () => {
   const { ref, inView } = useInView({
     threshold: 1,
   });
+  const isLargerThanLarge = useLayoutMediaQuery("(min-width:1024px)");
   const { arrowPointingAt, setArrowPointingAt } = useContext(AnimationContext)!;
   const [on, setOn] = useState<boolean>(false);
   const animation = useAnimation();
@@ -79,39 +81,37 @@ const Contact = () => {
           </Highlight>
         </Heading>
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~Triangle arrowPointingAt */}
-        <Box
-          as={motion.div}
-          animate={
-            on && arrowPointingAt === "contact"
-              ? inViewAnimation
-              : outOfViewAnimation
-          }
-          position={"absolute"}
-        >
-          <ArrowTriangle position={"absolute"} zIndex={2} boxSize={70} />
-        </Box>
-        <Box
-          as={motion.div}
-          initial={{ opacity: 0 }}
-          animate={on ? { opacity: 1 } : { opacity: 0 }}
-          w="10rem"
-          border={"1px solid"}
-          h={0}
-        />
+        {isLargerThanLarge ? (
+          <>
+            <Box
+              as={motion.div}
+              animate={
+                on && arrowPointingAt === "contact"
+                  ? inViewAnimation
+                  : outOfViewAnimation
+              }
+              position={"absolute"}
+            >
+              <ArrowTriangle position={"absolute"} zIndex={2} boxSize={70} />
+            </Box>
+            <Box
+              as={motion.div}
+              initial={{ opacity: 0 }}
+              animate={on ? { opacity: 1 } : { opacity: 0 }}
+              w="8rem"
+              border={"1px solid"}
+              h={0}
+            />
+            <Box w="10rem" h={0} />
+          </>
+        ) : null}
       </Flex>
-      <Text
-        as="kbd"
-        fontSize={"md"}
-        color="#64ffda"
-        mt={4}
-        // ml={-150}
-      >
+      <Text as="kbd" fontSize={"md"} color="#64ffda" mt={4}>
         What&apos;s next ?
       </Text>
       <Container
         textAlign={"center"}
         fontSize="larger"
-        // pb={1}
         size={{ sm: "sm", md: "xl" }}
       >
         Although I’m not currently looking for any new opportunities, my inbox
@@ -138,7 +138,6 @@ const Contact = () => {
           <Input
             placeholder="Your email"
             variant="filled"
-            // placeholder="Filled"
             outline={"none"}
             type="email"
             name="email"
@@ -150,7 +149,6 @@ const Contact = () => {
           placeholder="Your message"
           variant="filled"
           outline={"none"}
-          // type="text"
           name="subject"
           id="02"
           mb={3}
@@ -164,14 +162,7 @@ const Contact = () => {
             color={"primary"}
             type="submit"
             variant="solid"
-            // color="black"
-            // justifySelf={"center"}
-            rightIcon={
-              <EmailIcon
-              // isLoading
-              // loadingText='Submitting'
-              />
-            }
+            rightIcon={<EmailIcon />}
           >
             Send
           </Button>

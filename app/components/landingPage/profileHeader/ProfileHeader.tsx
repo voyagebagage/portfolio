@@ -3,7 +3,6 @@ import NextLink from "next/link";
 import {
   Link,
   Box,
-  useColorMode,
   HStack,
   Button,
   Spacer,
@@ -24,8 +23,6 @@ function ProfileHeader() {
   const index = useColor();
   const MotionButton = motion(Button);
 
-  const { colorMode } = useColorMode();
-  // const isDark = colorMode === "dark";
   //~~~~~~~~~~~~Breakpoints~~~~~~~~~~~~~~~~~
   const displayLargeHeader = useBreakpointValue({ base: "none", md: "flex" });
   const displaySmallValue = useBreakpointValue({ base: "flex", md: "none" });

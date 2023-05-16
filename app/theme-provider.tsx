@@ -1,7 +1,7 @@
 "use client";
 import "./globals.css";
 import { CacheProvider } from "@chakra-ui/next-js";
-import { ChakraProvider, createLocalStorageManager } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import customTheme from "./styles/theme";
 import Header from "./components/layout/header/Header";
 import Footer from "./components/landingPage/Footer";
@@ -32,11 +32,15 @@ export default function ThemeProvider({
   //------------------------
   const [isChildrenVisible, setIsChildrenVisible] = useState(false);
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsChildrenVisible(true);
-    }, 1000); // 1000ms delay
+    if (!token) {
+      const timer = setTimeout(() => {
+        setIsChildrenVisible(true);
+      }, 1000); // 1000ms delay
 
-    return () => clearTimeout(timer); // Clean up on component unmount
+      return () => clearTimeout(timer); // Clean up on component unmount
+    } else {
+      setIsChildrenVisible(true);
+    }
   }, []);
   //------------------------
   const [arrowPointingAt, setArrowPointingAt] = useState<string>(

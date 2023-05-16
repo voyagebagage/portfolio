@@ -9,7 +9,7 @@ import Projects from "./components/landingPage/projects/Projects";
 import Contact from "./components/landingPage/Contact";
 
 export default function Home() {
-  <>
+  return (
     <div className="cards" id="home">
       <Ticker />
       <About />
@@ -17,5 +17,5 @@ export default function Home() {
       <Projects />
       <Contact />
     </div>
-  </>;
+  );
 }

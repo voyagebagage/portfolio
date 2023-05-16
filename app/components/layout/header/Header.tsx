@@ -2,15 +2,12 @@
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import {
   Flex,
-  useDisclosure,
   Box,
   Icon,
   Text,
   HStack,
-  Center,
   Highlight,
   useMediaQuery,
-  VStack,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
@@ -26,11 +23,9 @@ import { useColor } from "@/app/customHooks/useColor";
 type props = {
   visitingName: string | undefined;
   setVisitingName: React.Dispatch<React.SetStateAction<string | undefined>>;
-  // index: ColorContextType;
 };
 
 const Header = ({ visitingName, setVisitingName }: props) => {
-  // const index = useContext(ColorContext)!;
   const index = useColor();
   const [positionFromTop, setPositionFromTop] = useState<Boolean>(false);
   //~~~~~~~~~~~~Breakpoints~~~~~~~~~~~~~~~~~
@@ -41,6 +36,7 @@ const Header = ({ visitingName, setVisitingName }: props) => {
   const displaySmallHeader = useBreakpointValue({
     base: "none",
     md: "flex",
+    xl: "none",
   });
   const displayBurgerHeader = useBreakpointValue({
     md: "none",
@@ -83,8 +79,6 @@ const Header = ({ visitingName, setVisitingName }: props) => {
           <TriangleLogoSmall />
         </Flex>
         <Text
-          // as="p"
-          // noOfLines={1}
           fontSize="xl"
           fontWeight="bold"
           bgGradient={`linear(to-r, ${
@@ -92,7 +86,6 @@ const Header = ({ visitingName, setVisitingName }: props) => {
           },#4ff3cc)`}
           bgClip="text"
           ml={"-10rem"}
-          // className="-ml-40"
         >
           Welcome <>{visitingName}</>
         </Text>
@@ -135,7 +128,6 @@ const Header = ({ visitingName, setVisitingName }: props) => {
         css={{ backdropFilter: "blur(15px)" }}
         zIndex={99009}
         maxH="8.3vh"
-        // ml={"-8rem"}
         display={displaySmallHeader}
       >
         <Flex>
@@ -150,7 +142,6 @@ const Header = ({ visitingName, setVisitingName }: props) => {
           },#4ff3cc)`}
           bgClip="text"
           ml={positionFromTop && isSmallerThan800 ? 0 : "-10rem"}
-          // className="-ml-40"
         >
           Welcome <>{visitingName}</>
         </Text>
@@ -202,7 +193,6 @@ const Header = ({ visitingName, setVisitingName }: props) => {
       <HStack
         as={Box}
         spacing={4}
-        // border="2px solid blue"
         w="100%"
         position="fixed"
         css={{ backdropFilter: "blur(15px)" }}
@@ -225,8 +215,6 @@ const Header = ({ visitingName, setVisitingName }: props) => {
           },#4ff3cc)`}
           bgClip="text"
           display={"flex"}
-          // alignSelf={"end"}
-          // className=""
         >
           Welcome <>{visitingName}</>
         </Text>

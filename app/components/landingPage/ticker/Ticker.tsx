@@ -6,6 +6,7 @@ import {
   Center,
   Icon,
   Text,
+  useBreakpointValue,
   useMediaQuery,
 } from "@chakra-ui/react";
 
@@ -102,26 +103,22 @@ const ParallaxCard = React.memo(function ParallaxCard({
     </div>
   );
 });
-// type setSwitchAbout = {
-//   on: () => void;
-//   off: () => void;
-//   toggle: () => void;
-// };
-
-// interface TickerProps extends ThemeProviderContextProps {
-//   switchAbout: boolean;
-//   setSwitchAbout: {
-//     on: () => void;
-//     off: () => void;
-//     toggle: () => void;
-//   };
-// }
 
 const Ticker = () => {
+  const displayLargeHeader = useBreakpointValue({
+    base: "none",
+    xl: "flex",
+  });
+  const displaySmallHeader = useBreakpointValue({
+    base: "flex",
+    xl: "none",
+  });
+
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
   const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)");
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
   const [isLargerThan600] = useMediaQuery("(min-width: 600px)");
+
   const tickerStackCards = stacks.map((stack, indexStackCard) => {
     if (stack?.category !== "UI") {
       return (
@@ -130,7 +127,6 @@ const Ticker = () => {
           // style={{ border: "2px solid orange" }}
         >
           <TickerStackCard
-            // index={index}
             title={stack.tickerName || ""}
             content={stack.content || ""}
             level={stack.level || ""}
@@ -159,7 +155,6 @@ const Ticker = () => {
           // style={{ border: "2px solid orange" }}
         >
           <TickerStackCard
-            // index={index}
             title={stack.tickerName || ""}
             content={stack.content || ""}
             level={stack.level || ""}
@@ -178,46 +173,106 @@ const Ticker = () => {
       );
     }
   });
+  return (
+    <>
+      <section style={{ display: displayLargeHeader }}>
+        <Box position={"relative"} bg="default" h="100%">
+          <Box
+            mt="3.5vh"
+            position="relative"
+            scrollSnapAlign={"start"}
+            height="100vh"
+            w="100vw"
+            // pt={"10vh"}
+            // mb="30px"
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            gap="0.6rem"
+            zIndex={1}
+            className="mySection"
+          >
+            <ProfileHeader />
+            <ParallaxCard baseVelocity={-0.25}>{tickerStackCards}</ParallaxCard>
+            <ParallaxCard baseVelocity={0.19}>{tickerUICards}</ParallaxCard>
 
-  return isLargerThan1150 ? (
-    <section>
-      <Box position={"relative"} bg="default" h="100%">
-        {/* <section className="mySection"></section> */}
+            <Center>
+              <AnchorLink href="#about">
+                <Button
+                  zIndex={-1}
+                  ml={"4.6rem"}
+                  mt={"3%"}
+                  boxShadow="2xl"
+                  bg="rgba(255, 255, 255, 0.16)"
+                  aria-label="intro"
+                  p={6}
+                  px={18}
+                  w={isLargerThan1000 ? "4xl" : "fit-content"}
+                  rightIcon={
+                    <Icon
+                      as={ArrowRightIcon}
+                      transform={"rotate(90deg)"}
+                      ml={2}
+                    />
+                  }
+                >
+                  {isLargerThan1000 ? (
+                    <Text letterSpacing={2} textAlign={"center"}>
+                      Hi, I&apos;m Oli, web and mobile developer based in
+                      Thailand
+                    </Text>
+                  ) : (
+                    <Text letterSpacing={2} textAlign={"center"}>
+                      Hi, I&apos;m Oli, web and mobile
+                    </Text>
+                  )}
+                </Button>
+              </AnchorLink>
+            </Center>
+          </Box>
+          <Box
+            position="absolute"
+            top={0}
+            left={0}
+            right={0}
+            height="100%"
+            width="100%"
+            boxShadow="inset 100px 0px 10px -10px rgba(48,55,61,0.981), inset -100px 0px 10px -10px rgba(48,55,61, 0.981)"
+            pointerEvents="none"
+            zIndex={2}
+          />
+        </Box>
+      </section>
+      <section style={{ display: displaySmallHeader }}>
         <Box
           mt="3.5vh"
           position="relative"
-          // scrollSnapAlign={"start"}
           height="100vh"
           w="100vw"
-          // pt={"10vh"}
-          // mb="30px"
           display="flex"
           flexDirection="column"
           alignItems="center"
           justifyContent="center"
-          gap="0.6rem"
+          gap="0.7rem"
           zIndex={1}
           className="mySection"
-          // _hover={{ color: "white", stroke: "blue" }}
-          // border="2px solid yellow"
         >
           <ProfileHeader />
-          <ParallaxCard baseVelocity={-0.25}>{tickerStackCards}</ParallaxCard>
-          <ParallaxCard baseVelocity={0.19}>{tickerUICards}</ParallaxCard>
+          <ParallaxCard baseVelocity={-0.2}>{tickerStackCards}</ParallaxCard>
+          <ParallaxCard baseVelocity={0.1}>{tickerUICards}</ParallaxCard>
 
           <Center>
             <AnchorLink href="#about">
               <Button
-                // onClick={setSwitchAbout.on}
                 zIndex={-1}
-                ml={"4.6rem"}
                 mt={"3%"}
                 boxShadow="2xl"
                 bg="rgba(255, 255, 255, 0.16)"
                 aria-label="intro"
                 p={6}
-                px={18}
-                w={isLargerThan1000 ? "4xl" : "fit-content"}
+                px={8}
+                w="70vw"
                 rightIcon={
                   <Icon
                     as={ArrowRightIcon}
@@ -226,80 +281,17 @@ const Ticker = () => {
                   />
                 }
               >
-                {isLargerThan1000 ? (
+                {isLargerThan600 ? (
                   <Text letterSpacing={2} textAlign={"center"}>
-                    Hi, I&apos;m Oli, web and mobile developer based in Thailand
+                    Hi, I&apos;m Oli, web and mobile developer
                   </Text>
-                ) : (
-                  <Text letterSpacing={2} textAlign={"center"}>
-                    Hi, I&apos;m Oli, web and mobile
-                  </Text>
-                )}
+                ) : null}
               </Button>
             </AnchorLink>
           </Center>
         </Box>
-        <Box
-          position="absolute"
-          top={0}
-          left={0}
-          right={0}
-          height="100%"
-          width="100%"
-          boxShadow="inset 100px 0px 10px -10px rgba(48,55,61,0.981), inset -100px 0px 10px -10px rgba(48,55,61, 0.981)"
-          pointerEvents="none"
-          zIndex={2}
-        />
-      </Box>
-    </section>
-  ) : (
-    <section>
-      <Box
-        mt="3.5vh"
-        position="relative"
-        height="100vh"
-        w="100vw"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent="center"
-        gap="0.7rem"
-        zIndex={1}
-        className="mySection"
-        // mb="3vh"
-      >
-        <ProfileHeader />
-        <ParallaxCard baseVelocity={-0.2}>{tickerStackCards}</ParallaxCard>
-        <ParallaxCard baseVelocity={0.1}>{tickerUICards}</ParallaxCard>
-        {/* </Box> */}
-
-        <Center>
-          <AnchorLink href="#about">
-            <Button
-              // onClick={setSwitchAbout.on}
-              zIndex={-1}
-              // ml={"4.6rem"}
-              mt={"3%"}
-              boxShadow="2xl"
-              bg="rgba(255, 255, 255, 0.16)"
-              aria-label="intro"
-              p={6}
-              px={8}
-              w="70vw"
-              rightIcon={
-                <Icon as={ArrowRightIcon} transform={"rotate(90deg)"} ml={2} />
-              }
-            >
-              {isLargerThan600 ? (
-                <Text letterSpacing={2} textAlign={"center"}>
-                  Hi, I&apos;m Oli, web and mobile developer
-                </Text>
-              ) : null}
-            </Button>
-          </AnchorLink>
-        </Center>
-      </Box>
-    </section>
+      </section>
+    </>
   );
 };
 export default Ticker;

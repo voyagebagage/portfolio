@@ -106,8 +106,8 @@ const overrides = {
     // },
   },
   components: {
-    // Button,
-    // IconButton,
+    Button,
+    IconButton,
   },
 };
 

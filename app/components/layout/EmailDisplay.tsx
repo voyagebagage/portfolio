@@ -1,31 +1,19 @@
 // components/SocialLinks.tsx
-import {
-  Box,
-  VStack,
-  Icon,
-  Text,
-  Link,
-  Button,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Box, VStack, Icon, Text, Link } from "@chakra-ui/react";
 import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
 // import { AnimateSharedLayout, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import MIconButton from "../MIconButton";
 import { ChevronUpIcon } from "@chakra-ui/icons";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
+import { useLayoutMediaQuery } from "@/app/utils/useLayoutMediaQuery";
 
 const EmailDisplay = () => {
   const [positionFromTop, setPositionFromTop] = useState<Boolean>(false);
 
   //~~~~~~~~~~~~~~~MediaQueries~~~~~~~~~~~~~~~~~~~~~
-  const { screenSizeIsLargerThan800, screenSizeIsLargerThan1150 } =
-    useFirstLoadMediaBooleans();
-  const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
-  const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
-  const myIsLargerThan1150 = isLargerThan1150 || screenSizeIsLargerThan1150;
-  const myIsLargerThan800 = isLargerThan800 || screenSizeIsLargerThan800;
+  const myIsLargerThan1150 = useLayoutMediaQuery("(min-width: 1150px)");
+  const myIsLargerThan800 = useLayoutMediaQuery("(min-width: 800px)");
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   useEffect(() => {
@@ -46,6 +34,10 @@ const EmailDisplay = () => {
       bottom="0"
       right="0"
       bg={myIsLargerThan800 && !myIsLargerThan1150 ? "#30373d" : "transparent"}
+      h={myIsLargerThan800 && !myIsLargerThan1150 ? "100%" : "transparent"}
+      justifyContent={
+        myIsLargerThan800 && !myIsLargerThan1150 ? "flex-end" : "unset"
+      }
       px={myIsLargerThan1150 ? "2.8rem" : "1rem"}
       zIndex={20}
     >
