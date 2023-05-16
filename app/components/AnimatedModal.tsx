@@ -26,6 +26,8 @@ import {
   useDisclosure,
   VStack,
   Box,
+  HStack,
+  ButtonGroup,
 } from "@chakra-ui/react";
 import { setToken } from "../utils/tokenManager";
 import { v4 as uuidv4 } from "uuid";
@@ -220,21 +222,23 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                       </FormControl>
                     </ModalBody>
                     <ModalFooter>
-                      <Button
-                        letterSpacing="wider"
-                        onClick={() => handleClick("step1", "")}
-                        mr={3}
-                      >
-                        Back
-                      </Button>
-                      <VStack>
-                        <Button letterSpacing="wider" type="submit" mr={3}>
-                          Welcome to my portfolio
+                      <ButtonGroup>
+                        <Button
+                          letterSpacing="wider"
+                          onClick={() => handleClick("step1", "")}
+                          // mr={3}
+                        >
+                          Back
                         </Button>
-                        <Text as="sub" className="opacity-50">
-                          you need a minimum of letters to activate 🙏
-                        </Text>
-                      </VStack>
+                        <VStack>
+                          <Button letterSpacing="wider" type="submit" mr={3}>
+                            Welcome to my portfolio
+                          </Button>
+                          <Text as="sub" className="opacity-50">
+                            you need a minimum of letters to activate 🙏
+                          </Text>
+                        </VStack>
+                      </ButtonGroup>
                     </ModalFooter>
                   </form>
                 )}
@@ -243,6 +247,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                     <ModalBody p="1">
                       <Center py="20">
                         <VStack>
+                          <Heading size="md">Show Case will come soon</Heading>
                           <FormControl>
                             <Input
                               variant="flushed"
@@ -268,11 +273,11 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                         <Button type="submit">
                           redirect to website portfolio
                         </Button>
-                        <Button
+                        {/* <Button
                         // onClick={() => redirect}
                         >
                           Skip, redirect to website portfolio
-                        </Button>
+                        </Button> */}
                       </ModalFooter>
                     </ModalBody>
                   </form>
