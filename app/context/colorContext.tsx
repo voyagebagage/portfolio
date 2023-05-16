@@ -1,6 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { useCycle } from "framer-motion";
+import React, { createContext, useEffect, useState } from "react";
 
+//useColor gives an index that allows to change color and
+//especially allows to pass props from main Layout to its children
+//colors array is located in data.tsx of ProfileHeader
 // Define the type of the context value
 export type ColorContextType = number;
 

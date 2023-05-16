@@ -4,17 +4,14 @@ import { motion, AnimatePresence, MotionProps } from "framer-motion";
 
 import { items } from "./data";
 import { ChakraNextImage } from "../../ChakraNextImage";
+import { useColor } from "@/app/customHooks/useColor";
 
-interface StackCardProps {
-  index: number;
-  // setIndex: React.Dispatch<React.SetStateAction<number>>;
-  // transition?: Transition;
-}
 interface StackMotionCardProps
   extends PropsOf<typeof motion.div>,
     MotionProps {}
 
-function StackCard({ index }: StackCardProps) {
+function StackCard() {
+  const index = useColor();
   const StackMotionCard: ChakraComponent<"div", StackMotionCardProps> = chakra(
     motion.div
   );

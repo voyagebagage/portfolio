@@ -6,17 +6,12 @@ import customTheme from "./styles/theme";
 import Header from "./components/layout/header/Header";
 import Footer from "./components/landingPage/Footer";
 import { useEffect, useState } from "react";
-import {
-  AnimationContext,
-  ThemeProviderContext,
-} from "./context/ThemeProviderContext";
+import { AnimationContext } from "./context/ThemeProviderContext";
 import SocialLinks from "./components/layout/SocialLinks";
 import EmailDisplay from "./components/layout/EmailDisplay";
 import AnimatedModal from "./components/AnimatedModal";
 import { getToken } from "./utils/tokenManager";
 import { ColorProvider } from "./context/colorContext";
-
-// const manager = createLocalStorageManager("my-key");
 
 export default function ThemeProvider({
   children,
@@ -35,19 +30,23 @@ export default function ThemeProvider({
   }, [token]);
 
   //------------------------
+  const [isChildrenVisible, setIsChildrenVisible] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsChildrenVisible(true);
+    }, 1000); // 1000ms delay
+
+    return () => clearTimeout(timer); // Clean up on component unmount
+  }, []);
+  //------------------------
   const [arrowPointingAt, setArrowPointingAt] = useState<string>(
     "about" || "work" || "projects" || "contact"
   );
-  const [index, setIndex] = useState<number>(0);
+  // const [index, setIndex] = useState<number>(0);
   const [visitingName, setVisitingName] = useState<string | undefined>("");
 
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  const contextValues = {
-    index,
-    setIndex,
-    arrowPointingAt,
-    setArrowPointingAt,
-  };
+
   const animationContextValues = {
     arrowPointingAt,
     setArrowPointingAt,
@@ -57,22 +56,19 @@ export default function ThemeProvider({
     <CacheProvider>
       <ChakraProvider resetCSS theme={customTheme}>
         <AnimationContext.Provider value={animationContextValues}>
-          <ThemeProviderContext.Provider value={contextValues}>
-            <ColorProvider>
-              <SocialLinks />
-              <EmailDisplay />
-              <Header
-                visitingName={visitingName}
-                setVisitingName={setVisitingName}
-                index={index}
-              />
-              {children}
-              <Footer />
-              {!token ? (
-                <AnimatedModal setVisitingName={setVisitingName} />
-              ) : null}
-            </ColorProvider>
-          </ThemeProviderContext.Provider>
+          <ColorProvider>
+            <SocialLinks />
+            <EmailDisplay />
+            <Header
+              visitingName={visitingName}
+              setVisitingName={setVisitingName}
+            />
+            {isChildrenVisible && children}
+            <Footer />
+            {!token ? (
+              <AnimatedModal setVisitingName={setVisitingName} />
+            ) : null}
+          </ColorProvider>
         </AnimationContext.Provider>
       </ChakraProvider>
     </CacheProvider>

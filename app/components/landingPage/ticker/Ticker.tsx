@@ -116,10 +116,8 @@ const ParallaxCard = React.memo(function ParallaxCard({
 //     toggle: () => void;
 //   };
 // }
-type prop = {
-  index: number;
-};
-const Ticker = ({ index }: prop) => {
+
+const Ticker = () => {
   const [isLargerThan1150] = useMediaQuery("(min-width: 1150px)");
   const [isLargerThan1000] = useMediaQuery("(min-width: 1000px)");
   const [isLargerThan800] = useMediaQuery("(min-width: 800px)");
@@ -132,7 +130,7 @@ const Ticker = ({ index }: prop) => {
           // style={{ border: "2px solid orange" }}
         >
           <TickerStackCard
-            index={index}
+            // index={index}
             title={stack.tickerName || ""}
             content={stack.content || ""}
             level={stack.level || ""}
@@ -161,7 +159,7 @@ const Ticker = ({ index }: prop) => {
           // style={{ border: "2px solid orange" }}
         >
           <TickerStackCard
-            index={index}
+            // index={index}
             title={stack.tickerName || ""}
             content={stack.content || ""}
             level={stack.level || ""}
@@ -203,7 +201,7 @@ const Ticker = ({ index }: prop) => {
           // _hover={{ color: "white", stroke: "blue" }}
           // border="2px solid yellow"
         >
-          <ProfileHeader index={index} />
+          <ProfileHeader />
           <ParallaxCard baseVelocity={-0.25}>{tickerStackCards}</ParallaxCard>
           <ParallaxCard baseVelocity={0.19}>{tickerUICards}</ParallaxCard>
 
@@ -270,7 +268,7 @@ const Ticker = ({ index }: prop) => {
         className="mySection"
         // mb="3vh"
       >
-        <ProfileHeader index={index} />
+        <ProfileHeader />
         <ParallaxCard baseVelocity={-0.2}>{tickerStackCards}</ParallaxCard>
         <ParallaxCard baseVelocity={0.1}>{tickerUICards}</ParallaxCard>
         {/* </Box> */}

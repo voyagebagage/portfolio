@@ -10,20 +10,16 @@ import {
 } from "@chakra-ui/react";
 import React, { useContext, useEffect, useState } from "react";
 import { items } from "./profileHeader/data";
-import {
-  AnimationContext,
-  ThemeProviderContextProps,
-} from "@/app/context/ThemeProviderContext";
+import { AnimationContext } from "@/app/context/ThemeProviderContext";
 import { ArrowTriangle } from "../StyledIcons";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { inViewAnimation, outOfViewAnimation } from "../animations/animation";
 import useFirstLoadMediaBooleans from "@/app/utils/useFirstLoadMediaBooleans";
+import { useColor } from "@/app/customHooks/useColor";
 
-type Props = {
-  index: ThemeProviderContextProps["index"];
-};
-const About = ({ index }: Props) => {
+const About = () => {
+  const index = useColor();
   //~~~~~~~~~~~~~~~MediaQueries~~~~~~~~~~~~~~~~~~~~~
   const { screenSizeIsSmallerThan640 } = useFirstLoadMediaBooleans();
   const [isSmallerThan600] = useMediaQuery("(max-width: 640px)");

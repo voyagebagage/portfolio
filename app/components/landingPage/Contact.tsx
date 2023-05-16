@@ -1,7 +1,4 @@
-import {
-  AnimationContext,
-  ThemeProviderContextProps,
-} from "@/app/context/ThemeProviderContext";
+import { AnimationContext } from "@/app/context/ThemeProviderContext";
 import { EmailIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -23,11 +20,10 @@ import { useInView } from "react-intersection-observer";
 import { inViewAnimation, outOfViewAnimation } from "../animations/animation";
 import { ArrowTriangle } from "../StyledIcons";
 import { items } from "./profileHeader/data";
+import { useColor } from "@/app/customHooks/useColor";
 
-type Props = {
-  index: ThemeProviderContextProps["index"];
-};
-const Contact = ({ index }: Props) => {
+const Contact = () => {
+  const index = useColor();
   //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const { ref, inView } = useInView({
     threshold: 1,

@@ -1,20 +1,4 @@
-// context/RootLayoutContext.tsx
-// context/ThemeProviderContext.tsx
-import { createContext, useContext } from "react";
-
-export interface ThemeProviderContextProps {
-  // exampleProp?: string;
-  showSpinningBox?: boolean;
-  setShowSpinningBox?: (value: boolean) => void;
-  index: number;
-  // visitingName: string;
-  // setIndex: (value: number) => void;
-  setIndex: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export const ThemeProviderContext =
-  createContext<ThemeProviderContextProps | null>(null);
-// export default ThemeProviderContext;
+import { createContext } from "react";
 
 export interface AnimationContextProps {
   arrowPointingAt: string;
@@ -25,13 +9,3 @@ export interface AnimationContextProps {
 export const AnimationContext = createContext<AnimationContextProps | null>(
   null
 );
-// export const useThemeProviderContext = () => {
-//   const context = useContext(ThemeProviderContext);
-
-//   if (context === undefined) {
-//     throw new Error(
-//       "useThemeProviderContext must be used within a ThemeProviderContextProvider"
-//     );
-//   }
-//   return context;
-// };

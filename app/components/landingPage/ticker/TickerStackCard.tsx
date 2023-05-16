@@ -1,5 +1,4 @@
 // components/Card.tsx
-import { ThemeProviderContextProps } from "@/app/context/ThemeProviderContext";
 import {
   AbsoluteCenter,
   Card,
@@ -19,8 +18,7 @@ import * as FcIcons from "react-icons/fc";
 import MIconButton from "../../MIconButton";
 import { items } from "../profileHeader/data";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-import { motion } from "framer-motion";
-import { css, keyframes } from "@emotion/react";
+import { useColor } from "@/app/customHooks/useColor";
 
 interface TickerStackCardProps {
   title?: string;
@@ -29,7 +27,6 @@ interface TickerStackCardProps {
   level?: string;
   orientation?: "top" | "bottom";
   project?: string;
-  index: ThemeProviderContextProps["index"];
 }
 
 const TickerStackCard = ({
@@ -39,39 +36,10 @@ const TickerStackCard = ({
   level,
   orientation,
   project,
-  index,
 }: TickerStackCardProps) => {
+  const index = useColor();
   const contentPhrases: string[] = content?.split("," || ".") as string[];
-  // console.log("contentText", contentPhrases);
-  // console.log("contentText", contentText.join("<br />"));
-  const colorChange = keyframes`
-    0% {
-      color: ${items[index]?.color};
-    }
-    20% {
-      color: ${items[index]?.color};
-    }
-    40% {
-      color: ${items[index]?.color};
-    }
-    60% {
-      color: ${items[index]?.color};
-    }
-    80% {
-      color: ${items[index]?.color};
-    }
-    100% {
-      color: ${items[index]?.color};
-    }
-  `;
 
-  const animationStyles = css`
-    :hover {
-      animation-name: color-change-hover;
-      animation-duration: ${13.5}s;
-      animation-iteration-count: infinite;
-    }
-  `;
   return (
     <Popover
       trigger="hover"
