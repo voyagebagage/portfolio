@@ -1,15 +1,13 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useForm from "../customHooks/useForm";
 import emailjs from "emailjs-com";
 
 import {
   Button,
   Center,
-  ChakraProvider,
   FormControl,
-  FormLabel,
   Heading,
   Input,
   InputGroup,
@@ -22,11 +20,8 @@ import {
   ModalOverlay,
   SlideFade,
   Text,
-  useBoolean,
   useDisclosure,
   VStack,
-  Box,
-  HStack,
   ButtonGroup,
 } from "@chakra-ui/react";
 import { setToken } from "../utils/tokenManager";
@@ -75,24 +70,21 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
     if (userType === "want a website") {
     }
     const token = uuidv4();
-    console.log(typeof token);
-
     setToken(`${name}--${token}`);
 
     //send an email to me with coordinates collected
-    console.log("send an email to me with coordinates collected");
     const templateParams = {
       from_name: name,
       company: company,
       website: website,
       from_email: email,
     };
-    // await emailjs.send(
-    //   `${serviceId}`,
-    //   `${templateId}`,
-    //   templateParams,
-    //   `${userId}`
-    // );
+    await emailjs.send(
+      `${serviceId}`,
+      `${templateId}`,
+      templateParams,
+      `${userId}`
+    );
 
     //close modal
     setTimeout(() => {

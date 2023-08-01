@@ -92,7 +92,7 @@ export const projects = [
     name: "Portfolio",
     links: ["https://github.com/voyagebagage/portfolio"],
     img: "",
-    content: "",
+    content: "this project is made with chakra ui and nextjs.................",
     liveDemo: true,
     videos: true,
     tags: [
