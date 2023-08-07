@@ -203,16 +203,20 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                             value={formState.email || ""}
                             onChange={handleChange}
                             name="email"
+                            type="email"
                           />
 
                           <InputGroup>
-                            <InputLeftAddon>https://</InputLeftAddon>
+                            {!formState.website && (
+                              <InputLeftAddon>https://</InputLeftAddon>
+                            )}
                             <Input
                               variant="flushed"
                               placeholder="Website"
                               value={formState.website || ""}
                               onChange={handleChange}
                               name="website"
+                              type="url"
                               isRequired
                             />
                           </InputGroup>
@@ -238,7 +242,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                             Welcome to my portfolio
                           </Button>
                           <Text as="sub" className="opacity-50">
-                            you need a minimum of letters to activate 🙏
+                            fill up the form to activate 🙏
                           </Text>
                         </VStack>
                       </ButtonGroup>
@@ -273,7 +277,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                         <Button onClick={() => handleClick("step1", "")}>
                           Back
                         </Button>
-                        <Button type="submit">
+                        <Button type="submit" isDisabled>
                           redirect to website portfolio
                         </Button>
                         {/* <Button
