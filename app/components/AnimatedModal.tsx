@@ -207,9 +207,8 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                           />
 
                           <InputGroup>
-                            {!formState.website && (
-                              <InputLeftAddon>https://</InputLeftAddon>
-                            )}
+                            <InputLeftAddon>https://</InputLeftAddon>
+
                             <Input
                               variant="flushed"
                               placeholder="Website"
