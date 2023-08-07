@@ -216,7 +216,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                               value={formState.website || ""}
                               onChange={handleChange}
                               name="website"
-                              type="url"
+                              // type="url"
                               isRequired
                             />
                           </InputGroup>
