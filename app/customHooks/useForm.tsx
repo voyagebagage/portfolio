@@ -34,6 +34,12 @@ export default () => {
     }));
   };
 
+  const hrValid =
+    !formState.name?.trim().length ||
+    !formState.company?.trim().length ||
+    !formState.email?.trim().length ||
+    !formState.website?.trim().length;
+
   return {
     handleChange,
     handleClick,
@@ -41,5 +47,6 @@ export default () => {
     errors,
     submitted,
     setSubmitted,
+    hrValid,
   };
 };

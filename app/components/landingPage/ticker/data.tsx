@@ -98,7 +98,7 @@ export const stacks = [
     color: "#F2982C",
     category: "hero+stack",
     level: "Average",
-    content: "learnt GraphQL Amplify, DynamoDB S3 Cognito, and Linux EC2",
+    content: "GraphQL Amplify,Lamba, DynamoDB S3 Cognito, and Linux EC2",
     project: "link",
   },
   {

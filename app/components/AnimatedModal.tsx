@@ -36,8 +36,14 @@ type Props = {
   setVisitingName: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 const AnimatedModal = ({ setVisitingName }: Props) => {
-  const { handleChange, handleClick, formState, submitted, setSubmitted } =
-    useForm();
+  const {
+    handleChange,
+    handleClick,
+    formState,
+    submitted,
+    setSubmitted,
+    hrValid,
+  } = useForm();
   const { step } = formState;
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -223,7 +229,12 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                           Back
                         </Button>
                         <VStack>
-                          <Button letterSpacing="wider" type="submit" mr={3}>
+                          <Button
+                            letterSpacing="wider"
+                            type="submit"
+                            mr={3}
+                            isDisabled={hrValid}
+                          >
                             Welcome to my portfolio
                           </Button>
                           <Text as="sub" className="opacity-50">

@@ -1,18 +1,13 @@
 import {
-  Wrap,
-  WrapItem,
   Icon,
   HStack,
   Tooltip,
   Box,
-  calc,
   VStack,
   Button,
-  Spacer,
   useBoolean,
   useBreakpointValue,
   IconButton,
-  ButtonGroup,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
@@ -21,7 +16,6 @@ import useElementSize from "../../../customHooks/useElementSize";
 import Feature from "../../Feature";
 import { ProjectProps } from "./data";
 import * as VscIcons from "react-icons/vsc";
-import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 const ProjectCard = ({
   name,
@@ -38,7 +32,7 @@ const ProjectCard = ({
   const displayPhoneSize = useBreakpointValue({ base: "flex", md: "none" });
   const displayBiggerSizes = useBreakpointValue({ base: "none", md: "flex" });
 
-  //~~~~~~~~~~~~
+  //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const [textFullWitdh, setTextFullWitdh] = useBoolean(false);
   const [imgFullWitdh, setImgFullWitdh] = useBoolean(false);
   // const [width, height, ref, ref2] = useElementSize();
