@@ -277,7 +277,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                         <Button onClick={() => handleClick("step1", "")}>
                           Back
                         </Button>
-                        <Button type="submit" isDisabled>
+                        <Button type="submit" isDisabled={true}>
                           redirect to website portfolio
                         </Button>
                         {/* <Button
