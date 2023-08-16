@@ -177,15 +177,12 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                     <ModalHeader color="tomato">
                       What is your name ? Who do you work for ?
                     </ModalHeader>
-                    <Text as="sub" className="opacity-50">
-                      Name field required only
-                    </Text>
                     <ModalBody>
                       <FormControl>
                         <VStack spacing="2">
                           <Input
                             variant="flushed"
-                            placeholder="name/nickname"
+                            placeholder="name/nickname*"
                             value={formState.name || ""}
                             onChange={handleChange}
                             name="name"
