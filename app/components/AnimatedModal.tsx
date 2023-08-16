@@ -182,7 +182,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                         <VStack spacing="2">
                           <Input
                             variant="flushed"
-                            placeholder="name/nickname*"
+                            placeholder="name/nickname *"
                             value={formState.name || ""}
                             onChange={handleChange}
                             name="name"
