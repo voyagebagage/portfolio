@@ -182,7 +182,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                         <VStack spacing="2">
                           <Input
                             variant="flushed"
-                            placeholder="name/nickname"
+                            placeholder="name/nickname (The ONLY one REQUIRED FIELD)"
                             value={formState.name || ""}
                             onChange={handleChange}
                             name="name"
@@ -195,7 +195,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                             value={formState.company || ""}
                             onChange={handleChange}
                             name="company"
-                            isRequired
+                            // isRequired
                           />
                           <Input
                             variant="flushed"
@@ -216,7 +216,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                               onChange={handleChange}
                               name="website"
                               // type="url"
-                              isRequired
+                              // isRequired
                             />
                           </InputGroup>
                         </VStack>
@@ -241,7 +241,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                             Welcome to my portfolio
                           </Button>
                           <Text as="sub" className="opacity-50">
-                            fill up the form to activate 🙏
+                            feel free to fill up 🙏
                           </Text>
                         </VStack>
                       </ButtonGroup>
