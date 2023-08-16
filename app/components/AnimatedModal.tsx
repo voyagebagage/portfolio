@@ -258,7 +258,6 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                             <Input
                               variant="flushed"
                               placeholder="name *"
-                              mr={3}
                               value={formState.name || ""}
                               onChange={handleChange}
                               name="name"
@@ -275,7 +274,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                         </VStack>
                       </Center>
                       <ModalFooter>
-                        <Button onClick={() => handleClick("step1", "")}>
+                        <Button onClick={() => handleClick("step1", "")} mr={3}>
                           Back
                         </Button>
                         <Button
