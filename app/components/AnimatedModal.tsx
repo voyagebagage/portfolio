@@ -211,7 +211,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
 
                             <Input
                               variant="flushed"
-                              placeholder="Website"
+                              placeholder=" Website"
                               value={formState.website || ""}
                               onChange={handleChange}
                               name="website"
