@@ -261,6 +261,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                               value={formState.name || ""}
                               onChange={handleChange}
                               name="name"
+                              isRequired
                             />
                             <Input
                               variant="flushed"
@@ -276,7 +277,10 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                         <Button onClick={() => handleClick("step1", "")}>
                           Back
                         </Button>
-                        <Button type="submit" isDisabled={true}>
+                        <Button
+                          type="submit"
+                          // isDisabled={true}
+                        >
                           redirect to website portfolio
                         </Button>
                         {/* <Button
