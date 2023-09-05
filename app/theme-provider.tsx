@@ -35,7 +35,7 @@ export default function ThemeProvider({
     if (!token) {
       const timer = setTimeout(() => {
         setIsChildrenVisible(true);
-      }, 1000); // 1000ms delay
+      }, 5000); // 1000ms delay
 
       return () => clearTimeout(timer); // Clean up on component unmount
     } else {
