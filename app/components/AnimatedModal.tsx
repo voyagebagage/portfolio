@@ -115,6 +115,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
             isOpen={isOpen}
             closeOnOverlayClick={false}
             onClose={onClose}
+            motionPreset="slideInBottom"
           >
             <ModalOverlay
               bg="none"

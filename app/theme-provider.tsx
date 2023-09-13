@@ -30,18 +30,25 @@ export default function ThemeProvider({
   }, [token]);
 
   //------------------------
-  const [isChildrenVisible, setIsChildrenVisible] = useState(false);
+  const [isChildrenVisible, setIsChildrenVisible] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(false);
   useEffect(() => {
     if (!token) {
       const timer = setTimeout(() => {
         setIsChildrenVisible(true);
-      }, 5000); // 1000ms delay
+      }, 500); // 1000ms delay
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY >= 400) {
+          setShowModal(true);
+        }
+      });
 
       return () => clearTimeout(timer); // Clean up on component unmount
     } else {
       setIsChildrenVisible(true);
     }
-  }, []);
+  }, [showModal]);
   //------------------------
   const [arrowPointingAt, setArrowPointingAt] = useState<string>(
     "about" || "work" || "projects" || "contact"
@@ -68,10 +75,10 @@ export default function ThemeProvider({
               setVisitingName={setVisitingName}
             />
             {isChildrenVisible && children}
-            <Footer />
-            {!token ? (
+            {showModal && window ? (
               <AnimatedModal setVisitingName={setVisitingName} />
             ) : null}
+            <Footer />
           </ColorProvider>
         </AnimationContext.Provider>
       </ChakraProvider>
