@@ -158,18 +158,19 @@ function ProfileHeader() {
             alignSelf="center"
             boxSize={300}
             mb={"0"}
+            // imageObjectFit="cover"
             boxShadow={"lg"}
             border={"10px solid"}
             borderColor={"modeDarkBg"}
             _hover={{ boxShadow: "lg" }}
-            sizes="(max-width: 768px) 100vw,
+            sizes="(max-width: 768px) 50vw,
           (max-width: 1200px) 50vw,
           33vw"
           />
           <TriangleLogo />
         </Box>
       </HStack>
-      {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Small Screen */}
+      {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Small Screen */}
       <VStack
         display={displaySmallValue}
         alignItems="center"

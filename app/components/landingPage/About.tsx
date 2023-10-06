@@ -178,6 +178,7 @@ const About = () => {
                     color: "#64FFDA",
                     textDecoration: "underline",
                     textDecorationSkipInk: "auto",
+                    textWrap: "pretty",
                   }}
                 >
                   We, my wife and I, also produce music and make video clips. We
