@@ -85,7 +85,7 @@ const EmailDisplay = () => {
           }}
           fontSize="sm"
         >
-          idevandyou@my-mail.com
+          @email
         </Text>
       </Link>
       <Box border={"0.7px solid"} h="7rem" />

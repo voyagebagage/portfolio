@@ -18,12 +18,12 @@ import StackCard from "./StackCard";
 import { TriangleLogo } from "./TriangleLogo";
 
 import { useColor } from "@/app/customHooks/useColor";
+import VideoModalButton from "./videoModalButton";
 
 function ProfileHeader() {
   const index = useColor();
   const MotionButton = motion(Button);
   const [isHovered, setIsHovered] = useState(false);
-
   //~~~~~~~~~~~~Breakpoints~~~~~~~~~~~~~~~~~
   const displayLargeHeader = useBreakpointValue({ base: "none", md: "flex" });
   const displaySmallValue = useBreakpointValue({ base: "flex", md: "none" });
@@ -145,6 +145,8 @@ function ProfileHeader() {
           // border="10px solid green"
           position={"relative"}
           as='button'
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
           display="flex"
           alignSelf="start"
           w="40%"
@@ -156,8 +158,7 @@ function ProfileHeader() {
             priority={true}
             src={"/ProfilePic.png"}
             alt={"ProfilePic"}
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+           
             bgGradient={`linear(to-r,#4ff3cc,${items[index]?.color || items[0]?.color
             })`}
             // bg={items[index]?.color}
@@ -178,19 +179,8 @@ function ProfileHeader() {
           />
           <TriangleLogo />
        
-                <Button
-                    position="absolute"
-                    top="75%"
-                    right={isHovered ? "-130px":'51px'}
-                    transform="translateY(-15%)"
-                    transition="right 0.5s ease-in-out" 
-                    zIndex={-10}
-                    pl={42}
-                   _hover={{color:'#2F373C'}} 
-                >
-                    introducing video
-                </Button>
-           
+                
+           <VideoModalButton isHovered={isHovered}/>
         </Box>
       </HStack>
       {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Small Screen */}
