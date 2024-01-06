@@ -158,8 +158,8 @@ function ProfileHeader() {
             priority={true}
             src={"/ProfilePic.png"}
             alt={"ProfilePic"}
-           
-            bgGradient={`linear(to-r,#4ff3cc,${items[index]?.color || items[0]?.color
+            bgGradient={`linear(to-r,${items[index]?.color || items[0]?.color
+            },#4ff3cc,${items[index]?.color || items[0]?.color
             })`}
             // bg={items[index]?.color}
             // zIndex={-100}
@@ -213,7 +213,9 @@ function ProfileHeader() {
             alt={"ProfilePic"}
             borderRadius="full"
             priority={true}
-            bg={items[index]?.color}
+            bgGradient={`linear(to-r,${items[index]?.color || items[0]?.color
+            },#4ff3cc,${items[index]?.color || items[0]?.color
+            })`}
             flexShrink={0}
             alignSelf="center"
             boxSize={"18.75rem"}

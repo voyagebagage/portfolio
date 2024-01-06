@@ -13,7 +13,7 @@ export default () => {
     website: "",
     email: "",
     userType: "",
-    step: "step1",
+    step: "step0",
   };
   const [formState, updateFormState] = useState<IForm>(initialFormState);
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -32,6 +32,7 @@ export default () => {
       userType: HRorWantAWebSite,
       step,
     }));
+    // alert(formState.name+ 'this is formstate')
   };
 
   const hrValid = !formState.name?.trim().length;

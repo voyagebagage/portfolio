@@ -43,7 +43,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
     formState,
     submitted,
     setSubmitted,
-    hrValid,
+    // hrValid,
   } = useForm();
   const { step } = formState;
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -79,19 +79,21 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
     const token = uuidv4();
     setToken(`${name}--${token}`);
 
-    //send an email to me with coordinates collected
-    const templateParams = {
-      from_name: name,
-      company: company,
-      website: website,
-      from_email: email,
+    if(company || email|| website){
+      //send an email to me with coordinates collected
+      const templateParams = {
+        from_name: name,
+        company: company,
+        website: website,
+        from_email: email,
     };
     await emailjs.send(
       `${serviceId}`,
       `${templateId}`,
       templateParams,
       `${userId}`
-    );
+      );
+    }
 
     //close modal
     setTimeout(() => {
@@ -152,7 +154,21 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
             >
               <SlideFade in={isOpen} offsetY="15px">
                 {step === "step0" && (<>
-                
+                  <ModalHeader color="tomato">Your name is ?</ModalHeader>
+                  <ModalBody>
+                          <Input
+                            variant="flushed"
+                            placeholder="first name/nickname *"
+                            value={formState.name || ""}
+                            onChange={handleChange}
+                            name="name"
+                            isRequired
+                          />
+                            <Button
+                          letterSpacing="wider"
+                          onClick={() => handleClick("step1", "")}
+                          // mr={3}
+                        >Got you !</Button></ModalBody>
                 </>)}
                 {step === "step1" && (
                   <>
@@ -186,15 +202,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                     <ModalBody>
                       <FormControl>
                         <VStack spacing="2">
-                          <Input
-                            variant="flushed"
-                            placeholder="name/nickname *"
-                            value={formState.name || ""}
-                            onChange={handleChange}
-                            name="name"
-                            isRequired
-                          />
-
+                         
                           <Input
                             variant="flushed"
                             placeholder="Company name"
@@ -242,12 +250,13 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                             letterSpacing="wider"
                             type="submit"
                             mr={3}
-                            isDisabled={hrValid}
+                            // onClick={}
+                            // isDisabled={hrValid}
                           >
                             Welcome to my portfolio
                           </Button>
                           <Text as="sub" className="opacity-50">
-                            feel free to fill up all 🙏
+                            feel free to fill up all 🙏 or SKIP
                           </Text>
                         </VStack>
                       </ButtonGroup>
