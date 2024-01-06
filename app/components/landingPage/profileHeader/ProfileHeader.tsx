@@ -180,7 +180,7 @@ function ProfileHeader() {
           <TriangleLogo />
        
                 
-           <VideoModalButton isHovered={isHovered} setIsHovered={setIsHovered}/>
+           <VideoModalButton isHovered={isHovered} />
         </Box>
       </HStack>
       {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Small Screen */}
