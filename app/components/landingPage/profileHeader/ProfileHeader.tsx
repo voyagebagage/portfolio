@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import NextLink from "next/link";
 import {
   Link,
@@ -7,7 +7,7 @@ import {
   Button,
   Spacer,
   ButtonGroup,
-  VStack,
+  VStack,Tooltip,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { useLayoutMediaQuery } from "../../../utils/useLayoutMediaQuery";
@@ -22,6 +22,7 @@ import { useColor } from "@/app/customHooks/useColor";
 function ProfileHeader() {
   const index = useColor();
   const MotionButton = motion(Button);
+  const [isHovered, setIsHovered] = useState(false);
 
   //~~~~~~~~~~~~Breakpoints~~~~~~~~~~~~~~~~~
   const displayLargeHeader = useBreakpointValue({ base: "none", md: "flex" });
@@ -142,23 +143,31 @@ function ProfileHeader() {
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Right-col */}
         <Box
           // border="10px solid green"
-          display="flex"
           position={"relative"}
+          as='button'
+          display="flex"
           alignSelf="start"
           w="40%"
           boxSize={"xs"}
+          pl={"2%"}
+
         >
           <ChakraNextImage
             priority={true}
-            src={"/ProfilePic.jpg"}
+            src={"/ProfilePic.png"}
             alt={"ProfilePic"}
-            mr={"8%"}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            bgGradient={`linear(to-r,#4ff3cc,${items[index]?.color || items[0]?.color
+            })`}
+            // bg={items[index]?.color}
+            // zIndex={-100}
             borderRadius="full"
             flexShrink={0}
             alignSelf="center"
             boxSize={300}
             mb={"0"}
-            // imageObjectFit="cover"
+            imageObjectFit="scale-down"
             boxShadow={"lg"}
             border={"10px solid"}
             borderColor={"modeDarkBg"}
@@ -168,6 +177,20 @@ function ProfileHeader() {
           33vw"
           />
           <TriangleLogo />
+       
+                <Button
+                    position="absolute"
+                    top="75%"
+                    right={isHovered ? "-130px":'51px'}
+                    transform="translateY(-15%)"
+                    transition="right 0.5s ease-in-out" 
+                    zIndex={-10}
+                    pl={42}
+                   _hover={{color:'#2F373C'}} 
+                >
+                    introducing video
+                </Button>
+           
         </Box>
       </HStack>
       {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Small Screen */}
@@ -181,11 +204,12 @@ function ProfileHeader() {
           justifyContent: "center",
         }}
         // border={"2px solid violet"}
-      >
+      > <Tooltip label='Introducing video' placement='top'>
         <Box
           style={{
             justifyContent: "center",
           }}
+          as='button'
           pr={0}
           pl={0}
           display="flex"
@@ -195,23 +219,25 @@ function ProfileHeader() {
           boxSize={"xs"}
         >
           <ChakraNextImage
-            src={"/ProfilePic.jpg"}
+            src={"/ProfilePic.png"}
             alt={"ProfilePic"}
             borderRadius="full"
             priority={true}
+            bg={items[index]?.color}
             flexShrink={0}
             alignSelf="center"
             boxSize={"18.75rem"}
             mb={"0"}
+            imageObjectFit="scale-down"
             boxShadow={"lg"}
             border={"10px solid"}
             borderColor={"modeDarkBg"}
-            _hover={{ boxShadow: "lg" }}
+            _hover={{ boxShadow: "lg",borderColor:'rgb(79, 243, 204,0.6)' }}
             sizes="(max-width: 768px) 100vw,
                    (max-width: 1200px) 50vw,
                    33vw"
           />
-        </Box>
+        </Box></Tooltip>
         <ButtonGroup
           isAttached
           mt={4}

@@ -23,6 +23,7 @@ import {
   useDisclosure,
   VStack,
   ButtonGroup,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import { setToken } from "../utils/tokenManager";
 import { v4 as uuidv4 } from "uuid";
@@ -150,8 +151,12 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
               overflow="hidden"
             >
               <SlideFade in={isOpen} offsetY="15px">
+                {step === "step0" && (<>
+                
+                </>)}
                 {step === "step1" && (
                   <>
+                   {/* <ModalCloseButton /> */}
                     <ModalHeader color="tomato">Are you a ?</ModalHeader>
                     <ModalBody>
                       <Text color="tomato">Company or want a website</Text>

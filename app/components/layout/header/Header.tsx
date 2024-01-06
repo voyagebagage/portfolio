@@ -90,29 +90,29 @@ const Header = ({ visitingName, setVisitingName }: props) => {
           Welcome <>{visitingName}</>
         </Text>
         <div className="flex justify-around gap-8">
-          <Box _hover={{ color: "#64FFDA" }}>
-            <AnchorLink href="#about">
-              <Highlight query="00." styles={{ color: "#64FFDA" }}>
+          <Box _hover={{ color: "#64FFDA" }} className="cta">
+            <AnchorLink href="#about" className="hover-underline-animation">
+              <Highlight query="00." styles={{ color: "#64FFDA" }} >
                 00. About
               </Highlight>
             </AnchorLink>
           </Box>
-          <Box _hover={{ color: "#64FFDA" }}>
-            <AnchorLink href="#work">
+          <Box _hover={{ color: "#64FFDA" }} className="cta">
+            <AnchorLink href="#work" className="hover-underline-animation">
               <Highlight query="01." styles={{ color: "#64FFDA" }}>
                 01. Work
               </Highlight>
             </AnchorLink>
           </Box>
-          <Box _hover={{ color: "#64FFDA" }}>
-            <AnchorLink href={"#projects"}>
+          <Box _hover={{ color: "#64FFDA" }} className="cta">
+            <AnchorLink href={"#projects"} className="hover-underline-animation">
               <Highlight query="02." styles={{ color: "#64FFDA" }}>
                 02. Projects
               </Highlight>
             </AnchorLink>
           </Box>
-          <Box _hover={{ color: "#64FFDA" }}>
-            <AnchorLink href="#contact">
+          <Box _hover={{ color: "#64FFDA" }} className="cta" >
+            <AnchorLink href="#contact" className="hover-underline-animation">
               <Highlight query="03." styles={{ color: "#64FFDA" }}>
                 03. Contact
               </Highlight>

@@ -9,7 +9,7 @@ export const TriangleLogo = () => {
   return isLargerThan1000 ? (
     <Circle
       ml={150}
-      transform="translate(36%, -7%)"
+      transform="translate(32%, -7%)"
       borderRadius={"full"}
       position="absolute"
       size={260}
@@ -23,7 +23,7 @@ export const TriangleLogo = () => {
           boxSize={200}
           opacity="0.06"
           transformOrigin="left"
-          transform="translate(31%, 75%) rotate(270deg)"
+          transform="translate(31%, 71%) rotate(270deg)"
           alignSelf="flex-end"
         />
         <SETriangle

@@ -310,3 +310,37 @@ html {
   animation-duration: 14s;
   animation-iteration-count: infinite;
 }
+/* ~~~~~~~~~~~~~~~~~~~~ header underlining */
+.cta {
+  border: none;
+  background: none;
+}
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 14px;
+  
+  text-transform: uppercase;
+}
+.hover-underline-animation {
+  position: relative;
+  /* color: #64FFDA; */
+  padding-bottom: 10px;
+}
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0); 
+  height: 1.5px;
+  bottom: 0;
+  left: 0;
+  background-color: #64FFDA;
+  transform-origin: bottom center;
+ 
+  transition: transform 0.15s ease-in-out;
+}
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom center;
+}
