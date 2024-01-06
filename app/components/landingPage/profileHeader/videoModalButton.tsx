@@ -17,15 +17,18 @@ import {
 
 type VideoModalButtonProp = {
   isHovered:boolean
+  setIsHovered:React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function VideoModalButton({isHovered}:VideoModalButtonProp) {
+export default function VideoModalButton({isHovered,setIsHovered}:VideoModalButtonProp) {
     const { isOpen, onOpen, onClose } = useDisclosure()
   
     return (
       <>
        
         <Button
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
                     position="absolute"
                     top="75%"
                     right={isHovered ? "-130px":'51px'}
