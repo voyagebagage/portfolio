@@ -47,7 +47,7 @@ const ProjectCard = ({
   const height2 = refs[1].height;
   const width2 = refs[1].width;
   //-------------------------------
-  console.log([height1, height2]);
+  // console.log([height1, height2]);
 
   return (
     <>
@@ -179,7 +179,8 @@ const ProjectCard = ({
                 src={src}
                 alt={alt}
                 fill
-                // object-fit="contain"
+                object-fit="contain"
+                loading="eager"
                 // height={100}
                 // width={150}
                 style={{
@@ -232,10 +233,10 @@ const ProjectCard = ({
       </HStack>
       <VStack display={displayPhoneSize}>
         <Box
-          bgImage="url(/ninjaGroupMod.png)"
+          bgImage={`url(${src})`}
           bgPosition="center"
           bgRepeat="no-repeat"
-          bgSize="cover"
+          bgSize="contain"
           height="100%"
           position="relative"
           borderRadius={"10px"}
