@@ -47,7 +47,6 @@ const ProjectCard = ({
   const height2 = refs[1].height;
   const width2 = refs[1].width;
   //-------------------------------
-  // console.log([height1, height2]);
 
   return (
     <>
