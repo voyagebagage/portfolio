@@ -8,6 +8,7 @@ import {
   useBoolean,
   useBreakpointValue,
   IconButton,
+  ButtonGroup,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import React from "react";
@@ -26,6 +27,7 @@ const ProjectCard = ({
   src,
   alt,
   links,
+  objectFit,
 }: ProjectProps) => {
   //~~~~~~~~~~~~Breakpoints~~~~~~~~~~~~~~~~~
   const displayValue = useBreakpointValue({ base: "none", md: "inline" });
@@ -77,7 +79,7 @@ const ProjectCard = ({
               minW={"52%"}
               cursor="pointer"
               onClick={setTextFullWitdh.toggle}
-              // _hover={{ caretColor: "red" }}
+              _hover={{ caretColor: "red" }}
             />
             <HStack
               spacing={1}
@@ -149,6 +151,7 @@ const ProjectCard = ({
         {!textFullWitdh ? (
           <VStack
             w={"100%"}
+            h={"279px"}
             minW={"48%"}
             bg="brown"
             borderRadius={"0 10px 10px 0"}
@@ -161,7 +164,7 @@ const ProjectCard = ({
               position="relative"
               w={"100%"}
               minW={imgFullWitdh ? width1 : "100%"}
-              h={height1}
+              h={"100%"}
               onClick={setImgFullWitdh.toggle}
               bg="gray.400"
               p={0}
@@ -178,13 +181,13 @@ const ProjectCard = ({
                 src={src}
                 alt={alt}
                 fill
-                object-fit="contain"
-                loading="eager"
+                // object-fit="contain"
+                // loading="eager"
                 // height={100}
                 // width={150}
                 style={{
                   borderRadius: "0 10px 10px 0",
-                  // objectFit: "contain",
+                  objectFit: objectFit || "contain",
                 }}
                 sizes="(max-width: 768px) 100vw,
                 (max-width: 1200px) 50vw,
@@ -199,8 +202,7 @@ const ProjectCard = ({
                 w="100%"
                 h="100%"
                 justifyContent={"flex-end"}
-                alignItems={"flex-end"}
-              >
+                alignItems={"flex-end"}>
                 <ButtonGroup isAttached size={sizes}>
                   <Button
                     // h={`${height2}px`}
@@ -209,8 +211,7 @@ const ProjectCard = ({
                     _hover={{
                       filter: "brightness(1.1)",
                       cursor: !liveDemo ? "pointer" : "initial",
-                    }}
-                  >
+                    }}>
                     Live Demo
                   </Button>
                   <Button
@@ -220,8 +221,7 @@ const ProjectCard = ({
                     _hover={{
                       filter: "brightness(1.1)",
                       cursor: !videos ? "pointer" : "initial",
-                    }}
-                  >
+                    }}>
                     Videos
                   </Button>
                 </ButtonGroup>

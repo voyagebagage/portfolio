@@ -292,6 +292,7 @@ const Projects = () => {
                   alt={project.alt}
                   height={project.height}
                   width={project.width}
+                  objectFit={project.objectFit}
                 />
               </Box>
             ))}

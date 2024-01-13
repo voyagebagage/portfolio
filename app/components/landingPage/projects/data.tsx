@@ -18,6 +18,7 @@ export interface ProjectProps {
   alt: string;
   height?: number;
   width?: number;
+  objectFit?: string;
   // icons?: JSX.Element[];
 }
 
@@ -66,6 +67,7 @@ export const projects = [
     ],
     src: "/happy-cow.png",
     alt: "",
+    objectFit: "contain",
     height: 2778,
     width: 1284,
     content:

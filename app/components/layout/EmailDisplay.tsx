@@ -2,8 +2,6 @@
 import { Box, VStack, Icon, Text, Link } from "@chakra-ui/react";
 import { FaWhatsapp, FaTelegramPlane } from "react-icons/fa";
 import { AiOutlineLike, AiTwotoneLike } from "react-icons/ai";
-
-// import { AnimateSharedLayout, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import MIconButton from "../MIconButton";
 import { ChevronUpIcon } from "@chakra-ui/icons";
@@ -28,7 +26,6 @@ const EmailDisplay = () => {
       }
     });
   }, [positionFromTop]);
-  console.log("likeButton", likeButton);
 
   return myIsLargerThan800 ? (
     <VStack
@@ -94,7 +91,6 @@ const EmailDisplay = () => {
         <Text
           style={{
             writingMode: "vertical-lr",
-            // textOrientation: "upright",
             marginTop: "12px",
           }}
           fontSize="sm">
