@@ -79,19 +79,19 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
     const token = uuidv4();
     setToken(`${name}--${token}`);
 
-    if(company || email|| website){
+    if (company || email || website) {
       //send an email to me with coordinates collected
       const templateParams = {
         from_name: name,
         company: company,
         website: website,
         from_email: email,
-    };
-    await emailjs.send(
-      `${serviceId}`,
-      `${templateId}`,
-      templateParams,
-      `${userId}`
+      };
+      await emailjs.send(
+        `${serviceId}`,
+        `${templateId}`,
+        templateParams,
+        `${userId}`
       );
     }
 
@@ -118,8 +118,7 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
             isOpen={isOpen}
             closeOnOverlayClick={false}
             onClose={onClose}
-            motionPreset="slideInBottom"
-          >
+            motionPreset="slideInBottom">
             <ModalOverlay
               bg="none"
               backdropFilter="auto"
@@ -150,29 +149,33 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                 lg: "34rem",
               }}
               p={{ base: "1rem", sm: "2rem" }}
-              overflow="hidden"
-            >
+              overflow="hidden">
               <SlideFade in={isOpen} offsetY="15px">
-                {step === "step0" && (<>
-                  <ModalHeader color="tomato">Your name is ?</ModalHeader>
-                  <ModalBody>
-                          <Input
-                            variant="flushed"
-                            placeholder="first name/nickname *"
-                            value={formState.name || ""}
-                            onChange={handleChange}
-                            name="name"
-                            isRequired
-                          />
-                            <Button
-                          letterSpacing="wider"
-                          onClick={() => handleClick("step1", "")}
-                          // mr={3}
-                        >Got you !</Button></ModalBody>
-                </>)}
+                {step === "step0" && (
+                  <>
+                    <ModalHeader color="tomato">Your name is ?</ModalHeader>
+                    <ModalBody>
+                      <Input
+                        variant="flushed"
+                        placeholder="first name/nickname *"
+                        value={formState.name || ""}
+                        onChange={handleChange}
+                        name="name"
+                        isRequired
+                      />
+                      <Button
+                        letterSpacing="wider"
+                        onClick={() => handleClick("step1", "")}
+                        // mr={3}
+                      >
+                        Got you !
+                      </Button>
+                    </ModalBody>
+                  </>
+                )}
                 {step === "step1" && (
                   <>
-                   {/* <ModalCloseButton /> */}
+                    {/* <ModalCloseButton /> */}
                     <ModalHeader color="tomato">Are you a ?</ModalHeader>
                     <ModalBody>
                       <Text color="tomato">Company or want a website</Text>
@@ -182,13 +185,11 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                         letterSpacing="wider"
                         px="8"
                         onClick={() => handleClick("step2A", "HR")}
-                        mr={3}
-                      >
+                        mr={3}>
                         I&apos;m HR
                       </Button>
                       <Button
-                        onClick={() => handleClick("step2B", "want a website")}
-                      >
+                        onClick={() => handleClick("step2B", "want a website")}>
                         Want a website
                       </Button>
                     </ModalFooter>
@@ -202,7 +203,6 @@ const AnimatedModal = ({ setVisitingName }: Props) => {
                     <ModalBody>
                       <FormControl>
                         <VStack spacing="2">
-                         
                           <Input
                             variant="flushed"
                             placeholder="Company name"

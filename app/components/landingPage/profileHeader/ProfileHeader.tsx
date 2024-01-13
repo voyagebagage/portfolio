@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import NextLink from "next/link";
 import {
   Link,
@@ -7,7 +7,8 @@ import {
   Button,
   Spacer,
   ButtonGroup,
-  VStack,Tooltip,
+  VStack,
+  Tooltip,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import { useLayoutMediaQuery } from "../../../utils/useLayoutMediaQuery";
@@ -86,8 +87,7 @@ function ProfileHeader() {
         minWidth="max-content"
         justifyContent={"center"}
         ml={isLargerThan920 ? "-3rem" : 0}
-        mb={6}
-      >
+        mb={6}>
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Left-col */}
         <VStack
           display="flex"
@@ -106,12 +106,10 @@ function ProfileHeader() {
               whileTap={{ scale: 0.8 }}
               whileHover={whileHover.letsTalk}
               transition={transition}
-              w="65%"
-            >
+              w="65%">
               <NextLink
                 href="https://wa.me/33769654361?message=urlencodedtext I have a 10k job for you."
-                passHref
-              >
+                passHref>
                 <Link
                   pl={3}
                   pr={3}
@@ -130,8 +128,7 @@ function ProfileHeader() {
             <MotionButton
               // oppositeColor
               whileTap={{ scale: 0.8 }}
-              whileHover={whileHover.cv}
-            >
+              whileHover={whileHover.cv}>
               <Link href="/CV DEV 2023.pdf" isExternal>
                 CV
               </Link>
@@ -144,23 +141,21 @@ function ProfileHeader() {
         <Box
           // border="10px solid green"
           position={"relative"}
-          as='button'
+          as="button"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           display="flex"
           alignSelf="start"
           w="40%"
           boxSize={"xs"}
-          pl={"2%"}
-
-        >
+          pl={"2%"}>
           <ChakraNextImage
             priority={true}
             src={"/ProfilePic.png"}
             alt={"ProfilePic"}
-            bgGradient={`linear(to-r,${items[index]?.color || items[0]?.color
-            },#4ff3cc,${items[index]?.color || items[0]?.color
-            })`}
+            bgGradient={`linear(to-r,${
+              items[index]?.color || items[0]?.color
+            },#4ff3cc,${items[index]?.color || items[0]?.color})`}
             // bg={items[index]?.color}
             // zIndex={-100}
             borderRadius="full"
@@ -178,9 +173,8 @@ function ProfileHeader() {
           33vw"
           />
           <TriangleLogo />
-       
-                
-           <VideoModalButton isHovered={isHovered} />
+
+          <VideoModalButton isHovered={isHovered} />
         </Box>
       </HStack>
       {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Small Screen */}
@@ -194,48 +188,49 @@ function ProfileHeader() {
           justifyContent: "center",
         }}
         // border={"2px solid violet"}
-      > <Tooltip label='Introducing video' placement='top'>
-        <Box
-          style={{
-            justifyContent: "center",
-          }}
-          as='button'
-          pr={0}
-          pl={0}
-          display="flex"
-          position={"relative"}
-          alignSelf="center"
-          w="40%"
-          boxSize={"xs"}
-        >
-          <ChakraNextImage
-            src={"/ProfilePic.png"}
-            alt={"ProfilePic"}
-            borderRadius="full"
-            priority={true}
-            bgGradient={`linear(to-r,${items[index]?.color || items[0]?.color
-            },#4ff3cc,${items[index]?.color || items[0]?.color
-            })`}
-            flexShrink={0}
+      >
+        {" "}
+        <Tooltip label="Introducing video" placement="top">
+          <Box
+            style={{
+              justifyContent: "center",
+            }}
+            as="button"
+            pr={0}
+            pl={0}
+            display="flex"
+            position={"relative"}
             alignSelf="center"
-            boxSize={"18.75rem"}
-            mb={"0"}
-            imageObjectFit="scale-down"
-            boxShadow={"lg"}
-            border={"10px solid"}
-            borderColor={"modeDarkBg"}
-            _hover={{ boxShadow: "lg",borderColor:'rgb(79, 243, 204,0.6)' }}
-            sizes="(max-width: 768px) 100vw,
+            w="40%"
+            boxSize={"xs"}>
+            <ChakraNextImage
+              src={"/ProfilePic.png"}
+              alt={"ProfilePic"}
+              borderRadius="full"
+              priority={true}
+              bgGradient={`linear(to-r,${
+                items[index]?.color || items[0]?.color
+              },#4ff3cc,${items[index]?.color || items[0]?.color})`}
+              flexShrink={0}
+              alignSelf="center"
+              boxSize={"18.75rem"}
+              mb={"0"}
+              imageObjectFit="scale-down"
+              boxShadow={"lg"}
+              border={"10px solid"}
+              borderColor={"modeDarkBg"}
+              _hover={{ boxShadow: "lg", borderColor: "rgb(79, 243, 204,0.6)" }}
+              sizes="(max-width: 768px) 100vw,
                    (max-width: 1200px) 50vw,
                    33vw"
-          />
-        </Box></Tooltip>
+            />
+          </Box>
+        </Tooltip>
         <ButtonGroup
           isAttached
           mt={4}
           display={"flex"}
-          justifyContent={"center"}
-        >
+          justifyContent={"center"}>
           <MotionButton
             animate={{
               color: ["#fff", "#4ff3cc"],
@@ -245,12 +240,10 @@ function ProfileHeader() {
             display={"flex"}
             whileHover={whileHover.letsTalk}
             transition={transition}
-            w="65%"
-          >
+            w="65%">
             <NextLink
               href="https://wa.me/33769654361?message=urlencodedtext I have a 10k job for you."
-              passHref
-            >
+              passHref>
               <Link
                 pl={3}
                 pr={3}
@@ -269,8 +262,7 @@ function ProfileHeader() {
           <MotionButton
             display={"flex"}
             whileTap={{ scale: 0.8 }}
-            whileHover={whileHover.cv}
-          >
+            whileHover={whileHover.cv}>
             <Link href="/CV DEV 2023.pdf" isExternal>
               CV
             </Link>

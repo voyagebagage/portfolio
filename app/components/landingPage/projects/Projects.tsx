@@ -44,6 +44,7 @@ const tags = [
   "Typescript",
   "Javascript",
 ];
+
 interface TagListProps {
   id: string;
   name: string;
@@ -140,14 +141,12 @@ const Projects = () => {
       id="projects"
       className="shadow-lg mt-10 rounded-t-3xl"
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+      onMouseLeave={handleMouseLeave}>
       <Flex justify={"center"} align={"flex-end"}>
         <Heading
           position={"relative"}
           ref={ref}
-          size={{ "3xs": "xs", xxs: "md", xs: "lg", md: "xl", lg: "xl" }}
-        >
+          size={{ "3xs": "xs", xxs: "md", xs: "lg", md: "xl", lg: "xl" }}>
           <Highlight
             query={["02.", "built ..."]}
             styles={{
@@ -157,8 +156,7 @@ const Projects = () => {
               color: "#30373D",
               bg: "teal.100",
               filter: "contrast(102%)",
-            }}
-          >
+            }}>
             02. What I&apos;ve built ...
           </Highlight>
         </Heading>
@@ -172,8 +170,7 @@ const Projects = () => {
                   ? inViewAnimation
                   : outOfViewAnimation
               }
-              position={"absolute"}
-            >
+              position={"absolute"}>
               <ArrowTriangle position={"absolute"} zIndex={2} boxSize={70} />
             </Box>
             <Box
@@ -194,8 +191,7 @@ const Projects = () => {
         fontSize={"lg"}
         color="#64ffda"
         borderColor="#64ffda"
-        mb={-2}
-      >
+        mb={-2}>
         Pick:
       </Text>
       <Box w={BoxSizes} pr={1} pl={1}>
@@ -212,8 +208,7 @@ const Projects = () => {
                 m={1}
                 onClick={handleOnClickOutlined}
                 cursor="pointer"
-                boxShadow={"xs"}
-              >
+                boxShadow={"xs"}>
                 {tag}
               </Tag>
             ) : (
@@ -221,8 +216,7 @@ const Projects = () => {
                 key={index}
                 minW={70}
                 bg="transparent"
-                color={"transparent"}
-              ></Tag>
+                color={"transparent"}></Tag>
             )
           )}
         </Box>
@@ -239,8 +233,7 @@ const Projects = () => {
           display="flex"
           alignItems={"flex-start"}
           justifyContent={"flex-start"}
-          boxShadow={"lg"}
-        >
+          boxShadow={"lg"}>
           <InputGroup>
             <InputLeftElement borderRight={"1px white solid"} h={"full"}>
               <AbsoluteCenter h="full">
@@ -254,8 +247,7 @@ const Projects = () => {
               flexWrap="wrap"
               w="100%"
               boxSizing="border-box"
-              pt={1}
-            >
+              pt={1}>
               {tagList.map((tag, index) => (
                 <Tag
                   key={tag.id}
@@ -269,8 +261,7 @@ const Projects = () => {
                   mr={2}
                   mb={2}
                   boxShadow={"xs"}
-                  onClick={handleOnClickSolid}
-                >
+                  onClick={handleOnClickSolid}>
                   {tag.name}
                 </Tag>
               ))}
@@ -289,8 +280,7 @@ const Projects = () => {
                 display="flex"
                 alignItems={"center"}
                 m={4}
-                boxShadow={"lg"}
-              >
+                boxShadow={"lg"}>
                 <ProjectCard
                   name={project.name}
                   links={project.links}
@@ -298,7 +288,10 @@ const Projects = () => {
                   videos={project.videos}
                   tags={project.tags}
                   content={project.content}
-                  img={project.img}
+                  src={project.src}
+                  alt={project.alt}
+                  height={project.height}
+                  width={project.width}
                 />
               </Box>
             ))}

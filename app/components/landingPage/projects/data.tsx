@@ -14,7 +14,10 @@ export interface ProjectProps {
   videos: boolean;
   tags: TagListProps[];
   content: string;
-  img: string;
+  src: string;
+  alt: string;
+  height?: number;
+  width?: number;
   // icons?: JSX.Element[];
 }
 
@@ -22,7 +25,8 @@ export const projects = [
   {
     name: "Youtube Bot",
     links: ["https://github.com/voyagebagage/view-booster-pwa"],
-    img: "",
+    src: "",
+    alt: "",
     content:
       "A personal project to boost the views of videos youtube, this is made as a progressive web app, with NextJs on the front and Back end, This works locally, I have an issue open",
 
@@ -38,7 +42,8 @@ export const projects = [
   {
     name: "Dashboard Gamification",
     links: ["https://github.com/voyagebagage/dashboard-gamification-demo"],
-    img: "",
+    src: "/DASHBOARD.png",
+    alt: "",
     content:
       "My first project at the company, I was tasked to create a dashboard for the company's gamification system deployed on AWS, I used ReactJs, Amplify and Semantic UI. The API is made with GraphQl, the App can CRUD clients, campaigns, and agents. it has a search function, a login/sign up system that creates agent, a filtered daily/weekly/monthly leaderboard, and last a taks system that rewards points, uptdate to agents based on their actions.",
     liveDemo: true,
@@ -59,7 +64,10 @@ export const projects = [
       "https://github.com/voyagebagage/test-location-withinRay",
       "https://github.com/voyagebagage/active-box-filter-component",
     ],
-    img: "",
+    src: "/happy-cow.png",
+    alt: "",
+    height: 2778,
+    width: 1284,
     content:
       "This is a clone of the Happy Cow app, which was the last project at Le Reacteur (Bootcamp name), I used React Native and Expo. it is a mobile app that allows you to find vegan restaurants, and filter them by distance, price, and rating. It is responsice on every app devices",
     liveDemo: true,
@@ -75,7 +83,8 @@ export const projects = [
   {
     name: "Vinted clone",
     links: [""],
-    img: "",
+    src: "",
+    alt: "",
     content:
       "First full stack project, made with ReactJs and NodeJs, during the bootcamp",
     liveDemo: true,
@@ -91,7 +100,8 @@ export const projects = [
   {
     name: "Portfolio",
     links: ["https://github.com/voyagebagage/portfolio"],
-    img: "",
+    src: "",
+    alt: "",
     content: "this project is made with chakra ui and nextjs.................",
     liveDemo: true,
     videos: true,
@@ -107,7 +117,8 @@ export const projects = [
   {
     name: "AirTable app",
     links: [""],
-    img: "",
+    src: "",
+    alt: "AirTable",
     content:
       "My boss ask me to create small app to manage his messy AirTable, I was collection data from reply.io in his marketing campaings ",
     liveDemo: true,
@@ -121,7 +132,8 @@ export const projects = [
   {
     name: "Sixt.fr",
     links: ["https://github.com/voyagebagage/oliv-thailand-exam-front-sixt"],
-    img: "",
+    src: "/logo-sixt.png",
+    alt: "sixt",
     content: "this is a clone of the Sixt.fr website, made during my bootcamp",
     liveDemo: true,
     videos: true,
@@ -137,7 +149,8 @@ export const projects = [
       "https://github.com/voyagebagage/Marvel-API-React-Remake",
       "https://github.com/voyagebagage/oliDev-back-Marvel",
     ],
-    img: "",
+    src: "",
+    alt: "",
     content:
       "This is a app that search for marvel and comics books, you can add them to your favorites. I added a cubic space background made with ThreeJs. This is currently not working because it was deployed on Heroku, and it is not free anymore",
     liveDemo: true,
@@ -151,19 +164,19 @@ export const projects = [
   },
 ];
 
-//   { name: "",img:'' ,liveDemo:true,videos:true,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
-//   { name: "",img:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,liveDemo:true,videos:true,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },
+//   { name: "",src:'' ,tags: ["", ""] },

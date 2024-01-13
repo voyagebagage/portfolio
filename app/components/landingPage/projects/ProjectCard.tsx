@@ -23,7 +23,8 @@ const ProjectCard = ({
   videos,
   tags,
   content,
-  img,
+  src,
+  alt,
   links,
 }: ProjectProps) => {
   //~~~~~~~~~~~~Breakpoints~~~~~~~~~~~~~~~~~
@@ -55,8 +56,7 @@ const ProjectCard = ({
         bg="#66887f"
         w="100%"
         borderRadius={"10px"}
-        display={displayBiggerSizes}
-      >
+        display={displayBiggerSizes}>
         {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~left col */}
         {!imgFullWitdh ? (
           <VStack
@@ -129,8 +129,7 @@ const ProjectCard = ({
                       display={displayValue}
                     />
                   }
-                  onClick={() => window.open(links[0], "_blank")}
-                >
+                  onClick={() => window.open(links[0], "_blank")}>
                   Readme
                 </Button>
               )}
@@ -154,17 +153,16 @@ const ProjectCard = ({
             minW={"48%"}
             bg="brown"
             borderRadius={"0 10px 10px 0"}
-            ref={ref2}
-          >
+            ref={ref2}>
             <Box
               _hover={{
                 filter: "brightness(0.8)",
                 cursor: "pointer",
               }}
+              position="relative"
               w={"100%"}
               minW={imgFullWitdh ? width1 : "100%"}
               h={height1}
-              position="relative"
               onClick={setImgFullWitdh.toggle}
               bg="gray.400"
               p={0}
@@ -178,10 +176,16 @@ const ProjectCard = ({
               // display="flex"
             >
               <Image
-                src={"/ninjaGroupMod.png"}
-                alt={"fdjsfs"}
+                src={src}
+                alt={alt}
                 fill
-                style={{ borderRadius: "0 10px 10px 0" }}
+                // object-fit="contain"
+                // height={100}
+                // width={150}
+                style={{
+                  borderRadius: "0 10px 10px 0",
+                  // objectFit: "contain",
+                }}
                 sizes="(max-width: 768px) 100vw,
                 (max-width: 1200px) 50vw,
                 33vw"
@@ -244,8 +248,7 @@ const ProjectCard = ({
             left: 0,
             borderRadius: "10px",
             backgroundColor: "blackAlpha.600",
-          }}
-        >
+          }}>
           <VStack
             w="100%"
             minW={textFullWitdh ? "100%" : "52%"}
