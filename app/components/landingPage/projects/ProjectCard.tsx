@@ -187,7 +187,7 @@ const ProjectCard = ({
                 // width={150}
                 style={{
                   borderRadius: "0 10px 10px 0",
-                  objectFit: objectFit || "contain",
+                  objectFit: !objectFit ? "cover" : "contain",
                 }}
                 sizes="(max-width: 768px) 100vw,
                 (max-width: 1200px) 50vw,
