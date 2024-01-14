@@ -141,7 +141,8 @@ function ProfileHeader() {
         <Box
           // border="10px solid green"
           position={"relative"}
-          as="button"
+          // as="button"
+          cursor={"pointer"}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
           display="flex"
@@ -195,7 +196,7 @@ function ProfileHeader() {
             style={{
               justifyContent: "center",
             }}
-            as="button"
+            cursor={"pointer"}
             pr={0}
             pl={0}
             display="flex"

@@ -181,8 +181,6 @@ const ProjectCard = ({
                 src={src}
                 alt={alt}
                 fill
-                // object-fit="contain"
-                // loading="eager"
                 // height={100}
                 // width={150}
                 style={{
